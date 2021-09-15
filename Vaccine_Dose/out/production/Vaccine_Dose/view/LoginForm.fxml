@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="650.0" prefWidth="550.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
+   <children>
+      <ImageView fitHeight="157.0" fitWidth="204.0" layoutY="493.0" pickOnBounds="true">
+         <image>
+            <Image url="@../image/15.jpg" />
+         </image></ImageView>
+      <ImageView fitHeight="169.0" fitWidth="129.0" layoutX="422.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/GettyImages-1210775161.jpg" />
+         </image>
+      </ImageView>
+      <TextField layoutX="164.0" layoutY="352.0" prefHeight="55.0" prefWidth="296.0" promptText="User ID">
+         <font>
+            <Font name="SansSerif Bold" size="16.0" />
+         </font>
+      </TextField>
+      <PasswordField layoutX="164.0" layoutY="424.0" prefHeight="55.0" prefWidth="296.0" promptText="Password">
+         <font>
+            <Font name="SansSerif Bold" size="16.0" />
+         </font>
+      </PasswordField>
+      <ImageView fitHeight="40.0" fitWidth="50.0" layoutX="110.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/user%20(2).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="110.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/key.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="247.0" layoutY="495.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="107.0" style="-fx-background-radius: 15px; -fx-background-color: #3498db;" text="Sign in" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Bold" size="18.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="326.0" fitWidth="1201.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/web-page-image-1024x605.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
