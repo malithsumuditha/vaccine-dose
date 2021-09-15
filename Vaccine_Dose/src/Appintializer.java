@@ -23,7 +23,7 @@ public class Appintializer extends Application {
             Parent parent = FXMLLoader.load(this.getClass().getResource("view/LoginForm.fxml"));
             Scene scene = new Scene(parent);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("NSBM Login");
+            primaryStage.setTitle("World");
             primaryStage.centerOnScreen();
             primaryStage.show();
 
