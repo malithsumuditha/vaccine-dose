@@ -29,6 +29,7 @@ public class DashBordMainViewFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        lblDateAndTime.setText("");
         setDateAndTime();
         Parent parent = null;
         try {
