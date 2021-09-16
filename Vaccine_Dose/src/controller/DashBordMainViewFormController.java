@@ -64,20 +64,23 @@ public class DashBordMainViewFormController implements Initializable {
     }
 
     public void setDateAndTime(){
-        lblDateAndTime.setText(null);
-        Thread timerThread = new Thread(() -> {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            while (true) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+
+            lblDateAndTime.setText(null);
+            Thread timerThread = new Thread(() -> {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    final String time = simpleDateFormat.format(new Date());
+                    Platform.runLater(() -> {
+                        lblDateAndTime.setText(time);
+                    });
                 }
-                final String time = simpleDateFormat.format(new Date());
-                Platform.runLater(() -> {
-                    lblDateAndTime.setText(time);
-                });
-            }
-        });   timerThread.start();
+            });   timerThread.start();
+
+
     }
 }

@@ -23,11 +23,16 @@ public class Appintializer extends Application {
         try {
             Parent parent = FXMLLoader.load(this.getClass().getResource("view/LoginForm.fxml"));
             Scene scene = new Scene(parent);
-            primaryStage.resizableProperty().setValue(false);
+            primaryStage.resizableProperty().setValue(Boolean.FALSE);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Login Form");
             primaryStage.centerOnScreen();
             primaryStage.show();
+
+            //normal exit kill
+            primaryStage.setOnCloseRequest(event -> {
+                System.exit(0);
+            });
 
         } catch (IOException e) {
             e.printStackTrace();
