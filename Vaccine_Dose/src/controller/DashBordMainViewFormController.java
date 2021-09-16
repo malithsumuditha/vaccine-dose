@@ -26,7 +26,7 @@ public class DashBordMainViewFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        setDateAndTime();
+
 
         Parent parent = null;
         try {
@@ -44,13 +44,11 @@ public class DashBordMainViewFormController implements Initializable {
         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/DashBordForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
-        setDateAndTime();
     }
     public void btnRegisterOnAction() throws IOException {
         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/RegForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
-        setDateAndTime();
     }
 
     public void btnCloseOnAction(ActionEvent actionEvent) {
