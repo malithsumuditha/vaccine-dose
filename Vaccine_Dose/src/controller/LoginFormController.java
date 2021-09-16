@@ -33,7 +33,7 @@ public class LoginFormController {
         Stage primaryStage = (Stage) this.btnSignIn.getScene().getWindow();
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
-        primaryStage.setTitle("Dash Bord");
+        primaryStage.setTitle("Vaccination");
 
 
     }
