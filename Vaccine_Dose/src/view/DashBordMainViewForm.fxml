@@ -61,5 +61,29 @@
             <Image url="@../image/injection-1492441-1263678.png" />
          </image>
       </ImageView>
+      <JFXButton layoutX="1300.0" layoutY="15.0" onAction="#btnCloseOnAction" prefHeight="34.0" prefWidth="26.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="2.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/icons8_Close_Window_96px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="1.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="1000.0" layoutY="7.0" onAction="#btnMinimizeOnAction" prefHeight="25.0" prefWidth="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="6.0">
+         <font>
+            <Font size="1.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/icons8_Minimize_Window_96px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

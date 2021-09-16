@@ -1,9 +1,11 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,5 +43,15 @@ public class DashBordMainViewFormController implements Initializable {
         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/RegForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
+    }
+
+    public void btnCloseOnAction(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    public void btnMinimizeOnAction(ActionEvent actionEvent) {
+
+        Stage stage = (Stage) mainPanel.getScene().getWindow();
+        stage.setIconified(true);
     }
 }
