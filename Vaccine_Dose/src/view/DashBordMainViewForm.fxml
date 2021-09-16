@@ -88,7 +88,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label fx:id="lblDateAndTime" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
+      <Label fx:id="lblDateAndTime" text="Label" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
          <font>
             <Font size="15.0" />
          </font>
