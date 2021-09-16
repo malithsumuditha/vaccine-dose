@@ -30,7 +30,7 @@ public class LoginFormController {
         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/DashBordMainViewForm.fxml"));
         Scene scene = new Scene(parent);
 
-        Stage primaryStage = (Stage) this.btnSignIn.getScene().getWindow();
+        Stage primaryStage = (Stage) root.getScene().getWindow();
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
         primaryStage.setTitle("Vaccination");
