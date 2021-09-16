@@ -4,11 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 /**
@@ -18,9 +21,12 @@ import java.util.ResourceBundle;
 public class DashBordMainViewFormController implements Initializable {
     public AnchorPane mainPanel;
     public AnchorPane changingPanel;
+    public Label lblDateAndTime;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        setDateAndTime();
 
         Parent parent = null;
         try {
@@ -38,11 +44,13 @@ public class DashBordMainViewFormController implements Initializable {
         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/DashBordForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
+        setDateAndTime();
     }
     public void btnRegisterOnAction() throws IOException {
         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/RegForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
+        setDateAndTime();
     }
 
     public void btnCloseOnAction(ActionEvent actionEvent) {
@@ -53,5 +61,13 @@ public class DashBordMainViewFormController implements Initializable {
 
         Stage stage = (Stage) mainPanel.getScene().getWindow();
         stage.setIconified(true);
+    }
+
+    public void setDateAndTime(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        lblDateAndTime.setText(dtf.format(now));
+
+
     }
 }
