@@ -29,7 +29,6 @@ public class DashBordMainViewFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        lblDateAndTime.setText(null);
         setDateAndTime();
         Parent parent = null;
         try {
@@ -65,6 +64,7 @@ public class DashBordMainViewFormController implements Initializable {
     }
 
     public void setDateAndTime(){
+        lblDateAndTime.setText(null);
         Thread timerThread = new Thread(() -> {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             while (true) {
