@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,8 +11,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
@@ -64,10 +67,19 @@ public class DashBordMainViewFormController implements Initializable {
     }
 
     public void setDateAndTime(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        lblDateAndTime.setText(dtf.format(now));
-
-
+        Thread timerThread = new Thread(() -> {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            while (true) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                final String time = simpleDateFormat.format(new Date());
+                Platform.runLater(() -> {
+                    lblDateAndTime.setText(time);
+                });
+            }
+        });   timerThread.start();
     }
 }
