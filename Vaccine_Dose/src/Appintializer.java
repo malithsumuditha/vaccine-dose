@@ -29,7 +29,7 @@ public class Appintializer extends Application {
             primaryStage.centerOnScreen();
             primaryStage.show();
 
-            //normal exit kill
+            //normal exit kill..
             primaryStage.setOnCloseRequest(event -> {
                 System.exit(0);
             });
