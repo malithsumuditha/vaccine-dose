@@ -28,6 +28,9 @@
                      <font>
                         <Font name="System Bold" size="29.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </JFXButton>
                   <JFXButton onAction="#btnRegisterOnAction" prefHeight="65.0" prefWidth="261.0" text="REGISTER" textFill="WHITE">
                      <font>
