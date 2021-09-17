@@ -1,5 +1,6 @@
 package controller;
 
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
 import javafx.event.ActionEvent;
@@ -19,6 +20,8 @@ public class RegFormController {
     public JFXTextField txtAddress;
     public JFXTextField txtContact;
     public JFXTextField txtNIC;
+    public JFXRadioButton rdbMale;
+    public JFXRadioButton rdbFemale;
 
     public void btnAddOnAction(ActionEvent actionEvent) {
 
@@ -27,15 +30,21 @@ public class RegFormController {
         String address = txtAddress.getText();
         String contact = txtContact.getText();
         String nic = txtNIC.getText();
+        String gender = "Male";
+
+        if (rdbFemale.isSelected()){
+            gender = "Female";
+        }
 
         Connection connection = DBConnection.getInstance().getConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into person values(?,?,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into person values(?,?,?,?,?,?)");
             preparedStatement.setObject(1,id);
             preparedStatement.setObject(2,name);
             preparedStatement.setObject(3,address);
             preparedStatement.setObject(4,contact);
             preparedStatement.setObject(5,nic);
+            preparedStatement.setObject(6,gender);
 
             int i = preparedStatement.executeUpdate();
 
@@ -55,5 +64,13 @@ public class RegFormController {
         }
 
 
+    }
+
+    public void rdbFemaleOnAction(ActionEvent actionEvent) {
+        rdbMale.setSelected(false);
+    }
+
+    public void rdbMaleOnAction(ActionEvent actionEvent) {
+        rdbFemale.setSelected(false);
     }
 }
