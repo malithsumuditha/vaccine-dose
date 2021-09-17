@@ -30,6 +30,7 @@ public class DashBordMainViewFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         setDateAndTime();
+
         Parent parent = null;
         try {
             parent = FXMLLoader.load(this.getClass().getResource("../view/DashBordForm.fxml"));
