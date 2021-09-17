@@ -1,19 +1,11 @@
-create table user(
-	id varchar(30)primary key,
-	user_name varchar(150)not null,
-	n_id varchar(30)not null,
-	u_address varchar(100)not null,
-	c_num int(25),
-	o_city varchar(40)not null,
-	constraint unique key(n_id) 
-);
+create database vaccine;
+use vaccine;
 
-create table people(
+create table person(
 	id varchar(30)primary key,
-	f_name varchar(50)not null,
-	n_id varchar(30)not null,
-	p_address varchar(100)not null,
-	c_num int(25)not null,
-	p_city varchar(40)not null,
-	constraint unique key(n_id)
+	name varchar(100)not null,
+	address varchar(100)not null,
+	contact varchar(10),
+	nic varchar(20)not null,
+	constraint unique key(nic)
 );
