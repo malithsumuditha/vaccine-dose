@@ -7,6 +7,7 @@ create table person(
 	address varchar(100)not null,
 	contact varchar(10),
 	nic varchar(20)not null,
-	registerTime varchar(45)not null,
+	gender varchar(10)not null,
+	registerTime(45)not null,
 	constraint unique key(nic)
 );

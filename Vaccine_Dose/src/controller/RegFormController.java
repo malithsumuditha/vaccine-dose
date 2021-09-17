@@ -4,10 +4,14 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +29,7 @@ public class RegFormController {
     public JFXRadioButton rdbFemale;
     public Label lblPersonID;
     public Label lblAllRegistered;
-
+    public AnchorPane personRegisterPanel;
 
 
     public void initialize(){
@@ -172,4 +176,9 @@ public class RegFormController {
         return dateTime;
     }
 
+    public void btnViewAllOnAction(ActionEvent actionEvent) throws IOException {
+       Parent parent = FXMLLoader.load(this.getClass().getResource("../view/ViewAllPersonForm.fxml"));
+       personRegisterPanel.getChildren().clear();
+       personRegisterPanel.getChildren().add(parent);
+    }
 }
