@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author - Hw_Dulanjana
@@ -22,10 +24,15 @@ public class RegFormController {
     public JFXRadioButton rdbMale;
     public JFXRadioButton rdbFemale;
     public Label lblPersonID;
+    public Label lblAllRegistered;
+
+
 
     public void initialize(){
+
         txtName.requestFocus();
         autoGenerateID();
+        countAllRegisteredPersons();
     }
 
     public void btnAddOnAction(ActionEvent actionEvent) {
@@ -45,13 +52,15 @@ public class RegFormController {
 
         Connection connection = DBConnection.getInstance().getConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into person values(?,?,?,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into person values(?,?,?,?,?,?,?)");
             preparedStatement.setObject(1,id);
             preparedStatement.setObject(2,name);
             preparedStatement.setObject(3,address);
             preparedStatement.setObject(4,contact);
             preparedStatement.setObject(5,nic);
             preparedStatement.setObject(6,gender);
+            preparedStatement.setObject(7,setTimeDate());
+
 
             int i = preparedStatement.executeUpdate();
 
@@ -72,6 +81,7 @@ public class RegFormController {
         txtName.requestFocus();
         autoGenerateID();
         clearTextFields();
+        countAllRegisteredPersons();
 
 
     }
@@ -128,6 +138,38 @@ public class RegFormController {
         txtNIC.clear();
         rdbFemale.setSelected(false);
         rdbMale.setSelected(false);
+    }
+
+    public void countAllRegisteredPersons(){
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select count(*) from person");
+
+            String count = null;
+            int intCount=0;
+            while (resultSet.next()){
+               count= resultSet.getString(1);
+                intCount = Integer.parseInt(count);
+            }
+            if (intCount<10){
+                lblAllRegistered.setText("0"+intCount);
+            }else {
+                lblAllRegistered.setText(""+intCount);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+    }
+    public String setTimeDate(){
+
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String dateTime = df.format(now);
+        return dateTime;
     }
 
 }
