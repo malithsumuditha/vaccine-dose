@@ -1,20 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1089.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegFormController">
+<AnchorPane prefHeight="640.0" prefWidth="1089.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegFormController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="426.0" layoutY="250.0" prefHeight="53.0" prefWidth="255.0" text="Register">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="36.0" prefWidth="1061.0" style="-fx-background-color: #3498db;" text="REGISTER" textFill="WHITE">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="36.0" prefWidth="1061.0" style="-fx-background-color: #3498db;" text="PERSON REGISTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
+      <Label layoutX="81.0" layoutY="127.0" text="Person ID">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="81.0" layoutY="165.0" text="Person Name">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="81.0" layoutY="205.0" text="Person Address">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="81.0" layoutY="245.0" text="Person Contact">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="81.0" layoutY="285.0" text="Person NIC">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <JFXRadioButton layoutX="219.0" layoutY="328.0" text="Male">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </JFXRadioButton>
+      <Label layoutX="81.0" layoutY="324.0" text="Gender">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <JFXRadioButton layoutX="306.0" layoutY="328.0" text="Female">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </JFXRadioButton>
+      <JFXButton layoutX="315.0" layoutY="379.0" onAction="#btnAddOnAction" prefHeight="26.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></JFXButton>
+      <JFXTextField fx:id="txtPersonId" layoutX="232.0" layoutY="120.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtName" layoutX="232.0" layoutY="158.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtAddress" layoutX="232.0" layoutY="198.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtContact" layoutX="232.0" layoutY="238.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtNIC" layoutX="232.0" layoutY="278.0" prefHeight="25.0" prefWidth="249.0" />
    </children>
 </AnchorPane>
