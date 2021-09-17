@@ -5,35 +5,42 @@ import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * @author - Hw_Dulanjana
  * @date - 9/12/2021
  */
 public class RegFormController {
-    public JFXTextField txtPersonId;
     public JFXTextField txtName;
     public JFXTextField txtAddress;
     public JFXTextField txtContact;
     public JFXTextField txtNIC;
     public JFXRadioButton rdbMale;
     public JFXRadioButton rdbFemale;
+    public Label lblPersonID;
+
+    public void initialize(){
+        txtName.requestFocus();
+        autoGenerateID();
+    }
 
     public void btnAddOnAction(ActionEvent actionEvent) {
 
-        String id = txtPersonId.getText();
+        String id = lblPersonID.getText();
         String name = txtName.getText();
         String address = txtAddress.getText();
         String contact = txtContact.getText();
         String nic = txtNIC.getText();
-        String gender = "Male";
+        String gender=null;
 
         if (rdbFemale.isSelected()){
             gender = "Female";
+        }else if (rdbMale.isSelected()){
+            gender="Male";
         }
 
         Connection connection = DBConnection.getInstance().getConnection();
@@ -62,6 +69,9 @@ public class RegFormController {
             alert.showAndWait();
             throwables.printStackTrace();
         }
+        txtName.requestFocus();
+        autoGenerateID();
+        clearTextFields();
 
 
     }
@@ -73,4 +83,51 @@ public class RegFormController {
     public void rdbMaleOnAction(ActionEvent actionEvent) {
         rdbFemale.setSelected(false);
     }
+
+    public void autoGenerateID(){
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select id from person order by id desc limit 1");
+
+            boolean isExit = resultSet.next();
+
+            if (isExit){
+                String oldId = resultSet.getString(1);
+                oldId = oldId.substring(1, oldId.length());
+
+                int intID = Integer.parseInt(oldId);
+                intID=intID+1;
+
+                if (intID<10){
+                    lblPersonID.setText("P000"+intID);
+                }else if (intID<100){
+                    lblPersonID.setText("P00"+intID);
+                }else if (intID<1000){
+                    lblPersonID.setText("P0"+intID);
+                }else{
+                    lblPersonID.setText("P"+intID);
+                    }
+
+            }else {
+                lblPersonID.setText("P0001");
+
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
+    public void clearTextFields(){
+        txtName.clear();
+        txtContact.clear();
+        txtAddress.clear();
+        txtNIC.clear();
+        rdbFemale.setSelected(false);
+        rdbMale.setSelected(false);
+    }
+
 }

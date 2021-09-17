@@ -41,6 +41,7 @@ public class DashBordMainViewFormController implements Initializable {
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
 
+
     }
 
     public void btnDashBordOnAction() throws IOException {
@@ -52,6 +53,7 @@ public class DashBordMainViewFormController implements Initializable {
         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/RegForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
+
     }
 
     public void btnCloseOnAction(ActionEvent actionEvent) {

@@ -58,10 +58,14 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></JFXButton>
-      <JFXTextField fx:id="txtPersonId" layoutX="232.0" layoutY="120.0" prefHeight="25.0" prefWidth="249.0" />
       <JFXTextField fx:id="txtName" layoutX="232.0" layoutY="158.0" prefHeight="25.0" prefWidth="249.0" />
       <JFXTextField fx:id="txtAddress" layoutX="232.0" layoutY="198.0" prefHeight="25.0" prefWidth="249.0" />
       <JFXTextField fx:id="txtContact" layoutX="232.0" layoutY="238.0" prefHeight="25.0" prefWidth="249.0" />
       <JFXTextField fx:id="txtNIC" layoutX="232.0" layoutY="278.0" prefHeight="25.0" prefWidth="249.0" />
+      <Label fx:id="lblPersonID" layoutX="232.0" layoutY="130.0" text="Person ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
