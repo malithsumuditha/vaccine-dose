@@ -5,69 +5,71 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="personRegisterPanel" prefHeight="640.0" prefWidth="1089.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegFormController">
    <children>
-      <JFXTextField fx:id="txtName" layoutX="232.0" layoutY="158.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtName" layoutX="232.0" layoutY="132.0" prefHeight="25.0" prefWidth="249.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="36.0" prefWidth="1061.0" style="-fx-background-color: #3498db;" text="PERSON REGISTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Label layoutX="81.0" layoutY="127.0" text="Person ID">
+      <Label layoutX="81.0" layoutY="101.0" text="Person ID">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="81.0" layoutY="165.0" text="Person Name">
+      <Label layoutX="81.0" layoutY="139.0" text="Person Name">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="81.0" layoutY="205.0" text="Person Address">
+      <Label layoutX="81.0" layoutY="179.0" text="Person Address">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="81.0" layoutY="245.0" text="Person Contact">
+      <Label layoutX="81.0" layoutY="219.0" text="Person Contact">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="81.0" layoutY="285.0" text="Person NIC">
+      <Label layoutX="81.0" layoutY="259.0" text="Person NIC">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <JFXRadioButton fx:id="rdbMale" layoutX="219.0" layoutY="328.0" onAction="#rdbMaleOnAction" text="Male">
+      <JFXRadioButton fx:id="rdbMale" layoutX="219.0" layoutY="302.0" onAction="#rdbMaleOnAction" text="Male">
          <font>
             <Font size="13.0" />
          </font>
       </JFXRadioButton>
-      <Label layoutX="81.0" layoutY="324.0" text="Gender">
+      <Label layoutX="81.0" layoutY="298.0" text="Gender">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <JFXRadioButton fx:id="rdbFemale" layoutX="306.0" layoutY="328.0" onAction="#rdbFemaleOnAction" text="Female">
+      <JFXRadioButton fx:id="rdbFemale" layoutX="306.0" layoutY="302.0" onAction="#rdbFemaleOnAction" text="Female">
          <font>
             <Font size="13.0" />
          </font>
       </JFXRadioButton>
-      <JFXButton layoutX="315.0" layoutY="379.0" onAction="#btnAddOnAction" prefHeight="26.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="Add" textFill="WHITE">
+      <JFXButton fx:id="btnAdd" layoutX="315.0" layoutY="353.0" onAction="#btnAddOnAction" prefHeight="26.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXButton>
-      <JFXTextField fx:id="txtAddress" layoutX="232.0" layoutY="198.0" prefHeight="25.0" prefWidth="249.0" />
-      <JFXTextField fx:id="txtContact" layoutX="232.0" layoutY="238.0" prefHeight="25.0" prefWidth="249.0" />
-      <JFXTextField fx:id="txtNIC" layoutX="232.0" layoutY="278.0" prefHeight="25.0" prefWidth="249.0" />
-      <Label fx:id="lblPersonID" layoutX="232.0" layoutY="130.0" text="Person ID">
+      <JFXTextField fx:id="txtAddress" layoutX="232.0" layoutY="172.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtContact" layoutX="232.0" layoutY="212.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtNIC" layoutX="232.0" layoutY="252.0" prefHeight="25.0" prefWidth="249.0" />
+      <Label fx:id="lblPersonID" layoutX="232.0" layoutY="104.0" text="Person ID">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -129,5 +131,16 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
+      <TableView fx:id="tblViewPersons" layoutX="48.0" layoutY="408.0" prefHeight="211.0" prefWidth="988.0">
+        <columns>
+          <TableColumn text="PersonID" />
+          <TableColumn prefWidth="126.0" text="Name" />
+            <TableColumn minWidth="0.0" prefWidth="160.0" text="Address" />
+            <TableColumn prefWidth="139.0" text="Contact" />
+            <TableColumn prefWidth="174.0" text="NIC" />
+            <TableColumn prefWidth="109.0" text="Gender" />
+            <TableColumn prefWidth="199.0" text="RegisterTime" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
