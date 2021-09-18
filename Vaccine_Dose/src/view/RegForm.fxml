@@ -166,5 +166,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
+      <JFXTextField fx:id="txtSearchMemID" layoutX="845.0" layoutY="62.0" onAction="#txtSearchMemIdOnAction" prefHeight="25.0" prefWidth="226.0" promptText="Enter Person ID" />
+      <JFXButton layoutX="992.0" layoutY="96.0" onAction="#btnSearchOnAction" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #2ecc71;" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

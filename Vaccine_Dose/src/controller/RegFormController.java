@@ -43,8 +43,7 @@ public class RegFormController {
     public JFXButton btnDelete;
     public JFXButton btnAdd;
     public JFXButton btnReset;
-
-
+    public JFXTextField txtSearchMemID;
 
 
     public void initialize(){
@@ -433,4 +432,60 @@ public class RegFormController {
         txtNIC.setStyle("-fx-border-color:null");
     }
 
+    public void txtSearchMemIdOnAction(ActionEvent actionEvent) {
+        searchPerson();
+    }
+
+    public void btnSearchOnAction(ActionEvent actionEvent) {
+        searchPerson();
+    }
+
+    public void searchPerson(){
+        String id = txtSearchMemID.getText();
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from person where id =?");
+            preparedStatement.setObject(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            boolean next = resultSet.next();
+
+            if (next){
+                String pid = resultSet.getString(1);
+                String name = resultSet.getString(2);
+                String address = resultSet.getString(3);
+                String contact = resultSet.getString(4);
+                String nic = resultSet.getString(5);
+                String gender = resultSet.getString(6);
+
+                if(gender.equals("Male")){
+                    rdbMale.setSelected(true);
+                    rdbMaleOnAction();
+                }else {
+                    rdbFemale.setSelected(true);
+                    rdbFemaleOnAction();
+                }
+
+                lblPersonID.setText(pid);
+                txtName.setText(name);
+                txtAddress.setText(address);
+                txtContact.setText(contact);
+                txtNIC.setText(nic);
+
+                txtSearchMemID.clear();
+                tblViewPersons.refresh();
+                setDisableUpdateDelete(false);
+                btnAdd.setDisable(true);
+                txtName.requestFocus();
+
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR,"Wrong Person ID ... ");
+                alert.showAndWait();
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }
