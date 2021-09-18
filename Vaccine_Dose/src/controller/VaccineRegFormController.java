@@ -2,11 +2,14 @@ package controller;
 
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author - Hw_Dulanjana
@@ -17,10 +20,12 @@ public class VaccineRegFormController {
     public JFXTextField txtMCountry;
     public JFXTextField txtCompany;
     public Label lblVaccineCode;
+    public Label lblTime;
 
     public void initialize(){
         txtVaccineName.requestFocus();
         autoGenarateCode();
+
     }
     public void btnVaccineAddOnAction(ActionEvent actionEvent) {
         String VName = txtVaccineName.getText();
@@ -83,6 +88,9 @@ public class VaccineRegFormController {
         txtVaccineName.clear();
         txtCompany.clear();
         txtMCountry.clear();
+
+    }
+    public void setDateAndTime(){
 
     }
 }
