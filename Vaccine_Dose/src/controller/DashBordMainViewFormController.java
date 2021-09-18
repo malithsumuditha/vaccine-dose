@@ -26,6 +26,7 @@ public class DashBordMainViewFormController implements Initializable {
     public AnchorPane changingPanel;
     public Label lblDateAndTime;
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -38,6 +39,8 @@ public class DashBordMainViewFormController implements Initializable {
         }
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
+
+        setDateAndTime();
 
 
     }
