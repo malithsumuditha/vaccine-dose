@@ -29,6 +29,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class RegFormController {
 
+
+
     public JFXTextField txtName;
     public JFXTextField txtAddress;
     public JFXTextField txtContact;
@@ -54,56 +56,105 @@ public class RegFormController {
         setDisableUpdateDelete(true);
         selectTableData();
 
+
     }
 
     public void btnAddOnAction(ActionEvent actionEvent) {
 
-        String id = lblPersonID.getText();
-        String name = txtName.getText();
-        String address = txtAddress.getText();
-        String contact = txtContact.getText();
-        String nic = txtNIC.getText();
-        String gender=null;
+       String num= txtContact.getText();
 
-        if (rdbFemale.isSelected()){
-            gender = "Female";
-        }else if (rdbMale.isSelected()){
-            gender="Male";
-        }
+       if (txtName.getText().isEmpty()){
+           showErrorMessage("Name");
+           txtName.requestFocus();
+           txtName.clear();
+           errorBorderColor(txtName,"red");
 
-        Connection connection = DBConnection.getInstance().getConnection();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into person values(?,?,?,?,?,?,?)");
-            preparedStatement.setObject(1,id);
-            preparedStatement.setObject(2,name);
-            preparedStatement.setObject(3,address);
-            preparedStatement.setObject(4,contact);
-            preparedStatement.setObject(5,nic);
-            preparedStatement.setObject(6,gender);
-            preparedStatement.setObject(7,setTimeDate());
+       }else if(txtAddress.getText().isEmpty()){
+           showErrorMessage("Address");
+           txtAddress.requestFocus();
+           txtAddress.clear();
+           errorBoderColorAllNull();
+           errorBorderColor(txtAddress,"red");
+       }else if (txtContact.getText().isEmpty()){
+           showErrorMessage("Contact");
+           txtContact.requestFocus();
+           txtContact.clear();
+           errorBoderColorAllNull();
+           errorBorderColor(txtContact,"red");
+       }else if (txtNIC.getText().isEmpty()){
+           showErrorMessage("NIC");
+           txtNIC.requestFocus();
+           txtNIC.clear();
+           errorBoderColorAllNull();
+           errorBorderColor(txtNIC,"red");
+       }else {
+           errorBoderColorAllNull();
+
+           if (numberCheck(num)){
+               errorBoderColorAllNull();
+
+               String id = lblPersonID.getText();
+               String name = txtName.getText();
+               String address = txtAddress.getText();
+               String contact = txtContact.getText();
+               String nic = txtNIC.getText();
+               String gender=null;
+
+               if (rdbFemale.isSelected()){
+                   gender = "Female";
+               }else if (rdbMale.isSelected()){
+                   gender="Male";
+               }else{
+                   showErrorMessage("Gender");
+               }
+
+               Connection connection = DBConnection.getInstance().getConnection();
+               try {
+                   PreparedStatement preparedStatement = connection.prepareStatement("insert into person values(?,?,?,?,?,?,?)");
+                   preparedStatement.setObject(1,id);
+                   preparedStatement.setObject(2,name);
+                   preparedStatement.setObject(3,address);
+                   preparedStatement.setObject(4,contact);
+                   preparedStatement.setObject(5,nic);
+                   preparedStatement.setObject(6,gender);
+                   preparedStatement.setObject(7,setTimeDate());
 
 
-            int i = preparedStatement.executeUpdate();
+                   int i = preparedStatement.executeUpdate();
 
-            if (i != 0){
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Successfully Added...");
-                alert.showAndWait();
-            }else {
-                Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error...");
-                alert.showAndWait();
-            }
-            loadList();
+                   if (i != 0){
+                       Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Successfully Added...");
+                       alert.showAndWait();
+                   }else {
+                       Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error...");
+                       alert.showAndWait();
+                   }
+                   loadList();
 
 
-        } catch (SQLException throwables) {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error...");
-            alert.showAndWait();
-            throwables.printStackTrace();
-        }
-        txtName.requestFocus();
-        autoGenerateID();
-        clearTextFields();
-        countAllRegisteredPersons();
+               } catch (SQLException throwables) {
+                   Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error...");
+                   alert.showAndWait();
+                   throwables.printStackTrace();
+               }
+               txtName.requestFocus();
+               autoGenerateID();
+               clearTextFields();
+               countAllRegisteredPersons();
+
+
+           }else {
+               Alert alert = new Alert(Alert.AlertType.ERROR,"Please Enter a Valid Number....");
+               alert.showAndWait();
+               errorBorderColor(txtContact,"red");
+               txtContact.requestFocus();
+           }
+
+
+       }
+
+
+
 
 
     }
@@ -349,4 +400,27 @@ public class RegFormController {
             }
         });
     }
+
+    public boolean numberCheck(String num){
+
+        boolean b = num.charAt(0) == '0' && num.length() == 10 && num.matches("[0-9]+");
+        return b;
+    }
+
+    public void showErrorMessage(String errorName){
+        Alert alert = new Alert(Alert.AlertType.ERROR,"Text field "+errorName+" Can not be Empty...");
+        alert.showAndWait();
+    }
+
+    public void errorBorderColor(JFXTextField name,String color){
+        name.setStyle("-fx-border-color:"+color);
+
+    }
+    public void errorBoderColorAllNull(){
+        txtName.setStyle("-fx-border-color:null");
+        txtAddress.setStyle("-fx-border-color:null");
+        txtContact.setStyle("-fx-border-color:null");
+        txtNIC.setStyle("-fx-border-color:null");
+    }
+
 }
