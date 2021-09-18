@@ -8,10 +8,14 @@ create table person(
 	contact varchar(10),
 	nic varchar(20)not null,
 	gender varchar(10)not null,
-<<<<<<< HEAD
-	registerTime varchar(45)not null,
-=======
-	registerTime(45)not null,
->>>>>>> aaecefce6d404382de366eb6ec7e2ee0d033f95f
-	constraint unique key(nic)
+    registerTime varchar(45)not null,
+    registerTime(45)not null,
+    constraint unique key(nic)
+);
+
+create table vaccinereg(
+	vcode varchar(30)primary key,
+	vname varchar(100)not null,
+	mcountry varchar(25)not null,
+	mcompany varchar(25)not null
 );

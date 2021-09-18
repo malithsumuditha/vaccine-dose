@@ -37,6 +37,11 @@
                         <Font name="System Bold" size="29.0" />
                      </font>
                   </JFXButton>
+                  <JFXButton onAction="#btnVaccineOnAction" prefHeight="65.0" prefWidth="261.0" text="VACCINE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </JFXButton>
                </children>
             </VBox>
          </left>

@@ -17,7 +17,7 @@ public class VaccineRegFormController {
     public JFXTextField txtMCountry;
     public JFXTextField txtCompany;
     public Label lblVaccineCode;
-    
+
     public void initialize(){
         txtVaccineName.requestFocus();
         autoGenarateCode();
@@ -38,7 +38,9 @@ public class VaccineRegFormController {
             if(i!=0){
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Successful Added !! ");
                 alert.showAndWait();
-
+                textAllClear();
+                txtVaccineName.requestFocus();
+                autoGenarateCode();
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR,"Somthing Error !! Please try again.");
                 alert.showAndWait();
@@ -63,16 +65,24 @@ public class VaccineRegFormController {
                 int newID = Integer.parseInt(oldValue);
                 newID=newID+1;
                 if(newID<10){
+                    lblVaccineCode.setText("V00"+newID);
+                }else if(newID<100){
                     lblVaccineCode.setText("V0"+newID);
                 }else{
-                    lblVaccineCode.setText("V"+newID);
+                    lblVaccineCode.setText("V");
                 }
             }else{
-                lblVaccineCode.setText("V01");
+                lblVaccineCode.setText("V001");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+    }
+    public void textAllClear () {
+        txtVaccineName.clear();
+        txtCompany.clear();
+        txtMCountry.clear();
 
     }
 }
