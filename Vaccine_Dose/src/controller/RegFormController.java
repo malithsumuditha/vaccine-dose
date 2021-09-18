@@ -51,6 +51,7 @@ public class RegFormController {
         tblViewPersons.setVisible(false);
         txtName.requestFocus();
         autoGenerateID();
+        txtName.requestFocus();
         countAllRegisteredPersons();
         setDisableUpdateDelete(true);
         selectTableData();

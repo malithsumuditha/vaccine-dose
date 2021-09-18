@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="640.0" prefWidth="1089.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VaccineDoseFormController">
+<AnchorPane prefHeight="640.0" prefWidth="1089.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VaccineRegFormController">
    <children>
       <Label layoutX="91.0" layoutY="137.0" text="Vaccine Code" AnchorPane.bottomAnchor="477.0" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="891.0" AnchorPane.topAnchor="137.0">
          <font>
