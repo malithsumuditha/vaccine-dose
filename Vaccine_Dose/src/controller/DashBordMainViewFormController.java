@@ -87,4 +87,10 @@ public class DashBordMainViewFormController implements Initializable {
 
 
     }
+
+    public void btnVaccineOnAction(ActionEvent actionEvent) throws IOException {
+        Parent parent = FXMLLoader.load(this.getClass().getResource("../view/VaccineRegForm.fxml"));
+        changingPanel.getChildren().clear();
+        changingPanel.getChildren().add(parent);
+    }
 }
