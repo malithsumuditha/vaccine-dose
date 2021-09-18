@@ -82,4 +82,6 @@ public class ViewAllPersonsTM {
     public void setRegisterTime(String registerTime) {
         this.registerTime = registerTime;
     }
+
+
 }

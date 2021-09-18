@@ -351,6 +351,7 @@ public class RegFormController {
         setDisableUpdateDelete(true);
         txtName.requestFocus();
         autoGenerateID();
+        errorBoderColorAllNull();
 
 
     }
