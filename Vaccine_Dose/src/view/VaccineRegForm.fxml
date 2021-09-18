@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="640.0" prefWidth="1089.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VaccineRegFormController">
+   <children>
+      <Label layoutX="91.0" layoutY="137.0" text="Vaccine Code" AnchorPane.bottomAnchor="477.0" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="891.0" AnchorPane.topAnchor="137.0">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="173.0" prefHeight="26.0" prefWidth="129.0" text="Vaccion Name" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="869.0">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="211.0" text="Manufacture Country">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtVaccineName" layoutX="225.0" layoutY="161.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXButton layoutX="325.0" layoutY="311.0" onAction="#btnVaccineAddOnAction" prefHeight="26.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXTextField fx:id="txtMCountry" layoutX="300.0" layoutY="201.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtCompany" layoutX="300.0" layoutY="241.0" prefHeight="25.0" prefWidth="249.0" />
+      <Label fx:id="lblVaccineCode" layoutX="242.0" layoutY="140.0" text="vaccine code">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="249.0" text="Production Company">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="24.0" prefHeight="36.0" prefWidth="1061.0" style="-fx-background-color: #3498db;" text="VACCINE REGISTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
