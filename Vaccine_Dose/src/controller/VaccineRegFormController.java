@@ -31,6 +31,8 @@ public class VaccineRegFormController {
             preparedStatement.setObject(2,VaccineName);
             preparedStatement.setObject(3,MCountry);
             preparedStatement.setObject(4,Company);
+            preparedStatement.execute();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
