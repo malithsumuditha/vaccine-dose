@@ -59,7 +59,7 @@
             <Font size="13.0" />
          </font>
       </JFXRadioButton>
-      <JFXButton fx:id="btnAdd" layoutX="315.0" layoutY="353.0" onAction="#btnAddOnAction" prefHeight="26.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="Add" textFill="WHITE">
+      <JFXButton fx:id="btnAdd" layoutX="392.0" layoutY="350.0" onAction="#btnAddOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3742fa;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -74,7 +74,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Pane layoutX="654.0" layoutY="151.0" prefHeight="200.0" prefWidth="276.0" style="-fx-background-color: #bdc3c7;">
+      <Pane layoutX="655.0" layoutY="110.0" prefHeight="200.0" prefWidth="276.0" style="-fx-background-color: #bdc3c7;">
          <children>
             <Label alignment="CENTER" layoutY="-3.0" prefHeight="36.0" prefWidth="276.0" style="-fx-background-color: #3498db; -fx-background-radius: 5px;" text="PERSONS" textFill="WHITE">
                <font>
@@ -123,7 +123,7 @@
             </Label>
          </children>
       </Pane>
-      <JFXButton alignment="CENTER" layoutX="654.0" layoutY="346.0" onAction="#btnViewAllOnAction" prefHeight="36.0" prefWidth="276.0" style="-fx-background-color: #3742fa;" text="VIEW ALL" textFill="WHITE">
+      <JFXButton alignment="CENTER" layoutX="655.0" layoutY="305.0" onAction="#btnViewAllOnAction" prefHeight="36.0" prefWidth="276.0" style="-fx-background-color: #3742fa;" text="VIEW ALL" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -142,5 +142,29 @@
             <TableColumn prefWidth="199.0" text="RegisterTime" />
         </columns>
       </TableView>
+      <JFXButton fx:id="btnUpdate" layoutX="199.0" layoutY="350.0" onAction="#btnUpdateOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" layoutX="101.0" layoutY="350.0" onAction="#btnDeleteOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #e74c3c;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnReset" layoutX="296.0" layoutY="350.0" onAction="#btnResetOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3498db;" text="Reset" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>
