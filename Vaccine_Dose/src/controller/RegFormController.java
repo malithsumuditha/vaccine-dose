@@ -28,6 +28,7 @@ import java.time.format.DateTimeFormatter;
  * @date - 9/12/2021
  */
 public class RegFormController {
+
     public JFXTextField txtName;
     public JFXTextField txtAddress;
     public JFXTextField txtContact;
