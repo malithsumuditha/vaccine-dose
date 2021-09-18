@@ -10,10 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import tm.ViewAllPersonsTM;
@@ -22,6 +19,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 /**
  * @author - Hw_Dulanjana
@@ -45,6 +43,8 @@ public class RegFormController {
     public JFXButton btnDelete;
     public JFXButton btnAdd;
     public JFXButton btnReset;
+
+
 
 
     public void initialize(){
@@ -245,6 +245,7 @@ public class RegFormController {
         return dateTime;
     }
 
+
     public void btnViewAllOnAction(ActionEvent actionEvent) throws IOException {
 
         tblViewPersons.setVisible(true);
@@ -294,21 +295,29 @@ public class RegFormController {
     public void btnDeleteOnAction(ActionEvent actionEvent) {
         ViewAllPersonsTM selectedItem = tblViewPersons.getSelectionModel().getSelectedItem();
 
-        Connection connection = DBConnection.getInstance().getConnection();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from person where id= ?");
-            preparedStatement.setObject(1,selectedItem.getId());
-            preparedStatement.executeUpdate();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Do You want to delete... ? ", ButtonType.YES,ButtonType.NO);
+        Optional<ButtonType> buttonType = alert.showAndWait();
 
-            loadList();
-            setDisableUpdateDelete(true);
-            btnAdd.setDisable(false);
-            clearTextFields();
+        if (buttonType.get().equals(ButtonType.YES)){
+            Connection connection = DBConnection.getInstance().getConnection();
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("delete from person where id= ?");
+                preparedStatement.setObject(1,selectedItem.getId());
+                preparedStatement.executeUpdate();
+
+                loadList();
+                setDisableUpdateDelete(true);
+                btnAdd.setDisable(false);
+                clearTextFields();
 
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+
         }
+
 
     }
 

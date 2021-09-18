@@ -5,6 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -15,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -25,6 +29,7 @@ public class DashBordMainViewFormController implements Initializable {
     public AnchorPane mainPanel;
     public AnchorPane changingPanel;
     public Label lblDateAndTime;
+
 
 
     @Override
@@ -57,16 +62,6 @@ public class DashBordMainViewFormController implements Initializable {
 
     }
 
-    public void btnCloseOnAction(ActionEvent actionEvent) {
-        System.exit(0);
-    }
-
-    public void btnMinimizeOnAction(ActionEvent actionEvent) {
-
-        Stage stage = (Stage) mainPanel.getScene().getWindow();
-        stage.setIconified(true);
-    }
-
     public void setDateAndTime(){
 
             lblDateAndTime.setText(null);
@@ -92,5 +87,23 @@ public class DashBordMainViewFormController implements Initializable {
         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/VaccineRegForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
+    }
+
+    public void btnSignOutOnAction(ActionEvent actionEvent) throws IOException {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Do you Want to Sign Out.. ? ",ButtonType.YES,ButtonType.NO);
+        Optional<ButtonType> buttonType = alert.showAndWait();
+
+        if (buttonType.get().equals(ButtonType.YES)){
+
+            Parent parent =FXMLLoader.load(this.getClass().getResource("../view/LoginForm.fxml"));
+            Scene scene =new Scene(parent);
+            Stage primaryStage = (Stage) mainPanel.getScene().getWindow();
+            primaryStage.setScene(scene);
+            primaryStage.centerOnScreen();
+            primaryStage.setTitle("Login Form");
+        }
+
+
     }
 }
