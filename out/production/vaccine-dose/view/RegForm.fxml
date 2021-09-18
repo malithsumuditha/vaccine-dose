@@ -133,13 +133,13 @@
       </JFXButton>
       <TableView fx:id="tblViewPersons" layoutX="48.0" layoutY="408.0" prefHeight="211.0" prefWidth="988.0">
         <columns>
-          <TableColumn text="PersonID" />
-          <TableColumn prefWidth="126.0" text="Name" />
-            <TableColumn minWidth="0.0" prefWidth="160.0" text="Address" />
-            <TableColumn prefWidth="139.0" text="Contact" />
-            <TableColumn prefWidth="174.0" text="NIC" />
-            <TableColumn prefWidth="109.0" text="Gender" />
-            <TableColumn prefWidth="199.0" text="RegisterTime" />
+          <TableColumn fx:id="clmPersonID" text="PersonID" />
+          <TableColumn fx:id="clmName" prefWidth="126.0" text="Name" />
+            <TableColumn fx:id="clmAddress" minWidth="0.0" prefWidth="160.0" text="Address" />
+            <TableColumn fx:id="clmContact" prefWidth="139.0" text="Contact" />
+            <TableColumn fx:id="clmNIC" prefWidth="174.0" text="NIC" />
+            <TableColumn fx:id="clmGender" prefWidth="109.0" text="Gender" />
+            <TableColumn fx:id="clmRegTime" prefWidth="199.0" text="RegisterTime" />
         </columns>
       </TableView>
       <JFXButton fx:id="btnUpdate" layoutX="199.0" layoutY="350.0" onAction="#btnUpdateOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="WHITE">
@@ -166,7 +166,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXTextField fx:id="txtSearchMemID" layoutX="845.0" layoutY="62.0" onAction="#txtSearchMemIdOnAction" prefHeight="25.0" prefWidth="226.0" promptText="Enter Person ID" />
+      <JFXTextField fx:id="txtSearchMemID" layoutX="845.0" layoutY="62.0" onAction="#txtSearchMemIdOnAction" prefHeight="25.0" prefWidth="226.0" promptText="Enter Person ID or Name" />
       <JFXButton layoutX="992.0" layoutY="96.0" onAction="#btnSearchOnAction" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #2ecc71;" text="Search" textFill="WHITE">
          <font>
             <Font name="System Bold" size="11.0" />

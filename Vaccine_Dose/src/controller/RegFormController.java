@@ -6,15 +6,20 @@ import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import tm.ViewAllPersonsTM;
 
+import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -46,6 +51,7 @@ public class RegFormController {
     public JFXTextField txtSearchMemID;
 
 
+
     public void initialize(){
         tblViewPersons.setVisible(false);
         txtName.requestFocus();
@@ -54,6 +60,15 @@ public class RegFormController {
         countAllRegisteredPersons();
         setDisableUpdateDelete(true);
         selectTableData();
+        loadList();
+
+        //add Listener to filterField
+        txtSearchMemID.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                search2((String) oldValue,(String) newValue);
+            }
+        });
 
 
     }
@@ -249,10 +264,13 @@ public class RegFormController {
 
         tblViewPersons.setVisible(true);
         loadList();
+        txtSearchMemID.clear();
+        txtSearchMemID.requestFocus();
 
     }
 
     public void loadList(){
+
         ObservableList<ViewAllPersonsTM> items = tblViewPersons.getItems();
         items.clear();
 
@@ -441,6 +459,7 @@ public class RegFormController {
     }
 
     public void searchPerson(){
+
         String id = txtSearchMemID.getText();
 
         Connection connection = DBConnection.getInstance().getConnection();
@@ -479,6 +498,8 @@ public class RegFormController {
                 btnAdd.setDisable(true);
                 txtName.requestFocus();
 
+
+
             }else {
                 Alert alert = new Alert(Alert.AlertType.ERROR,"Wrong Person ID ... ");
                 alert.showAndWait();
@@ -488,4 +509,33 @@ public class RegFormController {
             throwables.printStackTrace();
         }
     }
+
+
+
+    ObservableList<ViewAllPersonsTM> masterData = FXCollections.observableArrayList();
+    //filter table by id or last name
+    public void search2(String oldValue, String newValue){
+
+        ObservableList<ViewAllPersonsTM> filteredList = FXCollections.observableArrayList();
+
+        if(txtSearchMemID == null || (newValue.length() < oldValue.length()) || newValue == null) {
+            tblViewPersons.setItems(masterData);
+            loadList();
+        }
+        else {
+            newValue = newValue.toUpperCase();
+            for(ViewAllPersonsTM personsTM : tblViewPersons.getItems()) {
+                String filterId = personsTM.getId();
+                String filterName = personsTM.getName();
+                if(filterId.toUpperCase().contains(newValue) || filterName.toUpperCase().contains(newValue)) {
+
+                    filteredList.add(personsTM);
+                }
+            }
+            tblViewPersons.setItems(filteredList);
+        }
+
+
+    }
+
 }
