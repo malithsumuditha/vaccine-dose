@@ -61,7 +61,7 @@ public class VaccineRegFormController {
 
             if(ifNext){
                 String oldValue = resultSet.getString(1);
-                oldValue.substring(1,oldValue.length());
+                oldValue =oldValue.substring(1,oldValue.length());
                 int newID = Integer.parseInt(oldValue);
                 newID=newID+1;
                 if(newID<10){
