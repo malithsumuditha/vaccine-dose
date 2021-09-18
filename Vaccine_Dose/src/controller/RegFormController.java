@@ -37,6 +37,7 @@ public class RegFormController {
         txtName.requestFocus();
         autoGenerateID();
         countAllRegisteredPersons();
+
     }
 
     public void btnAddOnAction(ActionEvent actionEvent) {

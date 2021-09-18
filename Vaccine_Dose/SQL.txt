@@ -8,6 +8,10 @@ create table person(
 	contact varchar(10),
 	nic varchar(20)not null,
 	gender varchar(10)not null,
+<<<<<<< HEAD
+	registerTime varchar(45)not null,
+=======
 	registerTime(45)not null,
+>>>>>>> aaecefce6d404382de366eb6ec7e2ee0d033f95f
 	constraint unique key(nic)
 );
