@@ -11,9 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import tm.ViewAllPersonsListTM;
-import tm.ViewAllPersonsTM;
 import tm.ViewAllVaccinatedPersonsTM;
-import tm.ViewDoseCmbTM;
 
 import java.sql.*;
 import java.util.Optional;
@@ -70,7 +68,19 @@ public class VaccinationFormController {
         Object value = cmbSelectDose.getValue();
         Object value1 = cmbSelectVaccineName.getValue();
 
+<<<<<<< HEAD
         if (value=="Firs Dose"){
+=======
+        String id = lblVid.getText();
+        String name = lblPersonName.getText();
+        String age = lblAge.getText();
+        String location = txtLocation.getText();
+        String time = PersonRegFormController.setTimeDate();
+        String person_id = lblPersonID.getText();
+        String dose = cmbSelectDose.getValue().toString();
+        String vaccine_name = cmbSelectVaccineName.getValue().toString();
+        String gender = lblGender.getText();
+>>>>>>> 31aaffcd09431cdd8d476f2c6addffa1b8b219bc
 
             if (value1==null){
 
@@ -326,7 +336,7 @@ public class VaccinationFormController {
     }
 
     public void generateAutoID(){
-        RegFormController.autoGenerateID(lblVid,"vaccination","D");
+        PersonRegFormController.autoGenerateID(lblVid,"vaccination","D");
     }
 
     public void setDisableAddBtnAndCmbVaccineName(boolean isDisable){

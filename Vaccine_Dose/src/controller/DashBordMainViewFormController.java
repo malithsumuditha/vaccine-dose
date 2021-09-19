@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Optional;
@@ -110,6 +111,12 @@ public class DashBordMainViewFormController implements Initializable {
 
     public void btnVaccinationOnAction(ActionEvent actionEvent) throws IOException {
         Parent parent =FXMLLoader.load(this.getClass().getResource("../view/VaccinationForm.fxml"));
+        changingPanel.getChildren().clear();
+        changingPanel.getChildren().add(parent);
+    }
+
+    public void btnPHIRegisterOnAction(ActionEvent actionEvent) throws IOException {
+        Parent parent = FXMLLoader.load(this.getClass().getResource("../view/PHIRegForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
     }

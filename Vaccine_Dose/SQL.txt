@@ -33,3 +33,14 @@ create table vaccination(
 	gender varchar(10)not null,
 	constraint foreign key(person_id) references person(id) 
 );
+create table PHIReg(
+	PID varchar(15)primary key,
+	PName varchar(100)not null,
+	PAddress varchar(100)not null,
+	PContact varchar(20)not null,
+	PNIC varchar(25)not null,
+	PGender varchar(15)not null,
+	WCity varchar(30),
+	Password varchar(50)not null,
+	Constraint unique key(PNIC)
+);
