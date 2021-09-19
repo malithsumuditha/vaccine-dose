@@ -62,6 +62,7 @@ public class RegFormController {
         selectTableData();
         loadList();
 
+        //to request focus to text field in children Pane
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -430,6 +431,14 @@ public class RegFormController {
                     rdbFemaleOnAction();
 
                 }
+                //to request focus to text field in not responding Time
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        txtName.requestFocus();
+                    }
+                });
+
 
             }
         });

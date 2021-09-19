@@ -16,6 +16,7 @@ import tm.ViewAllVaccinatedPersonsTM;
 import tm.ViewDoseCmbTM;
 
 import java.sql.*;
+import java.util.Optional;
 
 /**
  * @author : MalithHP <malithsumuditha11@gmail.com>
@@ -66,52 +67,81 @@ public class VaccinationFormController {
 
     public void btnVaccinatedOnAction(ActionEvent actionEvent) {
 
-        tblViewAllVaccinatedPerson.getSelectionModel().clearSelection();
-        lstViewPersons.getSelectionModel().clearSelection();
+        Object value = cmbSelectDose.getValue();
+        Object value1 = cmbSelectVaccineName.getValue();
 
-        String id = lblVid.getText();
-        String name = lblPersonName.getText();
-        String age = lblAge.getText();
-        String location = txtLocation.getText();
-        String time = RegFormController.setTimeDate();
-        String person_id = lblPersonID.getText();
-        String dose = cmbSelectDose.getValue().toString();
-        String vaccine_name = cmbSelectVaccineName.getValue().toString();
-        String gender = lblGender.getText();
+        if (value=="Firs Dose"){
 
+            if (value1==null){
 
-        Connection connection = DBConnection.getInstance().getConnection();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into vaccination(id,name,age,vaccineName,dose,regDateDose1,location,person_id,gender) values(?,?,?,?,?,?,?,?,?) ");
-            preparedStatement.setObject(1,id);
-            preparedStatement.setObject(2,name);
-            preparedStatement.setObject(3,age);
-            preparedStatement.setObject(4,vaccine_name);
-            preparedStatement.setObject(5,dose);
-            preparedStatement.setObject(6,time);
-            preparedStatement.setObject(7,location);
-            preparedStatement.setObject(8,person_id);
-            preparedStatement.setObject(9,gender);
-
-            int i = preparedStatement.executeUpdate();
-
-
-            if (i!=0){
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Successfully Added... ");
+                cmbSelectDose.setStyle("-fx-border-color:null");
+                cmbSelectVaccineName.setStyle("-fx-border-color:red");
+                Alert alert = new Alert(Alert.AlertType.ERROR,"Please select Vaccine Name ..!");
                 alert.showAndWait();
+
+            }else if(txtLocation.getText().isEmpty()){
+                cmbSelectDose.setStyle("-fx-border-color:null");
+                cmbSelectVaccineName.setStyle("-fx-border-color:null");
+                txtLocation.setStyle("-fx-border-color:red");
+
+                Alert alert = new Alert(Alert.AlertType.ERROR,"Please Enter Location ..!");
+                alert.showAndWait();
+
+            } else {
+                setAllBorderColorNull();
+
+                tblViewAllVaccinatedPerson.getSelectionModel().clearSelection();
+                lstViewPersons.getSelectionModel().clearSelection();
+
+                String id = lblVid.getText();
+                String name = lblPersonName.getText();
+                String age = lblAge.getText();
+                String location = txtLocation.getText();
+                String time = RegFormController.setTimeDate();
+                String person_id = lblPersonID.getText();
+                String dose = cmbSelectDose.getValue().toString();
+                String vaccine_name = cmbSelectVaccineName.getValue().toString();
+                String gender = lblGender.getText();
+
+
+                Connection connection = DBConnection.getInstance().getConnection();
+                try {
+                    PreparedStatement preparedStatement = connection.prepareStatement("insert into vaccination(id,name,age,vaccineName,dose,regDateDose1,location,person_id,gender) values(?,?,?,?,?,?,?,?,?) ");
+                    preparedStatement.setObject(1,id);
+                    preparedStatement.setObject(2,name);
+                    preparedStatement.setObject(3,age);
+                    preparedStatement.setObject(4,vaccine_name);
+                    preparedStatement.setObject(5,dose);
+                    preparedStatement.setObject(6,time);
+                    preparedStatement.setObject(7,location);
+                    preparedStatement.setObject(8,person_id);
+                    preparedStatement.setObject(9,gender);
+
+                    int i = preparedStatement.executeUpdate();
+
+
+                    if (i!=0){
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Successfully Added... ");
+                        alert.showAndWait();
+                    }
+                    btnResetOnAction();
+                    tblViewAllVaccinatedPerson.refresh();
+
+
+
+                } catch (SQLException throwables) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error... ");
+                    alert.showAndWait();
+                    throwables.printStackTrace();
+                }
             }
-            txtLocation.clear();
-            generateAutoID();
-            loadDataToTable();
-            tblViewAllVaccinatedPerson.refresh();
 
-
-
-        } catch (SQLException throwables) {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error... ");
+        }else {
+            cmbSelectDose.setStyle("-fx-border-color:red");
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please Vaccine Dose one First...");
             alert.showAndWait();
-            throwables.printStackTrace();
         }
+
 
 
     }
@@ -166,12 +196,11 @@ public class VaccinationFormController {
     public void selectListItem(){
 
 
-
         lstViewPersons.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ViewAllPersonsListTM>() {
             @Override
             public void changed(ObservableValue<? extends ViewAllPersonsListTM> observable, ViewAllPersonsListTM oldValue, ViewAllPersonsListTM newValue) {
                 ViewAllPersonsListTM selectedItem = lstViewPersons.getSelectionModel().getSelectedItem();
-
+                txtSearchMemID.requestFocus();
                 if (selectedItem==null){
                     return;
                 }
@@ -181,10 +210,21 @@ public class VaccinationFormController {
 
                 txtLocation.clear();
                 generateAutoID();
+                txtSearchMemID.requestFocus();
 
                 setDisableAddBtnAndCmbVaccineName(false);
 
                 clearFields();
+
+                cmbSelectDose.setValue("Firs Dose");
+
+                //to request focus to text field in not responding Time
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        txtLocation.requestFocus();
+                    }
+                });
 
                 //to unselect table data item
                 tblViewAllVaccinatedPerson.getSelectionModel().clearSelection();
@@ -301,17 +341,62 @@ public class VaccinationFormController {
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
+
+
+        String locationNew =txtLocation.getText();
+        String time = RegFormController.setTimeDate();
+        String id = lblVid.getText();
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("update vaccination set regDateDose2 =?, location=? where id = ?");
+            preparedStatement.setObject(1,time);
+            preparedStatement.setObject(2,locationNew);
+            preparedStatement.setObject(3,id);
+
+            preparedStatement.executeUpdate();
+
+            loadDataToTable();
+            btnResetOnAction();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
+
+        ViewAllVaccinatedPersonsTM selectedItem = tblViewAllVaccinatedPerson.getSelectionModel().getSelectedItem();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Do You want to delete... ? ", ButtonType.YES,ButtonType.NO);
+        Optional<ButtonType> buttonType = alert.showAndWait();
+
+        if (buttonType.get().equals(ButtonType.YES)){
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("delete from vaccination where id =?");
+                preparedStatement.setObject(1,selectedItem.getId());
+                preparedStatement.executeUpdate();
+
+                btnResetOnAction();
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+
+
     }
 
     public void btnResetOnAction() {
 
+        loadDataToTable();
         btnUpdateAndDeleteSetDisable(true);
         clearAllFields();
         txtSearchMemID.requestFocus();
-
+        setDisableAddBtnAndCmbVaccineName(false);
+        setAllBorderColorNull();
 
     }
 
@@ -332,5 +417,11 @@ public class VaccinationFormController {
         lblPersonName.setText("Person Name");
         cmbSelectDose.setValue(null);
         cmbSelectVaccineName.setValue(null);
+    }
+
+    public void setAllBorderColorNull(){
+        cmbSelectDose.setStyle("-fx-border-color:null");
+        cmbSelectVaccineName.setStyle("-fx-border-color:null");
+        txtLocation.setStyle("-fx-border-color:null");
     }
 }
