@@ -19,7 +19,6 @@ public class DBConnection {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     public static DBConnection getInstance(){
