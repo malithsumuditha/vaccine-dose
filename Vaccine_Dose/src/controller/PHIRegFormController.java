@@ -37,10 +37,11 @@ public class PHIRegFormController {
     }
 
     public void rdbPHIMaleOnAction(ActionEvent actionEvent) {
-
+        rdbPHIFemale.setSelected(false);
     }
 
     public void rdbPHIFemaleOnAction(ActionEvent actionEvent) {
+        rdbPHIMale.setSelected(false);
     }
 
     public void btnPHIAddOnAction(ActionEvent actionEvent) {
