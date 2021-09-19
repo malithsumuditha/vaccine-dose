@@ -9,9 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class Appintializer extends Application {
+
 
     public static void main(String[] args) {
         launch(args);
@@ -27,7 +29,6 @@ public class Appintializer extends Application {
             primaryStage.setTitle("Login Form");
             primaryStage.centerOnScreen();
             primaryStage.show();
-
             //normal exit kill..
             primaryStage.setOnCloseRequest(event -> {
                 System.exit(0);
