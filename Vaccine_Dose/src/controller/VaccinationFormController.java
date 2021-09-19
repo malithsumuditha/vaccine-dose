@@ -320,12 +320,7 @@ public class VaccinationFormController {
                 tblViewAllVaccinatedPerson.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("regDateDose2"));
                 tblViewAllVaccinatedPerson.getColumns().get(6).setCellValueFactory(new PropertyValueFactory<>("location"));
                 tblViewAllVaccinatedPerson.getColumns().get(7).setCellValueFactory(new PropertyValueFactory<>("person_id"));
-
-
-
             }
-
-
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -431,6 +426,7 @@ public class VaccinationFormController {
         cmbSelectVaccineName.setStyle("-fx-border-color:null");
         txtLocation.setStyle("-fx-border-color:null");
     }
+<<<<<<< HEAD
 
     ObservableList<ViewAllVaccinatedPersonsTM> masterData = FXCollections.observableArrayList();
     //filter table by id or last name
@@ -458,3 +454,6 @@ public class VaccinationFormController {
 
     }
 }
+=======
+}
+>>>>>>> c83bbcb3ac2e6e91b204421ec14a2ed28864f334
