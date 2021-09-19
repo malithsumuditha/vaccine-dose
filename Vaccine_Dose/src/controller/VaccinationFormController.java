@@ -222,12 +222,8 @@ public class VaccinationFormController {
                 cmbSelectVaccineName.setValue(null);
 
                 setDisableAddBtnAndCmbVaccineName(false);
-
-<<<<<<< HEAD
                 //clearFields();
-=======
               //  clearFields();
->>>>>>> 8141c5b0db9e3664a014182fe3f761d5ee0f383e
 
                 cmbSelectDose.setValue("First Dose");
 
