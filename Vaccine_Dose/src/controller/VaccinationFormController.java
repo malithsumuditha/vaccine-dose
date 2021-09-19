@@ -3,14 +3,12 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import tm.ViewAllPersonsListTM;
 import tm.ViewAllPersonsTM;
@@ -36,6 +34,9 @@ public class VaccinationFormController {
     public Label lblGender;
     public TableView<ViewAllVaccinatedPersonsTM> tblViewAllVaccinatedPerson;
     public Label lblVid;
+    public JFXButton btnUpdate;
+    public JFXButton btnDelete;
+    public JFXButton btnReset;
 
     public void initialize(){
         loadList();
@@ -45,6 +46,15 @@ public class VaccinationFormController {
         generateAutoID();
         setTableSelectedItem();
         loadDataToTable();
+        btnUpdateAndDeleteSetDisable(true);
+
+        //to request focus to text field in children Pane
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                txtSearchMemID.requestFocus();
+            }
+        });
 
 
 
@@ -84,13 +94,22 @@ public class VaccinationFormController {
             preparedStatement.setObject(9,gender);
 
             int i = preparedStatement.executeUpdate();
+
+
+            if (i!=0){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Successfully Added... ");
+                alert.showAndWait();
+            }
             txtLocation.clear();
             generateAutoID();
             loadDataToTable();
             tblViewAllVaccinatedPerson.refresh();
 
 
+
         } catch (SQLException throwables) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error... ");
+            alert.showAndWait();
             throwables.printStackTrace();
         }
 
@@ -170,6 +189,8 @@ public class VaccinationFormController {
                 //to unselect table data item
                 tblViewAllVaccinatedPerson.getSelectionModel().clearSelection();
 
+                btnUpdateAndDeleteSetDisable(true);
+
             }
         });
 
@@ -198,6 +219,8 @@ public class VaccinationFormController {
                 setDisableAddBtnAndCmbVaccineName(true);
                 //to unselect list data item
                 lstViewPersons.getSelectionModel().clearSelection();
+
+                btnUpdateAndDeleteSetDisable(false);
 
             }
         });
@@ -277,4 +300,37 @@ public class VaccinationFormController {
         cmbSelectDose.setValue(null);
     }
 
+    public void btnUpdateOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnDeleteOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnResetOnAction() {
+
+        btnUpdateAndDeleteSetDisable(true);
+        clearAllFields();
+        txtSearchMemID.requestFocus();
+
+
+    }
+
+    public void btnUpdateAndDeleteSetDisable(boolean isDisable){
+        btnDelete.setDisable(isDisable);
+        btnUpdate.setDisable(isDisable);
+    }
+
+    public void clearAllFields(){
+
+        tblViewAllVaccinatedPerson.getSelectionModel().clearSelection();
+        lstViewPersons.getSelectionModel().clearSelection();
+        txtLocation.clear();
+        txtSearchMemID.clear();
+        generateAutoID();
+        lblGender.setText("Gender");
+        lblPersonID.setText("Person ID");
+        lblPersonName.setText("Person Name");
+        cmbSelectDose.setValue(null);
+        cmbSelectVaccineName.setValue(null);
+    }
 }
