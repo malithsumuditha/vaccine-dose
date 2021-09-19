@@ -78,7 +78,7 @@ public class VaccinationFormController {
         Object value1 = cmbSelectVaccineName.getValue();
 
 
-        if (value=="Firs Dose"){
+        if (value=="First Dose"){
 
             if (value1==null){
 
@@ -129,7 +129,7 @@ public class VaccinationFormController {
 
 
                     if (i!=0){
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Successfully Added... ");
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"First Dose Done Successfully... ");
                         alert.showAndWait();
                     }
                     btnResetOnAction();
@@ -190,7 +190,7 @@ public class VaccinationFormController {
     }
 
     public void doseSelectComboBox(){
-        cmbSelectDose.getItems().add("Firs Dose");
+        cmbSelectDose.getItems().add("First Dose");
         cmbSelectDose.getItems().add("Second Dose");
     }
 
@@ -219,13 +219,13 @@ public class VaccinationFormController {
 
                 txtLocation.clear();
                 generateAutoID();
-                txtSearchMemID.requestFocus();
+                cmbSelectVaccineName.setValue(null);
 
                 setDisableAddBtnAndCmbVaccineName(false);
 
-                clearFields();
+                //clearFields();
 
-                cmbSelectDose.setValue("Firs Dose");
+                cmbSelectDose.setValue("First Dose");
 
                 //to request focus to text field in not responding Time
                 Platform.runLater(new Runnable() {
@@ -346,26 +346,38 @@ public class VaccinationFormController {
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
 
+        if (cmbSelectDose.getValue()=="Second Dose"){
 
-        String locationNew =txtLocation.getText();
-        String time = PersonRegFormController.setTimeDate();
-        String id = lblVid.getText();
+            cmbSelectDose.setStyle("-fx-border-color:null");
 
-        Connection connection = DBConnection.getInstance().getConnection();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update vaccination set regDateDose2 =?, location=? where id = ?");
-            preparedStatement.setObject(1,time);
-            preparedStatement.setObject(2,locationNew);
-            preparedStatement.setObject(3,id);
+            String locationNew =txtLocation.getText();
+            String time = PersonRegFormController.setTimeDate();
+            String id = lblVid.getText();
 
-            preparedStatement.executeUpdate();
+            Connection connection = DBConnection.getInstance().getConnection();
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("update vaccination set regDateDose2 =?, location=? where id = ?");
+                preparedStatement.setObject(1,time);
+                preparedStatement.setObject(2,locationNew);
+                preparedStatement.setObject(3,id);
 
-            loadDataToTable();
-            btnResetOnAction();
+                preparedStatement.executeUpdate();
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Second Dose Vaccinated Successfully");
+                alert.showAndWait();
+                loadDataToTable();
+                btnResetOnAction();
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }else {
+            cmbSelectDose.setStyle("-fx-border-color:red");
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please Vaccine Dose Two...");
+            alert.showAndWait();
         }
+
+
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
