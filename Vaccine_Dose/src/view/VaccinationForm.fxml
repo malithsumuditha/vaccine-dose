@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="640.0" prefWidth="1089.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VaccinationFormController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="36.0" prefWidth="1061.0" style="-fx-background-color: #3498db;" text="VACCINATION" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="90.0" text="Person ID">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="128.0" text="Person Name">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="168.0" text="Dose">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="208.0" text="Vaccine Name">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="248.0" text="Age">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPersonID" layoutX="242.0" layoutY="93.0" text="Person ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAge" layoutX="242.0" layoutY="251.0" text="Age">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="286.0" text="Location">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtLocation" layoutX="242.0" layoutY="279.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label fx:id="lblPersonName" layoutX="242.0" layoutY="131.0" text="Person Name">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbSelectDose" layoutX="242.0" layoutY="169.0" onAction="#cmbSelectDoseOnAction" prefHeight="25.0" prefWidth="243.0" promptText="Select Dose" />
+      <ComboBox fx:id="cmbSelectVaccineName" layoutX="242.0" layoutY="209.0" prefHeight="25.0" prefWidth="243.0" promptText="Selcet Vaccine Name" />
+      <JFXButton fx:id="btnVaccinate" layoutX="397.0" layoutY="340.0" onAction="#btnVaccinatedOnAction" prefHeight="29.0" prefWidth="88.0" style="-fx-background-color: #3742fa;" text="Vaccinate" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <ListView fx:id="lstViewPersons" layoutX="711.0" layoutY="109.0" prefHeight="258.0" prefWidth="278.0" />
+      <JFXTextField fx:id="txtSearchMemID" layoutX="849.0" layoutY="62.0" onAction="#txtSearchMemIdOnAction" prefHeight="25.0" prefWidth="226.0" promptText="Enter Person ID or Name" />
+      <JFXButton layoutX="996.0" layoutY="96.0" onAction="#btnSearchOnAction" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #2ecc71;" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </JFXButton>
+      <TableView layoutX="58.0" layoutY="418.0" prefHeight="211.0" prefWidth="988.0">
+         <columns>
+            <TableColumn text="ID" />
+            <TableColumn prefWidth="126.0" text="Name" />
+            <TableColumn minWidth="0.0" prefWidth="96.0" text="Age" />
+            <TableColumn prefWidth="203.0" text="Vaccinated Location" />
+            <TableColumn prefWidth="180.0" text="1st Dose Reg Date" />
+            <TableColumn prefWidth="185.0" text="2nd Dose Reg Date" />
+            <TableColumn prefWidth="117.0" text="Person_ID" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
