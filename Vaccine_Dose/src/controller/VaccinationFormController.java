@@ -65,10 +65,7 @@ public class VaccinationFormController {
 
         Object value = cmbSelectDose.getValue();
         Object value1 = cmbSelectVaccineName.getValue();
-
-<<<<<<< HEAD
-        if (value=="Firs Dose"){
-=======
+        if (value=="First Dose"){
         String id = lblVid.getText();
         String name = lblPersonName.getText();
         String age = lblAge.getText();
@@ -78,7 +75,6 @@ public class VaccinationFormController {
         String dose = cmbSelectDose.getValue().toString();
         String vaccine_name = cmbSelectVaccineName.getValue().toString();
         String gender = lblGender.getText();
->>>>>>> 31aaffcd09431cdd8d476f2c6addffa1b8b219bc
 
             if (value1==null){
 
@@ -101,15 +97,6 @@ public class VaccinationFormController {
                 tblViewAllVaccinatedPerson.getSelectionModel().clearSelection();
                 lstViewPersons.getSelectionModel().clearSelection();
 
-                String id = lblVid.getText();
-                String name = lblPersonName.getText();
-                String age = lblAge.getText();
-                String location = txtLocation.getText();
-                String time = RegFormController.setTimeDate();
-                String person_id = lblPersonID.getText();
-                String dose = cmbSelectDose.getValue().toString();
-                String vaccine_name = cmbSelectVaccineName.getValue().toString();
-                String gender = lblGender.getText();
 
 
                 Connection connection = DBConnection.getInstance().getConnection();
@@ -352,7 +339,7 @@ public class VaccinationFormController {
 
 
         String locationNew =txtLocation.getText();
-        String time = RegFormController.setTimeDate();
+        String time = PersonRegFormController.setTimeDate();
         String id = lblVid.getText();
 
         Connection connection = DBConnection.getInstance().getConnection();
