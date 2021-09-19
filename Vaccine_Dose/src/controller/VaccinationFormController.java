@@ -426,7 +426,6 @@ public class VaccinationFormController {
         cmbSelectVaccineName.setStyle("-fx-border-color:null");
         txtLocation.setStyle("-fx-border-color:null");
     }
-<<<<<<< HEAD
 
     ObservableList<ViewAllVaccinatedPersonsTM> masterData = FXCollections.observableArrayList();
     //filter table by id or last name
@@ -454,6 +453,3 @@ public class VaccinationFormController {
 
     }
 }
-=======
-}
->>>>>>> c83bbcb3ac2e6e91b204421ec14a2ed28864f334

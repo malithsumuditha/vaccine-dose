@@ -11,7 +11,6 @@ import java.sql.SQLException;
 public class DBConnection {
     private static DBConnection dbConnection;
     private Connection connection;
-
     private DBConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
