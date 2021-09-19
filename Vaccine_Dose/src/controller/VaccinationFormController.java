@@ -223,7 +223,7 @@ public class VaccinationFormController {
 
                 setDisableAddBtnAndCmbVaccineName(false);
 
-                clearFields();
+              //  clearFields();
 
                 cmbSelectDose.setValue("Firs Dose");
 
@@ -472,14 +472,11 @@ public class VaccinationFormController {
                 String filterId = vaccinationListTM.getId();
                 String filterName = vaccinationListTM.getName();
                 if(filterId.toUpperCase().contains(newValue) || filterName.toUpperCase().contains(newValue)) {
-
                     filteredList.add(vaccinationListTM);
                 }
             }
             lstViewPersons.setItems(filteredList);
         }
-
-
     }
 
 }
