@@ -224,7 +224,6 @@ public class VaccinationFormController {
                 setDisableAddBtnAndCmbVaccineName(false);
                 //clearFields();
               //  clearFields();
-
                 cmbSelectDose.setValue("First Dose");
 
                 //to request focus to text field in not responding Time
