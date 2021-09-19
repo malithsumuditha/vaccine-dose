@@ -65,16 +65,6 @@ public class VaccinationFormController {
 
         Object value = cmbSelectDose.getValue();
         Object value1 = cmbSelectVaccineName.getValue();
-        if (value=="First Dose"){
-        String id = lblVid.getText();
-        String name = lblPersonName.getText();
-        String age = lblAge.getText();
-        String location = txtLocation.getText();
-        String time = PersonRegFormController.setTimeDate();
-        String person_id = lblPersonID.getText();
-        String dose = cmbSelectDose.getValue().toString();
-        String vaccine_name = cmbSelectVaccineName.getValue().toString();
-        String gender = lblGender.getText();
 
 
         if (value=="Firs Dose"){
@@ -99,6 +89,16 @@ public class VaccinationFormController {
 
                 tblViewAllVaccinatedPerson.getSelectionModel().clearSelection();
                 lstViewPersons.getSelectionModel().clearSelection();
+
+                String id = lblVid.getText();
+                String name = lblPersonName.getText();
+                String age = lblAge.getText();
+                String location = txtLocation.getText();
+                String time = PersonRegFormController.setTimeDate();
+                String person_id = lblPersonID.getText();
+                String dose = cmbSelectDose.getValue().toString();
+                String vaccine_name = cmbSelectVaccineName.getValue().toString();
+                String gender = lblGender.getText();
 
 
                 Connection connection = DBConnection.getInstance().getConnection();
@@ -129,6 +129,7 @@ public class VaccinationFormController {
                 } catch (SQLException throwables) {
                     Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error... ");
                     alert.showAndWait();
+                    btnResetOnAction();
                     throwables.printStackTrace();
                 }
             }
@@ -310,12 +311,7 @@ public class VaccinationFormController {
                 tblViewAllVaccinatedPerson.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("regDateDose2"));
                 tblViewAllVaccinatedPerson.getColumns().get(6).setCellValueFactory(new PropertyValueFactory<>("location"));
                 tblViewAllVaccinatedPerson.getColumns().get(7).setCellValueFactory(new PropertyValueFactory<>("person_id"));
-
-
-
             }
-
-
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
