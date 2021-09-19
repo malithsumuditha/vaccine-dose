@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -54,13 +55,19 @@ public class RegFormController {
 
     public void initialize(){
         tblViewPersons.setVisible(false);
-        txtName.requestFocus();
         autoGenerateID(lblPersonID,"person","P");
         txtName.requestFocus();
         countAllRegisteredPersons();
         setDisableUpdateDelete(true);
         selectTableData();
         loadList();
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                txtName.requestFocus();
+            }
+        });
 
         //add Listener to filterField
         txtSearchMemID.textProperty().addListener(new ChangeListener<String>() {
