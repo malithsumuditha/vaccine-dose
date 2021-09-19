@@ -65,7 +65,6 @@ public class VaccinationFormController {
 
         Object value = cmbSelectDose.getValue();
         Object value1 = cmbSelectVaccineName.getValue();
-<<<<<<< HEAD
         if (value=="First Dose"){
         String id = lblVid.getText();
         String name = lblPersonName.getText();
@@ -76,11 +75,9 @@ public class VaccinationFormController {
         String dose = cmbSelectDose.getValue().toString();
         String vaccine_name = cmbSelectVaccineName.getValue().toString();
         String gender = lblGender.getText();
-=======
 
 
         if (value=="Firs Dose"){
->>>>>>> 77a50a33434c3ce7c701dfc3c16624abe0f32d01
 
             if (value1==null){
 
@@ -102,19 +99,6 @@ public class VaccinationFormController {
 
                 tblViewAllVaccinatedPerson.getSelectionModel().clearSelection();
                 lstViewPersons.getSelectionModel().clearSelection();
-
-<<<<<<< HEAD
-=======
-                String id = lblVid.getText();
-                String name = lblPersonName.getText();
-                String age = lblAge.getText();
-                String location = txtLocation.getText();
-                String time = PersonRegFormController.setTimeDate();
-                String person_id = lblPersonID.getText();
-                String dose = cmbSelectDose.getValue().toString();
-                String vaccine_name = cmbSelectVaccineName.getValue().toString();
-                String gender = lblGender.getText();
->>>>>>> 77a50a33434c3ce7c701dfc3c16624abe0f32d01
 
 
                 Connection connection = DBConnection.getInstance().getConnection();
