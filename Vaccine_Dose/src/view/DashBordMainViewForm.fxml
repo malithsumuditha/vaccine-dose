@@ -76,7 +76,7 @@
                      </font>
                   </JFXButton>
                   <Separator layoutX="10.0" layoutY="392.0" prefWidth="200.0" />
-                  <JFXButton onAction="#btnPHIRegisterOnAction" prefHeight="65.0" prefWidth="261.0" text="PHI Register" textFill="WHITE">
+                  <JFXButton onAction="#btnPHIRegisterOnAction" prefHeight="65.0" prefWidth="261.0" text="PHI REGISTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="23.0" />
                      </font>

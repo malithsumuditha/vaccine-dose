@@ -93,6 +93,7 @@ public class PHIRegFormController {
                 alert.showAndWait();
                 txtClear();
                 txtPHIName.requestFocus();
+                autogenarate();
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error ! , Please TRy Again.. ");
                 alert.showAndWait();
@@ -134,7 +135,7 @@ public class PHIRegFormController {
         txtPHIName.clear();
         txtPHICity.clear();
         txtPHIAddress.clear();
-        txtConfirmPassword.clear();
+        txtAccPasssword.clear();
         txtConfirmPassword.clear();
         txtPHINIC.clear();
         txtPHIContact.clear();
