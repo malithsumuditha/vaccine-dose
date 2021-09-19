@@ -42,7 +42,7 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <JFXRadioButton fx:id="rdbDMale" layoutX="229.0" layoutY="277.0" onAction="#rdbMaleOnAction" text="Male">
+      <JFXRadioButton fx:id="rdbDMale" layoutX="229.0" layoutY="277.0" onAction="#rdbDMaleOnAction" text="Male">
          <font>
             <Font size="13.0" />
          </font>
@@ -52,12 +52,12 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <JFXRadioButton fx:id="rdbDFemale" layoutX="316.0" layoutY="277.0" onAction="#rdbFemaleOnAction" text="Female">
+      <JFXRadioButton fx:id="rdbDFemale" layoutX="316.0" layoutY="277.0" onAction="#rdbDFemaleOnAction" text="Female">
          <font>
             <Font size="13.0" />
          </font>
       </JFXRadioButton>
-      <JFXButton fx:id="btnAdd" layoutX="402.0" layoutY="517.0" onAction="#btnDAddOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3742fa;" text="Add" textFill="WHITE">
+      <JFXButton fx:id="btnDAdd" layoutX="402.0" layoutY="517.0" onAction="#btnDAddOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3742fa;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -88,7 +88,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnReset" layoutX="306.0" layoutY="517.0" onAction="#btnResetOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3498db;" text="Reset" textFill="WHITE">
+      <JFXButton fx:id="btnReset" layoutX="306.0" layoutY="517.0" onAction="#btnDResetOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3498db;" text="Reset" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
