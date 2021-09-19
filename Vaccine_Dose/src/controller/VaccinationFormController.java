@@ -6,11 +6,13 @@ import db.DBConnection;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import tm.ViewAllPersonsListTM;
+import tm.ViewAllPersonsTM;
 import tm.ViewAllVaccinatedPersonsTM;
 
 import java.sql.*;
@@ -52,6 +54,13 @@ public class VaccinationFormController {
             @Override
             public void run() {
                 txtSearchMemID.requestFocus();
+            }
+        });
+
+        txtSearchMemID.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                search((String) oldValue,(String) newValue);
             }
         });
 
@@ -129,6 +138,7 @@ public class VaccinationFormController {
                 } catch (SQLException throwables) {
                     Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error... ");
                     alert.showAndWait();
+                    btnResetOnAction();
                     throwables.printStackTrace();
                 }
             }
@@ -420,5 +430,31 @@ public class VaccinationFormController {
         cmbSelectDose.setStyle("-fx-border-color:null");
         cmbSelectVaccineName.setStyle("-fx-border-color:null");
         txtLocation.setStyle("-fx-border-color:null");
+    }
+
+    ObservableList<ViewAllVaccinatedPersonsTM> masterData = FXCollections.observableArrayList();
+    //filter table by id or last name
+    public void search(String oldValue, String newValue){
+
+        ObservableList<ViewAllVaccinatedPersonsTM> filteredList = FXCollections.observableArrayList();
+
+        if(txtSearchMemID == null || (newValue.length() < oldValue.length()) || newValue == null) {
+            tblViewAllVaccinatedPerson.setItems(masterData);
+            loadDataToTable();
+        }
+        else {
+            newValue = newValue.toUpperCase();
+            for(ViewAllVaccinatedPersonsTM vaccinationTM : tblViewAllVaccinatedPerson.getItems()) {
+                String filterId = vaccinationTM.getId();
+                String filterName = vaccinationTM.getName();
+                if(filterId.toUpperCase().contains(newValue) || filterName.toUpperCase().contains(newValue)) {
+
+                    filteredList.add(vaccinationTM);
+                }
+            }
+            tblViewAllVaccinatedPerson.setItems(filteredList);
+        }
+
+
     }
 }
