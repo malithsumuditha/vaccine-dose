@@ -55,7 +55,7 @@ public class RegFormController {
     public void initialize(){
         tblViewPersons.setVisible(false);
         txtName.requestFocus();
-        autoGenerateID();
+        autoGenerateID(lblPersonID,"person","P");
         txtName.requestFocus();
         countAllRegisteredPersons();
         setDisableUpdateDelete(true);
@@ -152,7 +152,7 @@ public class RegFormController {
                    throwables.printStackTrace();
                }
                txtName.requestFocus();
-               autoGenerateID();
+               autoGenerateID(lblPersonID,"person","P");
                clearTextFields();
                countAllRegisteredPersons();
 
@@ -181,12 +181,12 @@ public class RegFormController {
         rdbFemale.setSelected(false);
     }
 
-    public void autoGenerateID(){
+    public static void autoGenerateID(Label lbl,String tablename,String fLetter){
 
         Connection connection = DBConnection.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select id from person order by id desc limit 1");
+            ResultSet resultSet = statement.executeQuery("select id from "+tablename+ " order by id desc limit 1");
 
             boolean isExit = resultSet.next();
 
@@ -198,17 +198,17 @@ public class RegFormController {
                 intID=intID+1;
 
                 if (intID<10){
-                    lblPersonID.setText("P000"+intID);
+                    lbl.setText(fLetter+"000"+intID);
                 }else if (intID<100){
-                    lblPersonID.setText("P00"+intID);
+                    lbl.setText(fLetter+"00"+intID);
                 }else if (intID<1000){
-                    lblPersonID.setText("P0"+intID);
+                    lbl.setText(fLetter+"0"+intID);
                 }else{
-                    lblPersonID.setText("P"+intID);
+                    lbl.setText(fLetter+""+intID);
                     }
 
             }else {
-                lblPersonID.setText("P0001");
+                lbl.setText(fLetter+"0001");
 
             }
 
@@ -376,7 +376,7 @@ public class RegFormController {
         btnAdd.setDisable(false);
         setDisableUpdateDelete(true);
         txtName.requestFocus();
-        autoGenerateID();
+        autoGenerateID(lblPersonID,"person","P");
         errorBoderColorAllNull();
 
 

@@ -70,7 +70,7 @@
                         <Insets />
                      </VBox.margin>
                   </Separator>
-                  <JFXButton layoutX="10.0" layoutY="327.0" onAction="#btnVaccinationOnAction" prefHeight="65.0" prefWidth="261.0" text="VACCINEATION" textFill="WHITE">
+                  <JFXButton layoutX="10.0" layoutY="327.0" onAction="#btnVaccinationOnAction" prefHeight="65.0" prefWidth="261.0" text="VACCINATION" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="23.0" />
                      </font>

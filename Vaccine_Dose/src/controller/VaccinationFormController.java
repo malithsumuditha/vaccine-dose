@@ -10,15 +10,14 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import tm.ViewAllPersonsListTM;
 import tm.ViewAllPersonsTM;
+import tm.ViewAllVaccinatedPersonsTM;
 import tm.ViewDoseCmbTM;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * @author : MalithHP <malithsumuditha11@gmail.com>
@@ -35,12 +34,17 @@ public class VaccinationFormController {
     public ListView<ViewAllPersonsListTM> lstViewPersons;
     public JFXTextField txtSearchMemID;
     public Label lblGender;
+    public TableView<ViewAllVaccinatedPersonsTM> tblViewAllVaccinatedPerson;
+    public Label lblVid;
 
     public void initialize(){
         loadList();
         doseSelectComboBox();
         vaccineSelectComboBox();
         selectListItem();
+        generateAutoID();
+
+
     }
 
     public void cmbSelectDoseOnAction(ActionEvent actionEvent) {
@@ -48,6 +52,38 @@ public class VaccinationFormController {
     }
 
     public void btnVaccinatedOnAction(ActionEvent actionEvent) {
+
+        String id = lblVid.getText();
+        String name = lblPersonName.getText();
+        String age = lblAge.getText();
+        String location = txtLocation.getText();
+        String time = RegFormController.setTimeDate();
+        String person_id = lblPersonID.getText();
+        String dose = cmbSelectDose.getValue().toString();
+        String vaccine_name = cmbSelectVaccineName.getValue().toString();
+
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into vaccination(id,name,age,vaccineName,dose,regDateDose1,location,person_id) values(?,?,?,?,?,?,?,?) ");
+            preparedStatement.setObject(1,id);
+            preparedStatement.setObject(2,name);
+            preparedStatement.setObject(3,age);
+            preparedStatement.setObject(4,vaccine_name);
+            preparedStatement.setObject(5,dose);
+            preparedStatement.setObject(6,time);
+            preparedStatement.setObject(7,location);
+            preparedStatement.setObject(8,person_id);
+
+            int i = preparedStatement.executeUpdate();
+            txtLocation.clear();
+            generateAutoID();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
 
     }
 
@@ -115,6 +151,15 @@ public class VaccinationFormController {
             }
         });
 
+    }
+
+    public void loadDataToTable(){
+//        Connection connection = DBConnection.getInstance().getConnection();
+//        connection.prepareStatement("insert into vaccination ")
+    }
+
+    public void generateAutoID(){
+        RegFormController.autoGenerateID(lblVid,"vaccination","D");
     }
 
 

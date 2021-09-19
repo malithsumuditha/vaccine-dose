@@ -8,9 +8,9 @@ create table person(
 	contact varchar(10),
 	nic varchar(20)not null,
 	gender varchar(10)not null,
-    registerTime varchar(45)not null,
-    registerTime(45)not null,
-    constraint unique key(nic)
+    	registerTime varchar(45)not null,
+    	registerTime(45)not null,
+    	constraint unique key(nic)
 );
 
 create table vaccinereg(
@@ -18,4 +18,17 @@ create table vaccinereg(
 	vname varchar(100)not null,
 	mcountry varchar(25)not null,
 	mcompany varchar(25)not null
+);
+
+create table vaccination(
+	id varchar(10)primary key,
+	name varchar(100)not null,
+	age varchar(20)not null,
+	vaccineName varchar(50)not null,
+	dose varchar(20)not null,
+	regDateDose1 varchar(100),
+	regDateDose2 varchar(100),
+	location varchar(100)not null,
+	person_id varchar(10)not null,
+	constraint foreign key(person_id) references person(id) 
 );

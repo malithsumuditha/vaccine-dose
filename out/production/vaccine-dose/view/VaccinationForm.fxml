@@ -82,15 +82,16 @@
             <Font name="System Bold" size="11.0" />
          </font>
       </JFXButton>
-      <TableView layoutX="58.0" layoutY="418.0" prefHeight="211.0" prefWidth="988.0">
+      <TableView fx:id="tblViewAllVaccinatedPerson" layoutX="58.0" layoutY="418.0" prefHeight="211.0" prefWidth="988.0">
          <columns>
             <TableColumn text="ID" />
             <TableColumn prefWidth="126.0" text="Name" />
             <TableColumn minWidth="0.0" prefWidth="96.0" text="Age" />
-            <TableColumn prefWidth="203.0" text="Vaccinated Location" />
-            <TableColumn prefWidth="180.0" text="1st Dose Reg Date" />
-            <TableColumn prefWidth="185.0" text="2nd Dose Reg Date" />
-            <TableColumn prefWidth="117.0" text="Person_ID" />
+            <TableColumn prefWidth="144.0" text="Vaccine Name" />
+            <TableColumn prefWidth="158.0" text="1st Dose Reg Date" />
+            <TableColumn prefWidth="155.0" text="2nd Dose Reg Date" />
+            <TableColumn minWidth="0.0" prefWidth="149.0" text="Vaccination Location" />
+            <TableColumn prefWidth="79.0" text="Person_ID" />
          </columns>
       </TableView>
       <Label layoutX="89.0" layoutY="320.0" text="Gender">
@@ -101,6 +102,11 @@
       <Label fx:id="lblGender" layoutX="242.0" layoutY="323.0" text="Gender">
          <font>
             <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblVid" layoutX="457.0" layoutY="69.0" text="VID">
+         <font>
+            <Font size="16.0" />
          </font>
       </Label>
    </children>
