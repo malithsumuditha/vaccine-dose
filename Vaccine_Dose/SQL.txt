@@ -30,5 +30,6 @@ create table vaccination(
 	regDateDose2 varchar(100),
 	location varchar(100)not null,
 	person_id varchar(10)not null,
+	gender varchar(10)not null,
 	constraint foreign key(person_id) references person(id) 
 );

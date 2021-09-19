@@ -12,11 +12,13 @@ public class ViewAllVaccinatedPersonsTM {
     private String regDateDose1;
     private String regDateDose2;
     private String person_id;
+    private String vaccineName;
+    private String gender;
 
     public ViewAllVaccinatedPersonsTM() {
     }
 
-    public ViewAllVaccinatedPersonsTM(String id, String name, String age, String location, String regDateDose1, String regDateDose2, String person_id) {
+    public ViewAllVaccinatedPersonsTM(String id, String name, String age, String vaccineName, String regDateDose1, String regDateDose2,String location, String person_id, String gender) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -24,6 +26,8 @@ public class ViewAllVaccinatedPersonsTM {
         this.regDateDose1 = regDateDose1;
         this.regDateDose2 = regDateDose2;
         this.person_id = person_id;
+        this.vaccineName=vaccineName;
+        this.gender=gender;
     }
 
     public String getId() {
@@ -80,5 +84,21 @@ public class ViewAllVaccinatedPersonsTM {
 
     public void setPerson_id(String person_id) {
         this.person_id = person_id;
+    }
+
+    public String getVaccineName() {
+        return vaccineName;
+    }
+
+    public void setVaccineName(String vaccineName) {
+        this.vaccineName = vaccineName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
