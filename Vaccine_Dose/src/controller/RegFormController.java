@@ -251,7 +251,7 @@ public class RegFormController {
 
 
     }
-    public String setTimeDate(){
+    public static String setTimeDate(){
 
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
