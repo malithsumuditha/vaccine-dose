@@ -60,7 +60,9 @@ public class VaccinationFormController {
         txtSearchMemID.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                search((String) oldValue,(String) newValue);
+                searchTable((String) oldValue,(String) newValue);
+                searchTable2((String) oldValue,(String) newValue);
+
             }
         });
 
@@ -429,7 +431,7 @@ public class VaccinationFormController {
 
     ObservableList<ViewAllVaccinatedPersonsTM> masterData = FXCollections.observableArrayList();
     //filter table by id or last name
-    public void search(String oldValue, String newValue){
+    public void searchTable(String oldValue, String newValue){
 
         ObservableList<ViewAllVaccinatedPersonsTM> filteredList = FXCollections.observableArrayList();
 
@@ -452,4 +454,32 @@ public class VaccinationFormController {
 
 
     }
+
+
+
+    //filter table by id or last name
+    public void searchTable2(String oldValue, String newValue){
+
+        ObservableList<ViewAllPersonsListTM> filteredList = FXCollections.observableArrayList();
+
+        if(txtSearchMemID == null || (newValue.length() < oldValue.length()) || newValue == null) {
+            lstViewPersons.setItems(filteredList);
+            loadList();
+        }
+        else {
+            newValue = newValue.toUpperCase();
+            for(ViewAllPersonsListTM vaccinationListTM : lstViewPersons.getItems()) {
+                String filterId = vaccinationListTM.getId();
+                String filterName = vaccinationListTM.getName();
+                if(filterId.toUpperCase().contains(newValue) || filterName.toUpperCase().contains(newValue)) {
+
+                    filteredList.add(vaccinationListTM);
+                }
+            }
+            lstViewPersons.setItems(filteredList);
+        }
+
+
+    }
+
 }
