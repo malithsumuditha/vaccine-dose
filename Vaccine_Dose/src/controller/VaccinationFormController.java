@@ -54,8 +54,6 @@ public class VaccinationFormController {
             }
         });
 
-
-
     }
 
     public void cmbSelectDoseOnAction(ActionEvent actionEvent) {
