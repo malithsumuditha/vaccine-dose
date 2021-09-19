@@ -1,4 +1,3 @@
-<<<<<<< HEAD:Vaccine_Dose/src/controller/RegFormController.java
 package controller;
 
 import com.jfoenix.controls.JFXButton;
@@ -10,53 +9,20 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import tm.ViewAllPersonsTM;
 
-import javax.swing.table.DefaultTableModel;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
-=======
 package controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTextField;
-import db.DBConnection;
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import tm.ViewAllPersonsTM;
-
-import javax.swing.table.DefaultTableModel;
-import java.io.IOException;
-import java.sql.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Optional;
 
 /**
  * @author - Hw_Dulanjana
@@ -577,4 +543,3 @@ public class PersonRegFormController {
     }
 
 }
->>>>>>> 31aaffcd09431cdd8d476f2c6addffa1b8b219bc:Vaccine_Dose/src/controller/PersonRegFormController.java
