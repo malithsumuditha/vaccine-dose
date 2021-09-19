@@ -68,6 +68,20 @@ public class VaccinationFormController {
 
 
         if (value=="Firs Dose"){
+<<<<<<< Updated upstream
+=======
+
+        String id = lblVid.getText();
+        String name = lblPersonName.getText();
+        String age = lblAge.getText();
+        String location = txtLocation.getText();
+        String time = PersonRegFormController.setTimeDate();
+        String person_id = lblPersonID.getText();
+        String dose = cmbSelectDose.getValue().toString();
+        String vaccine_name = cmbSelectVaccineName.getValue().toString();
+        String gender = lblGender.getText();
+
+>>>>>>> Stashed changes
 
             if (value1==null){
 
