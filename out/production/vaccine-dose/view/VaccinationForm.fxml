@@ -67,7 +67,7 @@
       </Label>
       <ComboBox fx:id="cmbSelectDose" layoutX="242.0" layoutY="169.0" onAction="#cmbSelectDoseOnAction" prefHeight="25.0" prefWidth="243.0" promptText="Select Dose" />
       <ComboBox fx:id="cmbSelectVaccineName" layoutX="242.0" layoutY="209.0" prefHeight="25.0" prefWidth="243.0" promptText="Selcet Vaccine Name" />
-      <JFXButton fx:id="btnVaccinate" layoutX="397.0" layoutY="340.0" onAction="#btnVaccinatedOnAction" prefHeight="29.0" prefWidth="88.0" style="-fx-background-color: #3742fa;" text="Vaccinate" textFill="WHITE">
+      <JFXButton fx:id="btnVaccinate" layoutX="397.0" layoutY="359.0" onAction="#btnVaccinatedOnAction" prefHeight="29.0" prefWidth="88.0" style="-fx-background-color: #3742fa;" text="Vaccinate" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -76,7 +76,7 @@
          </cursor>
       </JFXButton>
       <ListView fx:id="lstViewPersons" layoutX="711.0" layoutY="109.0" prefHeight="258.0" prefWidth="278.0" />
-      <JFXTextField fx:id="txtSearchMemID" layoutX="849.0" layoutY="62.0" onAction="#txtSearchMemIdOnAction" prefHeight="25.0" prefWidth="226.0" promptText="Enter Person ID or Name" />
+      <JFXTextField fx:id="txtSearchMemID" layoutX="849.0" layoutY="65.0" onAction="#txtSearchMemIdOnAction" prefHeight="20.0" prefWidth="226.0" promptText="Enter Person ID or Name" />
       <JFXButton layoutX="996.0" layoutY="96.0" onAction="#btnSearchOnAction" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #2ecc71;" text="Search" textFill="WHITE">
          <font>
             <Font name="System Bold" size="11.0" />
@@ -93,5 +93,15 @@
             <TableColumn prefWidth="117.0" text="Person_ID" />
          </columns>
       </TableView>
+      <Label layoutX="89.0" layoutY="320.0" text="Gender">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblGender" layoutX="242.0" layoutY="323.0" text="Gender">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
