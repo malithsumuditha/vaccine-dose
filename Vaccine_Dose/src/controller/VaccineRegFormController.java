@@ -25,6 +25,7 @@ public class VaccineRegFormController {
     public void initialize(){
         txtVaccineName.requestFocus();
         autoGenarateCode();
+        DashBordMainViewFormController.setDateAndTime(lblTime);
 
     }
     public void btnVaccineAddOnAction(ActionEvent actionEvent) {
@@ -88,9 +89,6 @@ public class VaccineRegFormController {
         txtVaccineName.clear();
         txtCompany.clear();
         txtMCountry.clear();
-
-    }
-    public void setDateAndTime(){
 
     }
 }

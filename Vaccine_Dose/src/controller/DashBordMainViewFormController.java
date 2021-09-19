@@ -45,8 +45,7 @@ public class DashBordMainViewFormController implements Initializable {
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
 
-        setDateAndTime();
-
+        setDateAndTime(lblDateAndTime);
 
     }
 
@@ -62,9 +61,9 @@ public class DashBordMainViewFormController implements Initializable {
 
     }
 
-    public void setDateAndTime(){
+    public static void setDateAndTime(Label timeLabel){
 
-            lblDateAndTime.setText(null);
+            timeLabel.setText(null);
             Thread timerThread = new Thread(() -> {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 while (true) {
@@ -75,7 +74,8 @@ public class DashBordMainViewFormController implements Initializable {
                     }
                     final String time = simpleDateFormat.format(new Date());
                     Platform.runLater(() -> {
-                        lblDateAndTime.setText(time);
+                        timeLabel.setText(time);
+
                     });
                 }
             });   timerThread.start();
@@ -87,6 +87,7 @@ public class DashBordMainViewFormController implements Initializable {
         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/VaccineRegForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
+
     }
 
     public void btnSignOutOnAction(ActionEvent actionEvent) throws IOException {
@@ -106,4 +107,5 @@ public class DashBordMainViewFormController implements Initializable {
 
 
     }
+
 }
