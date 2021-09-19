@@ -14,6 +14,7 @@
 
 <AnchorPane prefHeight="640.0" prefWidth="1089.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VaccinationFormController">
    <children>
+      <JFXTextField fx:id="txtLocation" layoutX="242.0" layoutY="279.0" prefHeight="25.0" prefWidth="243.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="36.0" prefWidth="1061.0" style="-fx-background-color: #3498db;" text="VACCINATION" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
@@ -59,7 +60,6 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtLocation" layoutX="242.0" layoutY="279.0" prefHeight="25.0" prefWidth="243.0" />
       <Label fx:id="lblPersonName" layoutX="242.0" layoutY="131.0" text="Person Name">
          <font>
             <Font name="System Bold" size="14.0" />
