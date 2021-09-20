@@ -203,13 +203,8 @@ public class DashBordMainViewFormController implements Initializable {
         btnVaccine.setStyle("-fx-background-color:  #3498db");
     }
 
-    public void btnVaccinationOnMouseEnter(MouseEvent mouseEvent) {
-        onMouseEnterChange(btnVaccination,sptVaccination);
-    }
 
-    public void btnVaccinationOnMouseExit(MouseEvent mouseEvent) {
-        onMouseExitChange(btnVaccination,sptVaccination);
-    }
+
 
 
     public void btnPHIRegisterOnMouseClicked(MouseEvent mouseEvent) {
@@ -229,6 +224,15 @@ public class DashBordMainViewFormController implements Initializable {
         onMouseExitChange(btnPHIRegister,sptPHIRegister);
     }
 
+
     public void btnEditProfile(ActionEvent actionEvent) {
+    }
+
+    public void btnVaccinationOnMouseEnter(MouseEvent mouseEvent) {
+        onMouseEnterChange(btnVaccination,sptVaccination);
+    }
+
+    public void btnVaccinationOnMouseExit(MouseEvent mouseEvent) {
+        onMouseExitChange(btnVaccination,sptVaccination);
     }
 }
