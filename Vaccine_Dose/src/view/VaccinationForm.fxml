@@ -75,9 +75,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <ListView fx:id="lstViewPersons" layoutX="711.0" layoutY="109.0" prefHeight="258.0" prefWidth="278.0" />
-      <JFXTextField fx:id="txtSearchMemID" layoutX="849.0" layoutY="65.0" onAction="#txtSearchMemIdOnAction" prefHeight="20.0" prefWidth="226.0" promptText="Enter Person ID or Name" />
-      <JFXButton layoutX="996.0" layoutY="96.0" onAction="#btnSearchOnAction" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #2ecc71;" text="Search" textFill="WHITE">
+      <ListView fx:id="lstViewPersons" layoutX="639.0" layoutY="87.0" prefHeight="265.0" prefWidth="201.0" />
+      <JFXButton layoutX="925.0" layoutY="127.0" onAction="#btnSearchOnAction" prefHeight="29.0" prefWidth="97.0" style="-fx-background-color: #2ecc71;" text="Search" textFill="WHITE">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
@@ -90,8 +89,8 @@
             <TableColumn prefWidth="144.0" text="Vaccine Name" />
             <TableColumn prefWidth="158.0" text="1st Dose Reg Date" />
             <TableColumn prefWidth="155.0" text="2nd Dose Reg Date" />
-            <TableColumn minWidth="0.0" prefWidth="149.0" text="Vaccination Location" />
-            <TableColumn prefWidth="79.0" text="Person_ID" />
+            <TableColumn minWidth="0.0" prefWidth="144.0" text="Vaccination Location" />
+            <TableColumn prefWidth="84.0" text="Person_ID" />
          </columns>
       </TableView>
       <Label layoutX="89.0" layoutY="320.0" text="Gender">
@@ -133,5 +132,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
+      <JFXTextField fx:id="txtSearchMemID" alignment="BOTTOM_LEFT" layoutX="873.0" layoutY="80.0" onAction="#txtSearchMemIdOnAction" prefHeight="29.0" prefWidth="201.0" promptText="Enter Person ID or Name">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </JFXTextField>
    </children>
 </AnchorPane>
