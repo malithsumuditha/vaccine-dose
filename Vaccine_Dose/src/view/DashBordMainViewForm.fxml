@@ -18,70 +18,86 @@
          <left>
             <VBox prefHeight="702.0" prefWidth="261.0" style="-fx-background-color: #3498db;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView blendMode="DARKEN" fitHeight="112.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="98.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/pngGettyImages-1210775161.png" />
+                        <Image url="@../image/219986.png" />
                      </image>
                      <VBox.margin>
-                        <Insets left="70.0" />
+                        <Insets left="90.0" top="30.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Separator layoutX="10.0" layoutY="319.0" prefWidth="200.0">
+                  <JFXButton fx:id="btnDashBord" onAction="#btnDashBordOnAction" onMouseClicked="#btnDashBordOnMouseClicked" onMouseEntered="#btnDashBordOnMouseEntered" onMouseExited="#btnDashBordOnMouseExited" prefHeight="65.0" prefWidth="261.0" text="DashBord" textFill="WHITE">
                      <VBox.margin>
-                        <Insets top="70.0" />
+                        <Insets top="90.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Separator fx:id="sptDashbord" prefWidth="181.0">
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" />
                      </VBox.margin>
                   </Separator>
-                  <JFXButton onAction="#btnDashBordOnAction" prefHeight="65.0" prefWidth="261.0" text="DASHBORD" textFill="WHITE">
+                  <JFXButton fx:id="btnRegister" onAction="#btnRegisterOnAction" onMouseClicked="#btnRegisterOnMouseClick" onMouseEntered="#btnRegisterOnMouseEnter" onMouseExited="#btnRegisterOnMouseExit" prefHeight="65.0" prefWidth="261.0" text="Register" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="23.0" />
-                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </JFXButton>
-                  <Separator prefWidth="200.0">
+                  <Separator fx:id="sptRegister" layoutX="10.0" layoutY="316.0" prefWidth="200.0">
                      <VBox.margin>
-                        <Insets />
+                        <Insets left="40.0" right="40.0" />
                      </VBox.margin>
                   </Separator>
-                  <JFXButton onAction="#btnRegisterOnAction" prefHeight="65.0" prefWidth="261.0" text="REGISTER" textFill="WHITE">
+                  <JFXButton fx:id="btnVaccine" onAction="#btnVaccineOnAction" onMouseClicked="#btnVaccineOnMouseClicked" onMouseEntered="#btnVaccineOnMouseEnter" onMouseExited="#btnVaccineOnMouseExit" prefHeight="65.0" prefWidth="261.0" text="Vaccine" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="23.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </JFXButton>
-                  <Separator layoutX="10.0" layoutY="316.0" prefWidth="200.0">
+                  <Separator fx:id="sptVaccine" layoutX="10.0" layoutY="183.0" prefWidth="200.0">
                      <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Separator>
-                  <JFXButton onAction="#btnVaccineOnAction" prefHeight="65.0" prefWidth="261.0" text="VACCINE" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="23.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </JFXButton>
-                  <Separator layoutX="10.0" layoutY="183.0" prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets />
+                        <Insets left="40.0" right="40.0" />
                      </VBox.margin>
                   </Separator>
-                  <JFXButton layoutX="10.0" layoutY="327.0" onAction="#btnVaccinationOnAction" prefHeight="65.0" prefWidth="261.0" text="VACCINATION" textFill="WHITE">
+                  <JFXButton fx:id="btnVaccination" layoutX="10.0" layoutY="327.0" onAction="#btnVaccinationOnAction" onMouseClicked="#btnVaccinationOnMouseClicked" onMouseEntered="#btnVaccinationOnMouseEnter" onMouseExited="#btnVaccinationOnMouseEnter" prefHeight="65.0" prefWidth="261.0" text="Vaccination" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="23.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </JFXButton>
-                  <Separator layoutX="10.0" layoutY="392.0" prefWidth="200.0" />
-                  <JFXButton onAction="#btnPHIRegisterOnAction" prefHeight="65.0" prefWidth="261.0" text="PHI REGISTER" textFill="WHITE">
+                  <Separator fx:id="sptVaccination" layoutX="10.0" layoutY="392.0" onMouseClicked="#btnVaccinationOnMouseClicked" onMouseEntered="#btnVaccinationOnMouseEnter" onMouseExited="#btnVaccinationOnMouseExit" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" />
+                     </VBox.margin></Separator>
+                  <JFXButton fx:id="btnPHIRegister" onAction="#btnPHIRegisterOnAction" onMouseClicked="#btnPHIRegisterOnMouseClicked" onMouseEntered="#btnPHIRegisterOnMouseEnter" onMouseExited="#btnPHIRegisterOnMouseExit" prefHeight="65.0" prefWidth="261.0" text="PHI Register" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="23.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </JFXButton>
-                  <Separator prefWidth="200.0" />
+                  <Separator fx:id="sptPHIRegister" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" />
+                     </VBox.margin></Separator>
                </children>
             </VBox>
          </left>
@@ -109,6 +125,11 @@
             <Image url="@../image/injection-1492441-1263678.png" />
          </image>
       </ImageView>
+      <Label layoutX="10.0" layoutY="10.0" text="Hello Malith" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
       <JFXButton layoutX="1210.0" layoutY="18.0" onAction="#btnSignOutOnAction" prefHeight="21.0" prefWidth="122.0" style="-fx-border-color: #e74c3c; -fx-border-radius: 10px;" text="SIGN OUT" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="18.0">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -124,10 +145,25 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <Label fx:id="lblDateAndTime" layoutX="60.0" layoutY="129.0" text="Label" textFill="WHITE" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="129.0">
+      <Label fx:id="lblDateAndTime" alignment="CENTER" layoutY="137.0" prefHeight="29.0" prefWidth="261.0" style="-fx-background-color: #3742fa;" text="Label" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1089.0" AnchorPane.topAnchor="137.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <JFXButton layoutX="157.0" layoutY="7.0" onAction="#btnEditProfile" prefHeight="23.0" prefWidth="95.0" style="-fx-border-color: white; -fx-border-radius: 10px;" text="Edit Profile" textFill="WHITE" AnchorPane.leftAnchor="157.0" AnchorPane.rightAnchor="1098.0" AnchorPane.topAnchor="7.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <ImageView fitHeight="15.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/125115-200.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="9.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
