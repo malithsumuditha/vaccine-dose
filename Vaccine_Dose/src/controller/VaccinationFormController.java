@@ -344,36 +344,58 @@ public class VaccinationFormController {
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
 
-        if (cmbSelectDose.getValue()=="Second Dose"){
+        String text = lblVid.getText();
 
-            cmbSelectDose.setStyle("-fx-border-color:null");
+        Connection connection1 = DBConnection.getInstance().getConnection();
+        try {
+            PreparedStatement preparedStatement = connection1.prepareStatement("select * from vaccination where id =? and dose=?");
+            preparedStatement.setObject(1,text);
+            preparedStatement.setObject(2,"First Dose");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            boolean next = resultSet.next();
 
-            String locationNew =txtLocation.getText();
-            String time = PersonRegFormController.setTimeDate();
-            String id = lblVid.getText();
+            if (next){
+                if (cmbSelectDose.getValue()=="Second Dose"){
 
-            Connection connection = DBConnection.getInstance().getConnection();
-            try {
-                PreparedStatement preparedStatement = connection.prepareStatement("update vaccination set regDateDose2 =?, location=? where id = ?");
-                preparedStatement.setObject(1,time);
-                preparedStatement.setObject(2,locationNew);
-                preparedStatement.setObject(3,id);
+                    cmbSelectDose.setStyle("-fx-border-color:null");
 
-                preparedStatement.executeUpdate();
+                    String locationNew =txtLocation.getText();
+                    String time = PersonRegFormController.setTimeDate();
+                    String id = lblVid.getText();
+                    Object dose = cmbSelectDose.getValue();
 
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Second Dose Vaccinated Successfully");
+                    Connection connection = DBConnection.getInstance().getConnection();
+                    try {
+                        PreparedStatement preparedStatement2 = connection.prepareStatement("update vaccination set regDateDose2 =?, location=?,dose=? where id = ?");
+                        preparedStatement2.setObject(1,time);
+                        preparedStatement2.setObject(2,locationNew);
+                        preparedStatement2.setObject(3,dose);
+                        preparedStatement2.setObject(4,id);
+                        preparedStatement2.executeUpdate();
+
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Second Dose Vaccinated Successfully");
+                        alert.showAndWait();
+                        loadDataToTable();
+                        btnResetOnAction();
+
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }else {
+                    cmbSelectDose.setStyle("-fx-border-color:red");
+                    Alert alert = new Alert(Alert.AlertType.ERROR,"Please Vaccine Dose Two...");
+                    alert.showAndWait();
+                }
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR,"This person already done 2 Doses");
                 alert.showAndWait();
-                loadDataToTable();
-                btnResetOnAction();
-
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
             }
-        }else {
-            cmbSelectDose.setStyle("-fx-border-color:red");
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please Vaccine Dose Two...");
-            alert.showAndWait();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
+
+
 
 
     }

@@ -44,6 +44,6 @@ public class ViewAllPersonsListTM {
 
     @Override
     public String toString() {
-        return "   "+ id + "    " +name + "   "+gender;
+        return "   "+ id + "    " +name ;
     }
 }
