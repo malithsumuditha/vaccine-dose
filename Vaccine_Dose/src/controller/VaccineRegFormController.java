@@ -32,33 +32,52 @@ public class VaccineRegFormController {
 
     }
     public void btnVaccineAddOnAction(ActionEvent actionEvent) {
-        String VName = txtVaccineName.getText();
-        String MCountry = txtMCountry.getText();
-        String VCompany = txtCompany.getText();
-        String VCode = lblVaccineCode.getText();
-        Connection connection = DBConnection.getInstance().getConnection();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into VaccineReg values(?,?,?,?)");
-            preparedStatement.setObject(1,VCode);
-            preparedStatement.setObject(2,VName);
-            preparedStatement.setObject(3,MCountry);
-            preparedStatement.setObject(4,VCompany);
-            int i = preparedStatement.executeUpdate();
-            if(i!=0){
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Successful Added !! ");
-                alert.showAndWait();
-                textAllClear();
-                txtVaccineName.requestFocus();
-                autoGenarateCode();
-            }else{
-                Alert alert = new Alert(Alert.AlertType.ERROR,"Somthing Error !! Please try again.");
-                alert.showAndWait();
-            }
+        if(txtVaccineName.getText().isEmpty()){
+            ErrorBorderCl(txtVaccineName);
+            ErrorMassage("Vaccine name");
+            txtVaccineName.clear();
+            txtVaccineName.requestFocus();
+        }else if(txtMCountry.getText().isEmpty()){
+            ErrorBorderCl(txtMCountry);
+            ErrorMassage("Manufacture Country");
+            txtMCountry.clear();
+            txtMCountry.requestFocus();
+        }else if(txtCompany.getText().isEmpty()){
+            ErrorBorderCl(txtCompany);
+            ErrorMassage("Manufacture Company");
+            txtCompany.clear();
+            txtCompany.requestFocus();
+        }else {
+            NullBorderCl();
+            String VName = txtVaccineName.getText();
+            String MCountry = txtMCountry.getText();
+            String VCompany = txtCompany.getText();
+            String VCode = lblVaccineCode.getText();
+            Connection connection = DBConnection.getInstance().getConnection();
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("insert into VaccineReg values(?,?,?,?)");
+                preparedStatement.setObject(1, VCode);
+                preparedStatement.setObject(2, VName);
+                preparedStatement.setObject(3, MCountry);
+                preparedStatement.setObject(4, VCompany);
+                int i = preparedStatement.executeUpdate();
+                if (i != 0) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Successful Added !! ");
+                    alert.showAndWait();
+                    textAllClear();
+                    txtVaccineName.requestFocus();
+                    autoGenarateCode();
+                    Loadlist();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Somthing Error !! Please try again.");
+                    alert.showAndWait();
+                }
 
-        } catch (SQLException throwables) {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error !! Please try again. ");
-            alert.showAndWait();
-            throwables.printStackTrace();
+            } catch (SQLException throwables) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Something Error !! Please try again. ");
+                alert.showAndWait();
+                throwables.printStackTrace();
+            }
         }
     }
     public void autoGenarateCode(){
@@ -114,5 +133,17 @@ public class VaccineRegFormController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+    public void ErrorMassage(String errorField){
+        Alert alert = new Alert(Alert.AlertType.ERROR," "+errorField+" Field is cannot be emty, Please Fill this field..! ");
+        alert.showAndWait();
+    }
+    public void ErrorBorderCl(JFXTextField name){
+        name.setStyle("-fx-border-color:red");
+    }
+    public void NullBorderCl(){
+        txtVaccineName.setStyle("-fx-border-color:null");
+        txtCompany.setStyle("-fx-border-color:null");
+        txtMCountry.setStyle("-fx-border-color:null");
     }
 }
