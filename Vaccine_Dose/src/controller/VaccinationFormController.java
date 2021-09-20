@@ -277,9 +277,10 @@ public class VaccinationFormController {
                 lblAge.setText(selectedItem.getAge());
                 lblGender.setText(selectedItem.getGender());
                 lblPersonName.setText(selectedItem.getName());
-                txtLocation.setText(selectedItem.getLocation());
+                txtLocation.setText(selectedItem.getLocation()+"  :  ");
                 cmbSelectVaccineName.setValue(selectedItem.getVaccineName());
                 cmbSelectDose.setValue("Second Dose");
+
 
                 setDisableAddBtnAndCmbVaccineName(true);
                 //to unselect list data item
