@@ -54,7 +54,7 @@ public class DashBordMainViewFormController implements Initializable {
 
         Parent parent = null;
         try {
-            parent = FXMLLoader.load(this.getClass().getResource("../view/DashBordForm.fxml"));
+            parent = FXMLLoader.load(this.getClass().getResource("/view/DashBordForm.fxml"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -67,12 +67,12 @@ public class DashBordMainViewFormController implements Initializable {
     }
 
     public void btnDashBordOnAction() throws IOException {
-        Parent parent = FXMLLoader.load(this.getClass().getResource("../view/DashBordForm.fxml"));
+        Parent parent = FXMLLoader.load(this.getClass().getResource("/view/DashBordForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
     }
     public void btnRegisterOnAction() throws IOException {
-        Parent parent = FXMLLoader.load(this.getClass().getResource("../view/RegForm.fxml"));
+        Parent parent = FXMLLoader.load(this.getClass().getResource("/view/RegForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
 
@@ -101,7 +101,7 @@ public class DashBordMainViewFormController implements Initializable {
     }
 
     public void btnVaccineOnAction(ActionEvent actionEvent) throws IOException {
-        Parent parent = FXMLLoader.load(this.getClass().getResource("../view/VaccineRegForm.fxml"));
+        Parent parent = FXMLLoader.load(this.getClass().getResource("/view/VaccineRegForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
 
@@ -114,7 +114,7 @@ public class DashBordMainViewFormController implements Initializable {
 
         if (buttonType.get().equals(ButtonType.YES)){
 
-            Parent parent =FXMLLoader.load(this.getClass().getResource("../view/LoginForm.fxml"));
+            Parent parent =FXMLLoader.load(this.getClass().getResource("/view/LoginForm.fxml"));
             Scene scene =new Scene(parent);
             Stage primaryStage = (Stage) mainPanel.getScene().getWindow();
             primaryStage.setScene(scene);
@@ -126,13 +126,13 @@ public class DashBordMainViewFormController implements Initializable {
     }
 
     public void btnVaccinationOnAction(ActionEvent actionEvent) throws IOException {
-        Parent parent =FXMLLoader.load(this.getClass().getResource("../view/VaccinationForm.fxml"));
+        Parent parent =FXMLLoader.load(this.getClass().getResource("/view/VaccinationForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
     }
 
     public void btnPHIRegisterOnAction(ActionEvent actionEvent) throws IOException {
-        Parent parent = FXMLLoader.load(this.getClass().getResource("../view/PHIRegForm.fxml"));
+        Parent parent = FXMLLoader.load(this.getClass().getResource("/view/PHIRegForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
     }

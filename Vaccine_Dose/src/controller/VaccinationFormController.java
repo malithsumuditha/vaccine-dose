@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import tm.ViewAllPersonsListTM;
-import tm.ViewAllPersonsTM;
 import tm.ViewAllVaccinatedPersonsTM;
 
 import java.sql.*;

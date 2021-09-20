@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="vaccine-dose:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/vaccine_dose_jar</output-path>
+    <root id="archive" name="vaccine-dose.jar">
+      <element id="module-output" name="vaccine-dose" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Vaccine_Dose/lib/jfoenix.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Vaccine_Dose/lib/mysql-connector-java-8.0.24.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

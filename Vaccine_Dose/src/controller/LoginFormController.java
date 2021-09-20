@@ -1,8 +1,6 @@
 package controller;
 
-import db.DBConnection;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,7 +11,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
 
 /**
  * @author - Hw_Dulanjana
@@ -25,18 +22,19 @@ public class LoginFormController {
     public AnchorPane root;
     public Button btnSignIn;
 
-    public void txtPasswordOnAction(ActionEvent actionEvent) {
-    }
 
     public void btnSignInOnAction(ActionEvent actionEvent) throws IOException {
-        Parent parent = FXMLLoader.load(this.getClass().getResource("../view/DashBordMainViewForm.fxml"));
+        Parent parent = FXMLLoader.load(this.getClass().getResource("/view/DashBordMainViewForm.fxml"));
         Scene scene = new Scene(parent);
 
-        Stage primaryStage = (Stage) root.getScene().getWindow();
+        Stage primaryStage = (Stage)root.getScene().getWindow();
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
         primaryStage.setTitle("Vaccination");
 
 
+    }
+
+    public void txtPasswordOnAction(ActionEvent actionEvent) {
     }
 }

@@ -3,7 +3,6 @@ package controller;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -11,8 +10,6 @@ import javafx.scene.control.Label;
 import tm.ViewRegVaccineTM;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @author - Hw_Dulanjana
