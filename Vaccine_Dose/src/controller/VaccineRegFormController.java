@@ -1,11 +1,14 @@
 package controller;
 
+import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import tm.ViewRegVaccineTM;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -20,12 +23,12 @@ public class VaccineRegFormController {
     public JFXTextField txtMCountry;
     public JFXTextField txtCompany;
     public Label lblVaccineCode;
-    public Label lblTime;
+    public JFXListView<ViewRegVaccineTM> lstVaccineView;
 
     public void initialize(){
         txtVaccineName.requestFocus();
         autoGenarateCode();
-        DashBordMainViewFormController.setDateAndTime(lblTime);
+        Loadlist();
 
     }
     public void btnVaccineAddOnAction(ActionEvent actionEvent) {
@@ -90,5 +93,26 @@ public class VaccineRegFormController {
         txtCompany.clear();
         txtMCountry.clear();
 
+    }
+    public void Loadlist(){
+        ObservableList<ViewRegVaccineTM> items = lstVaccineView.getItems();
+        items.clear();
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from vaccinereg");
+
+            while(resultSet.next()){
+                String vcode = resultSet.getString(1);
+                String vname = resultSet.getString(2);
+                String mcountry = resultSet.getString(3);
+                String mcompany = resultSet.getString(4);
+                ViewRegVaccineTM viewRegVaccineTM = new ViewRegVaccineTM(vcode,vname,mcountry,mcompany);
+                items.add(viewRegVaccineTM);
+            }
+            lstVaccineView.refresh();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -59,10 +60,6 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Label fx:id="lblTime" layoutX="595.0" layoutY="188.0" prefHeight="26.0" prefWidth="249.0" text="Time">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
+      <JFXListView fx:id="lstVaccineView" layoutX="685.0" layoutY="140.0" prefHeight="120.0" prefWidth="259.0" />
    </children>
 </AnchorPane>
