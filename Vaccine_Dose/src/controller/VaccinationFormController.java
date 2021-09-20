@@ -77,80 +77,97 @@ public class VaccinationFormController {
         Object value = cmbSelectDose.getValue();
         Object value1 = cmbSelectVaccineName.getValue();
 
+        String personID = lblPersonID.getText();
 
-        if (value=="First Dose"){
+        Connection connection1 = DBConnection.getInstance().getConnection();
 
-            if (value1==null){
+        try {
+            PreparedStatement preparedStatement = connection1.prepareStatement("select * from vaccination where person_id=?");
+            preparedStatement.setObject(1,personID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            boolean next = resultSet.next();
 
-                cmbSelectDose.setStyle("-fx-border-color:null");
-                cmbSelectVaccineName.setStyle("-fx-border-color:red");
-                Alert alert = new Alert(Alert.AlertType.ERROR,"Please select Vaccine Name ..!");
+            if (next){
+                Alert alert=new Alert(Alert.AlertType.ERROR,"This person is already Vaccinated Please select from Table");
                 alert.showAndWait();
+            }else {
+                if (value=="First Dose"){
 
-            }else if(txtLocation.getText().isEmpty()){
-                cmbSelectDose.setStyle("-fx-border-color:null");
-                cmbSelectVaccineName.setStyle("-fx-border-color:null");
-                txtLocation.setStyle("-fx-border-color:red");
+                    if (value1==null){
 
-                Alert alert = new Alert(Alert.AlertType.ERROR,"Please Enter Location ..!");
-                alert.showAndWait();
-
-            } else {
-                setAllBorderColorNull();
-
-                tblViewAllVaccinatedPerson.getSelectionModel().clearSelection();
-                lstViewPersons.getSelectionModel().clearSelection();
-
-                String id = lblVid.getText();
-                String name = lblPersonName.getText();
-                String age = lblAge.getText();
-                String location = txtLocation.getText();
-                String time = PersonRegFormController.setTimeDate();
-                String person_id = lblPersonID.getText();
-                String dose = cmbSelectDose.getValue().toString();
-                String vaccine_name = cmbSelectVaccineName.getValue().toString();
-                String gender = lblGender.getText();
-
-
-                Connection connection = DBConnection.getInstance().getConnection();
-                try {
-                    PreparedStatement preparedStatement = connection.prepareStatement("insert into vaccination(id,name,age,vaccineName,dose,regDateDose1,location,person_id,gender) values(?,?,?,?,?,?,?,?,?) ");
-                    preparedStatement.setObject(1,id);
-                    preparedStatement.setObject(2,name);
-                    preparedStatement.setObject(3,age);
-                    preparedStatement.setObject(4,vaccine_name);
-                    preparedStatement.setObject(5,dose);
-                    preparedStatement.setObject(6,time);
-                    preparedStatement.setObject(7,location);
-                    preparedStatement.setObject(8,person_id);
-                    preparedStatement.setObject(9,gender);
-
-                    int i = preparedStatement.executeUpdate();
-
-
-                    if (i!=0){
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"First Dose Done Successfully... ");
+                        cmbSelectDose.setStyle("-fx-border-color:null");
+                        cmbSelectVaccineName.setStyle("-fx-border-color:red");
+                        Alert alert = new Alert(Alert.AlertType.ERROR,"Please select Vaccine Name ..!");
                         alert.showAndWait();
+
+                    }else if(txtLocation.getText().isEmpty()){
+                        cmbSelectDose.setStyle("-fx-border-color:null");
+                        cmbSelectVaccineName.setStyle("-fx-border-color:null");
+                        txtLocation.setStyle("-fx-border-color:red");
+
+                        Alert alert = new Alert(Alert.AlertType.ERROR,"Please Enter Location ..!");
+                        alert.showAndWait();
+
+                    } else {
+                        setAllBorderColorNull();
+
+                        tblViewAllVaccinatedPerson.getSelectionModel().clearSelection();
+                        lstViewPersons.getSelectionModel().clearSelection();
+
+                        String id = lblVid.getText();
+                        String name = lblPersonName.getText();
+                        String age = lblAge.getText();
+                        String location = txtLocation.getText();
+                        String time = PersonRegFormController.setTimeDate();
+                        String person_id = lblPersonID.getText();
+                        String dose = cmbSelectDose.getValue().toString();
+                        String vaccine_name = cmbSelectVaccineName.getValue().toString();
+                        String gender = lblGender.getText();
+
+
+                        Connection connection = DBConnection.getInstance().getConnection();
+                        try {
+                            PreparedStatement preparedStatement2 = connection.prepareStatement("insert into vaccination(id,name,age,vaccineName,dose,regDateDose1,location,person_id,gender) values(?,?,?,?,?,?,?,?,?) ");
+                            preparedStatement2.setObject(1,id);
+                            preparedStatement2.setObject(2,name);
+                            preparedStatement2.setObject(3,age);
+                            preparedStatement2.setObject(4,vaccine_name);
+                            preparedStatement2.setObject(5,dose);
+                            preparedStatement2.setObject(6,time);
+                            preparedStatement2.setObject(7,location);
+                            preparedStatement2.setObject(8,person_id);
+                            preparedStatement2.setObject(9,gender);
+
+                            int i = preparedStatement2.executeUpdate();
+
+
+                            if (i!=0){
+                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"First Dose Done Successfully... ");
+                                alert.showAndWait();
+                            }
+                            btnResetOnAction();
+                            tblViewAllVaccinatedPerson.refresh();
+
+
+
+                        } catch (SQLException throwables) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error... ");
+                            alert.showAndWait();
+                            btnResetOnAction();
+                            throwables.printStackTrace();
+                        }
                     }
-                    btnResetOnAction();
-                    tblViewAllVaccinatedPerson.refresh();
 
-
-
-                } catch (SQLException throwables) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error... ");
+                }else {
+                    cmbSelectDose.setStyle("-fx-border-color:red");
+                    Alert alert = new Alert(Alert.AlertType.ERROR,"Please Vaccine Dose one First...");
                     alert.showAndWait();
-                    btnResetOnAction();
-                    throwables.printStackTrace();
                 }
             }
 
-        }else {
-            cmbSelectDose.setStyle("-fx-border-color:red");
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please Vaccine Dose one First...");
-            alert.showAndWait();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-
 
 
     }
@@ -260,9 +277,10 @@ public class VaccinationFormController {
                 lblAge.setText(selectedItem.getAge());
                 lblGender.setText(selectedItem.getGender());
                 lblPersonName.setText(selectedItem.getName());
-                txtLocation.setText(selectedItem.getLocation());
+                txtLocation.setText(selectedItem.getLocation()+"  :  ");
                 cmbSelectVaccineName.setValue(selectedItem.getVaccineName());
                 cmbSelectDose.setValue("Second Dose");
+
 
                 setDisableAddBtnAndCmbVaccineName(true);
                 //to unselect list data item

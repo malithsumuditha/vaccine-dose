@@ -113,21 +113,21 @@ public class PHIRegFormController {
 
             if (IfExif){
                 String oldV = resultSet.getString(1);
-                oldV = oldV.substring(1, oldV.length());
+                oldV = oldV.substring(2, oldV.length());
 
                 int NewID = Integer.parseInt(oldV);
                 NewID= NewID+1;
 
                 if(NewID < 10){
-                    lblPHIID.setText("H00"+NewID);
+                    lblPHIID.setText("PH00"+NewID);
                 }else if(NewID<100){
-                    lblPHIID.setText("H0"+NewID);
+                    lblPHIID.setText("PH0"+NewID);
                 }else{
-                    lblPHIID.setText("H"+NewID);
+                    lblPHIID.setText("PH"+NewID);
                 }
             }
             else{
-                lblPHIID.setText("H001");
+                lblPHIID.setText("PH001");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
