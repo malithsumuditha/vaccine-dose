@@ -63,6 +63,7 @@ public class DashBordMainViewFormController implements Initializable {
         changingPanel.getChildren().add(parent);
 
         setDateAndTime(lblDateAndTime);
+        //
 
     }
 
