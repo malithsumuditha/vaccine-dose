@@ -57,6 +57,8 @@ public class PHIRegFormController {
     public void btnPHIResetOnAction(ActionEvent actionEvent) {
     }
     public void datainsert(){
+        String Password = txtAccPasssword.getText();
+        String CPassword = txtConfirmPassword.getText();
         if(txtPHIName.getText().isEmpty()){
             ErrorMassage("PHI Name");
             ErrorBorderCl(txtPHIName);
@@ -92,20 +94,17 @@ public class PHIRegFormController {
             ErrorBorderCl(txtPHICity);
             txtPHICity.clear();
             txtPHICity.requestFocus();
-        }else if(txtAccPasssword.getText()!=txtConfirmPassword.getText()){
+        }else if(CPassword!=Password){
             ErrorBorderClPWD(txtConfirmPassword);
             ErrorBorderClPWD(txtAccPasssword);
             txtAccPasssword.clear();
             txtConfirmPassword.clear();
             txtAccPasssword.requestFocus();
-        }else {
-
+        }else if(CPassword.equals(Password)){
             String PName = txtPHIName.getText();
             String PAddress = txtPHIAddress.getText();
             String PContact = txtPHIContact.getText();
             String PNic = txtPHINIC.getText();
-            String Password = txtAccPasssword.getText();
-            String CPassword = txtConfirmPassword.getText();
             String PCity = txtPHICity.getText();
             String gender = null;
             String PID = lblPHIID.getText();
@@ -146,6 +145,8 @@ public class PHIRegFormController {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Something Error ! , Please TRy Again.. ");
                 throwables.printStackTrace();
             }
+        }else{
+            System.out.println("Wrong");
         }
     }
     public void autogenarate(){
