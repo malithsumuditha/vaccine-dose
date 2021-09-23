@@ -3,44 +3,38 @@
  * @date - 9/9/2021
  */
 
+import com.sun.javafx.application.LauncherImpl;
 import controller.StartScreenFormController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sun.misc.Launcher;
 
 import javax.swing.*;
 import java.io.IOException;
 
 public class Appintializer extends Application {
 
+    public static Stage primaryStage = null;
+    public static Scene primaryScene = null;
+
+    @Override
+    public void init() throws Exception {
+        StartScreenFormController init = new StartScreenFormController();
+        init.checkFunction();
+    }
 
     public static void main(String[] args) {
-        launch(args);
+        LauncherImpl.launchApplication(Appintializer.class,AppintializerPreloader.class,args);
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
 
+        Appintializer.primaryStage = primaryStage;
 
-
-        try {
-            Parent parent = FXMLLoader.load(this.getClass().getResource("view/LoginForm.fxml"));
-            Scene scene = new Scene(parent);
-            primaryStage.resizableProperty().setValue(Boolean.FALSE);
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("Login Form");
-            primaryStage.centerOnScreen();
-            primaryStage.show();
-            //normal exit kill..
-            primaryStage.setOnCloseRequest(event -> {
-                System.exit(0);
-            });
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 }
