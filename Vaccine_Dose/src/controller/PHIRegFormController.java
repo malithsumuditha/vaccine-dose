@@ -199,8 +199,7 @@ public class PHIRegFormController {
         name.setStyle("-fx-border-color:red");
     }
     public void NullBorderCl(){
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 
         txtPHIName.setStyle("-fx-border-color:null");
         txtPHIAddress.setStyle("-fx-border-color:null");
@@ -214,15 +213,7 @@ public class PHIRegFormController {
 //        txtCompany.setStyle("-fx-border-color:null");
 //        txtMCountry.setStyle("-fx-border-color:null");
 
-=======
-//        txtVaccineName.setStyle("-fx-border-color:null");
-//        txtCompany.setStyle("-fx-border-color:null");
-//        txtMCountry.setStyle("-fx-border-color:null");
->>>>>>> Stashed changes
-=======
-//        txtVaccineName.setStyle("-fx-border-color:null");
-//        txtCompany.setStyle("-fx-border-color:null");
-//        txtMCountry.setStyle("-fx-border-color:null");
->>>>>>> Stashed changes
+
+
     }
 }

@@ -95,10 +95,6 @@ public class StartScreenFormController implements Initializable {
 
                 Thread.sleep(500);
 
-                Thread.sleep(1000);
-
-                Thread.sleep(1000);
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -115,9 +111,6 @@ public class StartScreenFormController implements Initializable {
 
                         Thread.sleep(500);
 
-                        Thread.sleep(1000);
-
-                        Thread.sleep(1000);
 
                         Stage stage = new Stage();
                         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/LoginForm.fxml"));
