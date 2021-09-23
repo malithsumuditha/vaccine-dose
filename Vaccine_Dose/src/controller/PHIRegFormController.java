@@ -57,6 +57,32 @@ public class PHIRegFormController {
     public void btnPHIResetOnAction(ActionEvent actionEvent) {
     }
     public void datainsert(){
+        if(txtPHIName.getText().isEmpty()){
+            ErrorMassage("PHI Name");
+            ErrorBorderCl(txtPHIName);
+            txtPHIName.clear();
+            txtPHIName.requestFocus();
+        }else if(txtPHIAddress.getText().isEmpty()){
+            ErrorMassage("PHI Address");
+            ErrorBorderCl(txtPHIAddress);
+            txtPHIAddress.clear();
+            txtPHIAddress.requestFocus();
+        }else if(txtPHIContact.getText().isEmpty()){
+            ErrorMassage("Contact Number");
+            ErrorBorderCl(txtPHIContact);
+            txtPHIContact.clear();
+            txtPHIContact.requestFocus();
+        }else if(txtPHINIC.getText().isEmpty()){
+            ErrorBorderCl(txtPHINIC);
+            ErrorMassage("NIC Number");
+            txtPHINIC.clear();
+            txtPHINIC.requestFocus();
+        }else if (txtAccPasssword.getText().isEmpty()){
+            ErrorMassage("Password");
+            ErrorBorderClPWD(txtAccPasssword);
+            txtAccPasssword.clear();
+            txtAccPasssword.requestFocus();
+        }
         String PName = txtPHIName.getText();
         String PAddress = txtPHIAddress.getText();
         String PContact = txtPHIContact.getText();
@@ -142,5 +168,20 @@ public class PHIRegFormController {
         txtConfirmPassword.clear();
         txtPHINIC.clear();
         txtPHIContact.clear();
+    }
+    public void ErrorMassage(String errorField){
+        Alert alert = new Alert(Alert.AlertType.ERROR," "+errorField+" Field is cannot be emty, Please Fill this field..! ");
+        alert.showAndWait();
+    }
+    public void ErrorBorderCl(JFXTextField name){
+        name.setStyle("-fx-border-color:red");
+    }
+    public void ErrorBorderClPWD(JFXPasswordField name){
+        name.setStyle("-fx-border-color:red");
+    }
+    public void NullBorderCl(){
+        txtVaccineName.setStyle("-fx-border-color:null");
+        txtCompany.setStyle("-fx-border-color:null");
+        txtMCountry.setStyle("-fx-border-color:null");
     }
 }

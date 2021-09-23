@@ -45,7 +45,6 @@ public class VaccineRegFormController {
             txtCompany.clear();
             txtCompany.requestFocus();
         }else {
-            //
             NullBorderCl();
             String VName = txtVaccineName.getText();
             String MCountry = txtMCountry.getText();
