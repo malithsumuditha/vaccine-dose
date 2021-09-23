@@ -8,7 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
+<<<<<<< Updated upstream
 import javafx.stage.StageStyle;
+=======
+>>>>>>> Stashed changes
 
 import javax.swing.*;
 import java.io.IOException;
@@ -90,7 +93,11 @@ public class StartScreenFormController implements Initializable {
             Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
             Platform.runLater(() -> progressBarr.setProgress(1.0));
             try {
+<<<<<<< Updated upstream
                 Thread.sleep(500);
+=======
+                Thread.sleep(1000);
+>>>>>>> Stashed changes
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -104,18 +111,25 @@ public class StartScreenFormController implements Initializable {
                 @Override
                 public void run() {
                     try {
+<<<<<<< Updated upstream
                         Thread.sleep(500);
+=======
+                        Thread.sleep(1000);
+>>>>>>> Stashed changes
                         Stage stage = new Stage();
                         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/LoginForm.fxml"));
                         Scene scene = new Scene(parent);
                         stage.setScene(scene);
                         stage.show();
                         stage.centerOnScreen();
+<<<<<<< Updated upstream
                         stage.resizableProperty().setValue(Boolean.FALSE);
                         //normal exit kill..
                         stage.setOnCloseRequest(event -> {
                             System.exit(0);
                         });
+=======
+>>>>>>> Stashed changes
 
 
                     } catch (IOException | InterruptedException e) {
