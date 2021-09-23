@@ -33,6 +33,7 @@ public class LoginFormController {
         primaryStage.setTitle("Vaccination");
 
 
+
     }
 
     public void txtPasswordOnAction(ActionEvent actionEvent) {
