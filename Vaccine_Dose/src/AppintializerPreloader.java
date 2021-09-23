@@ -4,6 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * @author : MalithHP <malithsumuditha11@gmail.com>
@@ -19,8 +20,11 @@ public class AppintializerPreloader extends Preloader {
         Parent parent = FXMLLoader.load(this.getClass().getResource("view/LoadingForm.fxml"));
         Scene scene=new Scene(parent);
         primaryStage.setScene(scene);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.centerOnScreen();
         primaryStage.show();
+
+
     }
 
     @Override

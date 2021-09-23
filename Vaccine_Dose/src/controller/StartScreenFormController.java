@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -89,7 +90,7 @@ public class StartScreenFormController implements Initializable {
             Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
             Platform.runLater(() -> progressBarr.setProgress(1.0));
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -103,13 +104,18 @@ public class StartScreenFormController implements Initializable {
                 @Override
                 public void run() {
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(500);
                         Stage stage = new Stage();
                         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/LoginForm.fxml"));
                         Scene scene = new Scene(parent);
                         stage.setScene(scene);
                         stage.show();
                         stage.centerOnScreen();
+                        stage.resizableProperty().setValue(Boolean.FALSE);
+                        //normal exit kill..
+                        stage.setOnCloseRequest(event -> {
+                            System.exit(0);
+                        });
 
 
                     } catch (IOException | InterruptedException e) {
