@@ -8,13 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 import javafx.stage.StageStyle;
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 
 import javax.swing.*;
 import java.io.IOException;
@@ -96,15 +92,13 @@ public class StartScreenFormController implements Initializable {
             Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
             Platform.runLater(() -> progressBarr.setProgress(1.0));
             try {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
                 Thread.sleep(500);
-=======
+
                 Thread.sleep(1000);
->>>>>>> Stashed changes
-=======
+
                 Thread.sleep(1000);
->>>>>>> Stashed changes
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -118,32 +112,26 @@ public class StartScreenFormController implements Initializable {
                 @Override
                 public void run() {
                     try {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
                         Thread.sleep(500);
-=======
+
                         Thread.sleep(1000);
->>>>>>> Stashed changes
-=======
+
                         Thread.sleep(1000);
->>>>>>> Stashed changes
+
                         Stage stage = new Stage();
                         Parent parent = FXMLLoader.load(this.getClass().getResource("../view/LoginForm.fxml"));
                         Scene scene = new Scene(parent);
                         stage.setScene(scene);
                         stage.show();
                         stage.centerOnScreen();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
                         stage.resizableProperty().setValue(Boolean.FALSE);
                         //normal exit kill..
                         stage.setOnCloseRequest(event -> {
                             System.exit(0);
                         });
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 
 
                     } catch (IOException | InterruptedException e) {
@@ -180,45 +168,4 @@ public class StartScreenFormController implements Initializable {
         return message[0];
     }
 
-
-//    public void initialize(){
-//
-//    }
-//
-//    public void loadingScreen(){
-//
-//        try {
-//
-//            for (int i=0; i<=100; i++){
-//                Thread.sleep(100);
-//                lblLoadingText.setText(i+"%");
-//
-//                if (i==10){
-//                    lblLoadingText.setText("Turning On Modules...");
-//                }
-//                if (i==20){
-//                    lblLoadingText.setText("Loading Modules...");
-//                }
-//                if (i==50){
-//                    lblLoadingText.setText("Connection to DataBase...");
-//                }
-//                if (i==70){
-//                    lblLoadingText.setText("Connection Successfully...");
-//                }
-//                if (i==80){
-//                    lblLoadingText.setText("Launching Application...");
-//                }
-//
-//                progressBar.progressProperty().setValue(i);
-//
-//            }
-//
-//        }
-//        catch (Exception e){
-//
-//            JOptionPane.showMessageDialog(null,e);
-//
-//        }
-//
-//  }
 }
