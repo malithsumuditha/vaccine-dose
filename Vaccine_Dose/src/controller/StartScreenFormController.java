@@ -9,7 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import javafx.stage.StageStyle;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 
@@ -94,7 +97,11 @@ public class StartScreenFormController implements Initializable {
             Platform.runLater(() -> progressBarr.setProgress(1.0));
             try {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 Thread.sleep(500);
+=======
+                Thread.sleep(1000);
+>>>>>>> Stashed changes
 =======
                 Thread.sleep(1000);
 >>>>>>> Stashed changes
@@ -112,7 +119,11 @@ public class StartScreenFormController implements Initializable {
                 public void run() {
                     try {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                         Thread.sleep(500);
+=======
+                        Thread.sleep(1000);
+>>>>>>> Stashed changes
 =======
                         Thread.sleep(1000);
 >>>>>>> Stashed changes
@@ -123,11 +134,14 @@ public class StartScreenFormController implements Initializable {
                         stage.show();
                         stage.centerOnScreen();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                         stage.resizableProperty().setValue(Boolean.FALSE);
                         //normal exit kill..
                         stage.setOnCloseRequest(event -> {
                             System.exit(0);
                         });
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 

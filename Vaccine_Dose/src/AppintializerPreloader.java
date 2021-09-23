@@ -5,7 +5,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import javafx.stage.StageStyle;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 
@@ -24,11 +27,16 @@ public class AppintializerPreloader extends Preloader {
         Scene scene=new Scene(parent);
         primaryStage.setScene(scene);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.centerOnScreen();
         primaryStage.show();
 
 
+=======
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+>>>>>>> Stashed changes
 =======
         primaryStage.centerOnScreen();
         primaryStage.show();

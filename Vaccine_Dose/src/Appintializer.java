@@ -11,7 +11,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import javafx.stage.StageStyle;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 import sun.misc.Launcher;
