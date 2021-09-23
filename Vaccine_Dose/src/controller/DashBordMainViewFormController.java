@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -47,6 +48,7 @@ public class DashBordMainViewFormController implements Initializable {
     public Separator sptVaccine;
     public Separator sptVaccination;
     public Separator sptPHIRegister;
+    public BorderPane root;
 
 
     @Override
@@ -63,7 +65,7 @@ public class DashBordMainViewFormController implements Initializable {
         changingPanel.getChildren().add(parent);
 
         setDateAndTime(lblDateAndTime);
-        //
+
 
     }
 
@@ -130,6 +132,7 @@ public class DashBordMainViewFormController implements Initializable {
         Parent parent =FXMLLoader.load(this.getClass().getResource("/view/VaccinationForm.fxml"));
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
+
     }
 
     public void btnPHIRegisterOnAction(ActionEvent actionEvent) throws IOException {

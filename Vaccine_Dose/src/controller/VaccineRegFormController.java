@@ -126,6 +126,10 @@ public class VaccineRegFormController {
                 String mcompany = resultSet.getString(4);
                 ViewRegVaccineTM viewRegVaccineTM = new ViewRegVaccineTM(vcode,vname,mcountry,mcompany);
                 items.add(viewRegVaccineTM);
+
+                
+
+
             }
             lstVaccineView.refresh();
         } catch (SQLException throwables) {
