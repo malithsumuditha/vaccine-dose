@@ -3,6 +3,7 @@
  * @date - 9/9/2021
  */
 
+import controller.StartScreenFormController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +22,9 @@ public class Appintializer extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
+
+
         try {
             Parent parent = FXMLLoader.load(this.getClass().getResource("view/LoginForm.fxml"));
             Scene scene = new Scene(parent);
