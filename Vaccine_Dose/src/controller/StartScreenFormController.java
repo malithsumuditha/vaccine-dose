@@ -1,10 +1,12 @@
 package controller;
 
+import db.DBConnection;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
@@ -15,6 +17,7 @@ import javafx.stage.StageStyle;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 
 /**
@@ -66,75 +69,104 @@ public class StartScreenFormController implements Initializable {
         });
 
         Thread t3 = new Thread(() -> {
-            message[0]="Connection to DataBase...";
-            Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
-            Platform.runLater(() -> progressBarr.setProgress(0.4));
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+                message[0]="Connection to DataBase...";
+                Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
+                Platform.runLater(() -> progressBarr.setProgress(0.4));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
         });
+
 
         Thread t4 = new Thread(() -> {
-            message[0]="Connection Successfully...";
-            Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
-            Platform.runLater(() -> progressBarr.setProgress(0.7));
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
+            Connection connection = null;
+            connection = DBConnection.getInstance().getConnection();
 
-        Thread t5 = new Thread(() -> {
-            message[0]="Launching Application...";
-            Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
-            Platform.runLater(() -> progressBarr.setProgress(1.0));
-            try {
+            if (connection!=null){
+                message[0]="Connection Successfully...";
+                Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
+                Platform.runLater(() -> progressBarr.setProgress(0.7));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-                Thread.sleep(500);
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-
-        Thread t6 = new Thread(() -> {
-            message[0]="Open Main Stage";
-            Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
-
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
+                Thread t5 = new Thread(() -> {
+                    message[0]="Launching Application...";
+                    Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
+                    Platform.runLater(() -> progressBarr.setProgress(1.0));
                     try {
 
                         Thread.sleep(500);
 
-
-                        Stage stage = new Stage();
-                        Parent parent = FXMLLoader.load(this.getClass().getResource("../view/LoginForm.fxml"));
-                        Scene scene = new Scene(parent);
-                        stage.setScene(scene);
-                        stage.show();
-                        stage.centerOnScreen();
-
-                        stage.resizableProperty().setValue(Boolean.FALSE);
-                        //normal exit kill..
-                        stage.setOnCloseRequest(event -> {
-                            System.exit(0);
-                        });
-
-
-
-                    } catch (IOException | InterruptedException e) {
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                });
+
+                Thread t6 = new Thread(() -> {
+                    message[0]="Open Main Stage";
+                    Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
+
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+
+                                Thread.sleep(500);
+
+
+                                Stage stage = new Stage();
+                                Parent parent = FXMLLoader.load(this.getClass().getResource("../view/LoginForm.fxml"));
+                                Scene scene = new Scene(parent);
+                                stage.setScene(scene);
+                                stage.show();
+                                stage.centerOnScreen();
+
+                                stage.resizableProperty().setValue(Boolean.FALSE);
+                                //normal exit kill..
+                                stage.setOnCloseRequest(event -> {
+                                    System.exit(0);
+                                });
+
+
+
+                            } catch (IOException | InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+
+                });
+
+                try {
+                    t5.start();
+                    t5.join();
+                    t6.start();
+                    t6.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            });
+
+
+            }else {
+
+                Platform.runLater(() ->{
+                    Alert alert = new Alert(Alert.AlertType.ERROR,"DataBase Connection is Failed... ");
+                    alert.showAndWait();
+                }  );
+            }
 
 
         });
+
+
 
 
 
@@ -148,11 +180,9 @@ public class StartScreenFormController implements Initializable {
             t3.join();
             t4.start();
             t4.join();
-            t5.start();
-            t5.join();
-            t6.start();
-            t6.join();
+
         } catch (InterruptedException e) {
+
             e.printStackTrace();
         }
 
