@@ -16,13 +16,14 @@ public class DashBordFormController {
     public AnchorPane rootD;
     public LineChart<String,Number> lineChart;
     public String count;
+    public String dateOfVaccined;
 
     public void initialize(){
        loadLineChart();
     }
 
 
-    public String loadLineChartSQL(String dose){
+    public String loadLineChartSQLDose(String dose){
         Connection connection = DBConnection.getInstance().getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select count(*) from vaccination where dose =?");
@@ -46,8 +47,9 @@ public class DashBordFormController {
     }
 
     public void loadLineChart(){
+        System.out.println(lineChartSQLDate());
 
-        String first_dose = loadLineChartSQL("First Dose");
+        String first_dose = loadLineChartSQLDose("First Dose");
         int intCout = Integer.parseInt(first_dose);
 
         lineChart.getData().clear();
@@ -61,7 +63,7 @@ public class DashBordFormController {
         series.setName("First Dose Done");
 
 
-        String second_dose = loadLineChartSQL("Second Dose");
+        String second_dose = loadLineChartSQLDose("Second Dose");
         intCout = Integer.parseInt(second_dose);
 
         XYChart.Series<String,Number> series2 = new XYChart.Series<String, Number>();
@@ -74,4 +76,31 @@ public class DashBordFormController {
 
         lineChart.getData().addAll(series,series2);
     }
+
+    public String lineChartSQLDate(){
+        Connection connection = DBConnection.getInstance().getConnection();
+        String s ="vaccineName";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select regDateDose1 from vaccination");
+            ResultSet resultSet1 = preparedStatement.executeQuery();
+
+            while (resultSet1.next()){
+                dateOfVaccined = resultSet1.getString(1);
+                dateOfVaccined  = dateOfVaccined.substring(8, 10);
+
+                if (dateOfVaccined.equals("19")){
+                    dateOfVaccined="January";
+                }else if (dateOfVaccined.equals("20")){
+                    dateOfVaccined="February";
+                }
+                System.out.println(dateOfVaccined);
+
+
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return dateOfVaccined;
+    }
+
 }
