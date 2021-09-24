@@ -39,6 +39,7 @@ public class VaccineRegFormController {
     public JFXListView<ViewRegVaccineTM> lstVaccineView;
     public Button btnChoose;
     public ImageView imgImageView;
+    public Label lblImagePath;
     File file;
 
     public void initialize(){
@@ -202,6 +203,7 @@ public File photoUpload(){
             bf = ImageIO.read(file);
             WritableImage image = SwingFXUtils.toFXImage(bf, null);
             imgImageView.setImage(image);
+            lblImagePath.setText(String.valueOf(file));
 
 //          ===================== SET TO ADD BUTTON INSERT ==================
 
