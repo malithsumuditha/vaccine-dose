@@ -67,10 +67,12 @@ public class VaccineRegFormController {
             txtCompany.clear();
             txtCompany.requestFocus();
         }else if (photoUpload()==null){
-
+            btnChoose.setStyle("-fx-border-color:red");
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Please Choose Image File");
+            alert.showAndWait();
         }else {
 
-            
+            btnChoose.setStyle("-fx-border-color:null");
             NullBorderCl();
             String VName = txtVaccineName.getText();
             String MCountry = txtMCountry.getText();
