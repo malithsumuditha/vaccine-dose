@@ -50,6 +50,7 @@ public class VaccineRegFormController {
         autoGenarateCode();
         Loadlist();
         photoUpload();
+        selectListItem();
 
 
 
@@ -255,7 +256,15 @@ public void selectListItem(){
             public void changed(ObservableValue<? extends ViewRegVaccineTM> observable, ViewRegVaccineTM oldValue, ViewRegVaccineTM newValue) {
 
                 ViewRegVaccineTM selectedItem = lstVaccineView.getSelectionModel().getSelectedItem();
-                
+                if (selectedItem==null){
+                    return;
+                }
+                lblVaccineCode.setText(selectedItem.getVcode());
+                txtVaccineName.setText(selectedItem.getVname());
+                txtMCountry.setText(selectedItem.getMcompany());
+                txtCompany.setText(selectedItem.getMcountry());
+
+
 
 
             }
