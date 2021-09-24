@@ -22,10 +22,7 @@ import tm.ViewRegVaccineTM;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,8 +48,6 @@ public class VaccineRegFormController {
         Loadlist();
         photoUpload();
         selectListItem();
-
-
 
     }
     public void btnVaccineAddOnAction(ActionEvent actionEvent) throws FileNotFoundException {
@@ -169,7 +164,8 @@ public class VaccineRegFormController {
                 String vname = resultSet.getString(2);
                 String mcountry = resultSet.getString(3);
                 String mcompany = resultSet.getString(4);
-                ViewRegVaccineTM viewRegVaccineTM = new ViewRegVaccineTM(vcode,vname,mcountry,mcompany);
+                Blob blob = resultSet.getBlob(5);
+                ViewRegVaccineTM viewRegVaccineTM = new ViewRegVaccineTM(vcode,vname,mcountry,mcompany,blob);
                 items.add(viewRegVaccineTM);
             }
             lstVaccineView.refresh();
@@ -263,8 +259,21 @@ public void selectListItem(){
                 txtVaccineName.setText(selectedItem.getVname());
                 txtMCountry.setText(selectedItem.getMcompany());
                 txtCompany.setText(selectedItem.getMcountry());
+                lblImagePath.setText(null);
 
+                Blob blob = selectedItem.getBlob();
+                if (blob==null){
+                    return;
+                }
 
+                try {
+                    InputStream inputStream = blob.getBinaryStream();
+                    Image image = new Image(inputStream);
+                    imgImageView.setImage(image);
+
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
 
 
             }
