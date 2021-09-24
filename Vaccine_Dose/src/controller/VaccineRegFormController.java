@@ -103,7 +103,6 @@ public class VaccineRegFormController {
                     txtVaccineName.requestFocus();
                     autoGenarateCode();
                     Loadlist();
-                    imgImageView.setImage(null);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Somthing Error !! Please try again.");
                     alert.showAndWait();
@@ -149,6 +148,8 @@ public class VaccineRegFormController {
         txtVaccineName.clear();
         txtCompany.clear();
         txtMCountry.clear();
+        lblImagePath.setText("Image Path");
+        imgImageView.setImage(null);
 
     }
     public void Loadlist(){

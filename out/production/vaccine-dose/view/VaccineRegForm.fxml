@@ -64,7 +64,12 @@
       </Label>
       <JFXListView fx:id="lstVaccineView" layoutX="685.0" layoutY="140.0" prefHeight="120.0" prefWidth="259.0" />
       <Button fx:id="btnChoose" layoutX="306.0" layoutY="309.0" mnemonicParsing="false" text="Choose" />
-      <ImageView fx:id="imgImageView" fitHeight="150.0" fitWidth="200.0" layoutX="77.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="lblImagePath" layoutX="206.0" layoutY="313.0" prefHeight="17.0" prefWidth="84.0" text="Image Path" />
+      <ImageView fx:id="imgImageView" fitHeight="175.0" fitWidth="249.0" layoutX="306.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="lblImagePath" layoutX="306.0" layoutY="349.0" prefHeight="17.0" prefWidth="249.0" text="Image Path" />
+      <Label layoutX="92.0" layoutY="309.0" text="Choose a Photo">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
