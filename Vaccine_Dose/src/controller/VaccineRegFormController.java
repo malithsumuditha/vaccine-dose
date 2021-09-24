@@ -203,6 +203,7 @@ public File photoUpload(){
             WritableImage image = SwingFXUtils.toFXImage(bf, null);
             imgImageView.setImage(image);
 
+//          ===================== SET TO ADD BUTTON INSERT ==================
 
 //            FileInputStream fin = new FileInputStream(file);
 //            int len = (int)file.length();
