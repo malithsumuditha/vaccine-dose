@@ -46,7 +46,6 @@ public class PHIRegFormController {
     public void initialize(){
         autogenarate();
         txtPHIName.requestFocus();
-        btnChooseImage.setOnAction(event -> openAndSave());
     }
 
     public void rdbPHIMaleOnAction(ActionEvent actionEvent) {

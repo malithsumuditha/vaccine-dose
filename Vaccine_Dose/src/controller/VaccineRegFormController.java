@@ -3,6 +3,8 @@ package controller;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -14,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import tm.ViewAllPersonsListTM;
 import tm.ViewRegVaccineTM;
 
 import javax.imageio.ImageIO;
@@ -243,6 +246,20 @@ public File photoUpload(){
     });
 
 return file;
+
+}
+
+public void selectListItem(){
+        lstVaccineView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ViewRegVaccineTM>() {
+            @Override
+            public void changed(ObservableValue<? extends ViewRegVaccineTM> observable, ViewRegVaccineTM oldValue, ViewRegVaccineTM newValue) {
+
+                ViewRegVaccineTM selectedItem = lstVaccineView.getSelectionModel().getSelectedItem();
+                
+
+
+            }
+        });
 
 }
 
