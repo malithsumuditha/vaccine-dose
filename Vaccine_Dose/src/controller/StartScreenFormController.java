@@ -70,7 +70,7 @@ public class StartScreenFormController implements Initializable {
 
         Thread t3 = new Thread(() -> {
 
-                message[0]="Connection to DataBase...";
+                message[0]="Connecting to DataBase...";
                 Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
                 Platform.runLater(() -> progressBarr.setProgress(0.4));
                 try {
