@@ -206,6 +206,11 @@ public File photoUpload(){
             imgImageView.setImage(image);
             lblImagePath.setText(String.valueOf(file));
 
+            if (file!=null){
+                btnChoose.setStyle("-fx-border-color:null");
+            }
+
+
 //          ===================== SET TO ADD BUTTON INSERT ==================
 
 //            FileInputStream fin = new FileInputStream(file);
