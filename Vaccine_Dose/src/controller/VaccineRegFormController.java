@@ -263,6 +263,7 @@ public void selectListItem(){
 
                 Blob blob = selectedItem.getBlob();
                 if (blob==null){
+                    imgImageView.setImage(null);
                     return;
                 }
 
