@@ -4,12 +4,28 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import tm.ViewRegVaccineTM;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author - Hw_Dulanjana
@@ -21,14 +37,20 @@ public class VaccineRegFormController {
     public JFXTextField txtCompany;
     public Label lblVaccineCode;
     public JFXListView<ViewRegVaccineTM> lstVaccineView;
+    public Button btnChoose;
+    public ImageView imgImageView;
+    File file;
 
     public void initialize(){
         txtVaccineName.requestFocus();
         autoGenarateCode();
         Loadlist();
+        photoUpload();
+
+
 
     }
-    public void btnVaccineAddOnAction(ActionEvent actionEvent) {
+    public void btnVaccineAddOnAction(ActionEvent actionEvent) throws FileNotFoundException {
         if(txtVaccineName.getText().isEmpty()){
             ErrorBorderCl(txtVaccineName);
             ErrorMassage("Vaccine name");
@@ -39,24 +61,37 @@ public class VaccineRegFormController {
             ErrorMassage("Manufacture Country");
             txtMCountry.clear();
             txtMCountry.requestFocus();
-        }else if(txtCompany.getText().isEmpty()){
+        }else if(txtCompany.getText().isEmpty()) {
             ErrorBorderCl(txtCompany);
             ErrorMassage("Manufacture Company");
             txtCompany.clear();
             txtCompany.requestFocus();
+        }else if (photoUpload()==null){
+
         }else {
+
+            
             NullBorderCl();
             String VName = txtVaccineName.getText();
             String MCountry = txtMCountry.getText();
             String VCompany = txtCompany.getText();
             String VCode = lblVaccineCode.getText();
+
+            FileInputStream fin = new FileInputStream(photoUpload());
+
+            int len = (int)file.length();
+
             Connection connection = DBConnection.getInstance().getConnection();
             try {
-                PreparedStatement preparedStatement = connection.prepareStatement("insert into VaccineReg values(?,?,?,?)");
+
+                PreparedStatement preparedStatement = connection.prepareStatement("insert into vaccinereg values(?,?,?,?,?)");
                 preparedStatement.setObject(1, VCode);
                 preparedStatement.setObject(2, VName);
                 preparedStatement.setObject(3, MCountry);
                 preparedStatement.setObject(4, VCompany);
+                preparedStatement.setBinaryStream(5,fin,len);
+
+
                 int i = preparedStatement.executeUpdate();
                 if (i != 0) {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Successful Added !! ");
@@ -65,6 +100,7 @@ public class VaccineRegFormController {
                     txtVaccineName.requestFocus();
                     autoGenarateCode();
                     Loadlist();
+                    imgImageView.setImage(null);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Somthing Error !! Please try again.");
                     alert.showAndWait();
@@ -75,6 +111,8 @@ public class VaccineRegFormController {
                 alert.showAndWait();
                 throwables.printStackTrace();
             }
+
+
         }
     }
     public void autoGenarateCode(){
@@ -125,10 +163,6 @@ public class VaccineRegFormController {
                 String mcompany = resultSet.getString(4);
                 ViewRegVaccineTM viewRegVaccineTM = new ViewRegVaccineTM(vcode,vname,mcountry,mcompany);
                 items.add(viewRegVaccineTM);
-
-                
-
-
             }
             lstVaccineView.refresh();
         } catch (SQLException throwables) {
@@ -147,4 +181,58 @@ public class VaccineRegFormController {
         txtCompany.setStyle("-fx-border-color:null");
         txtMCountry.setStyle("-fx-border-color:null");
     }
+
+
+
+
+public File photoUpload(){
+
+    btnChoose.setOnAction((ActionEvent t) -> {
+        FileChooser fc = new FileChooser();
+        FileChooser.ExtensionFilter ext1 = new FileChooser.ExtensionFilter("JPG files(*.jpg)","*.JPG");
+        FileChooser.ExtensionFilter ext2 = new FileChooser.ExtensionFilter("PNG files(*.png)","*.PNG");
+        fc.getExtensionFilters().addAll(ext1,ext2);
+        file = fc.showOpenDialog(btnChoose.getScene().getWindow());
+
+        BufferedImage bf;
+
+        try {
+            bf = ImageIO.read(file);
+            WritableImage image = SwingFXUtils.toFXImage(bf, null);
+            imgImageView.setImage(image);
+
+
+//            FileInputStream fin = new FileInputStream(file);
+//            int len = (int)file.length();
+//
+//            Connection connection = DBConnection.getInstance().getConnection();
+//            PreparedStatement preparedStatement = connection.prepareStatement("insert into vaccinereg (image) values(?)");
+//            preparedStatement.setBinaryStream(1,fin,len);
+//            int status = preparedStatement.executeUpdate();
+//            if(status>0)
+//            {
+//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                alert.setTitle("Information Dialog");
+//                alert.setHeaderText("Information dialog");
+//                alert.setContentText("Photo saved successfully");
+//                alert.showAndWait();
+//
+//            }
+//            else
+//            {
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("Error Dialog.");
+//                alert.setHeaderText("Error Information");
+//                alert.showAndWait();
+//            }
+        } catch (IOException ex) {
+            Logger.getLogger(VaccinationFormController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    });
+
+return file;
+
+}
+
 }

@@ -7,8 +7,16 @@ import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
 
 /**
@@ -30,10 +38,15 @@ public class PHIRegFormController {
     public JFXTextField txtPHICity;
     public JFXPasswordField txtAccPasssword;
     public JFXPasswordField txtConfirmPassword;
+    public Button btnChooseImage;
+    public FileInputStream img;
+    public File file;
+    public ImageView imgImageView;
 
     public void initialize(){
         autogenarate();
         txtPHIName.requestFocus();
+        btnChooseImage.setOnAction(event -> openAndSave());
     }
 
     public void rdbPHIMaleOnAction(ActionEvent actionEvent) {
@@ -130,7 +143,27 @@ public class PHIRegFormController {
                 preparedStatement.setObject(7, PCity);
                 preparedStatement.setObject(8, Password);
 
+//                FileChooser fileChooser = new FileChooser();
+//                file = fileChooser.showSaveDialog(btnChooseImage.getScene().getWindow());
+//                FileInputStream fileInputStream = new FileInputStream(file);
+//
+//                try {
+//
+//                    preparedStatement.setBinaryStream(9,fileInputStream,fileInputStream.available());
+//
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+
+
                 int i = preparedStatement.executeUpdate();
+
+//                Image image = new Image(fileInputStream);
+//                imgImageView.setImage(image);
+
+
                 if (i != 0) {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Successful Added !! ");
                     alert.showAndWait();
@@ -214,6 +247,26 @@ public class PHIRegFormController {
 //        txtMCountry.setStyle("-fx-border-color:null");
 
 
+
+    }
+
+
+
+    public void openAndSave(){
+
+        FileChooser fileChooser = new FileChooser();
+        file = fileChooser.showSaveDialog(btnChooseImage.getScene().getWindow());
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public void loadImage(){
 
     }
 }
