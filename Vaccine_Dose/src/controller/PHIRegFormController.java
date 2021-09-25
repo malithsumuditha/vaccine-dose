@@ -106,13 +106,13 @@ public class PHIRegFormController {
             ErrorBorderCl(txtPHICity);
             txtPHICity.clear();
             txtPHICity.requestFocus();
-        }else if(CPassword!=Password){
+        }else if(Password!=CPassword){
             ErrorBorderClPWD(txtConfirmPassword);
             ErrorBorderClPWD(txtAccPasssword);
             txtAccPasssword.clear();
             txtConfirmPassword.clear();
             txtAccPasssword.requestFocus();
-        }else if(CPassword.equals(Password)){
+        }else {
             String PName = txtPHIName.getText();
             String PAddress = txtPHIAddress.getText();
             String PContact = txtPHIContact.getText();
@@ -177,8 +177,6 @@ public class PHIRegFormController {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Something Error ! , Please TRy Again.. ");
                 throwables.printStackTrace();
             }
-        }else{
-            System.out.println("Wrong");
         }
     }
     public void autogenarate(){
