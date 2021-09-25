@@ -174,16 +174,13 @@ public class PHIRegFormController {
                 throwables.printStackTrace();
             }
 
-        }else if(Password!=CPassword){
+        }else {
             System.out.println("No");
             ErrorBorderClPWD(txtConfirmPassword);
             ErrorBorderClPWD(txtAccPasssword);
             txtAccPasssword.clear();
             txtConfirmPassword.clear();
             txtAccPasssword.requestFocus();
-
-        }else{
-            System.out.println("Wrong");
         }
     }
     public void autogenarate(){
