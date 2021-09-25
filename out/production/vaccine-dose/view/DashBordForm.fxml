@@ -20,7 +20,7 @@
       </Label>
       <Pane layoutX="31.0" layoutY="211.0" prefHeight="170.0" prefWidth="503.0" style="-fx-border-color: #95a5a6;">
          <children>
-            <LineChart fx:id="lineChart" prefHeight="104.0" prefWidth="503.0">
+            <LineChart fx:id="lineChart" layoutY="-2.0" prefHeight="170.0" prefWidth="503.0">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -132,5 +132,8 @@
             <Label layoutX="14.0" layoutY="48.0" styleClass="context-menu3" text="Most Recent" />
          </children>
       </Pane>
+      <Label alignment="CENTER" layoutX="454.0" layoutY="184.0" prefHeight="18.0" prefWidth="69.0" style="-fx-border-color: white; -fx-border-radius: 5px;" styleClass="context-menu8" text="Dose 1" />
+      <Label alignment="CENTER" layoutX="981.0" layoutY="184.0" prefHeight="18.0" prefWidth="69.0" style="-fx-border-color: white; -fx-border-radius: 5px;" styleClass="context-menu8" text="Graphs" />
+      <Label alignment="CENTER" layoutX="454.0" layoutY="421.0" prefHeight="18.0" prefWidth="69.0" style="-fx-border-color: white; -fx-border-radius: 5px;" styleClass="context-menu8" text="Recent" />
    </children>
 </AnchorPane>

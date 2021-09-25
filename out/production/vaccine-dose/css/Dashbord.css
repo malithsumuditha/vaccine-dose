@@ -68,4 +68,13 @@
 
 }
 
+.context-menu8 {
+    -fx-font-family: TRON;
+    -fx-text-fill:  white;
+    -fx-background-color: transparent;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+
+}
+
 

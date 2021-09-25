@@ -71,6 +71,7 @@ public class PHIRegFormController {
     public void datainsert(){
         String Password = txtAccPasssword.getText();
         String CPassword = txtConfirmPassword.getText();
+
         if(txtPHIName.getText().isEmpty()){
             ErrorMassage("PHI Name");
             ErrorBorderCl(txtPHIName);
@@ -106,13 +107,8 @@ public class PHIRegFormController {
             ErrorBorderCl(txtPHICity);
             txtPHICity.clear();
             txtPHICity.requestFocus();
-        }else if(CPassword!=Password){
-            ErrorBorderClPWD(txtConfirmPassword);
-            ErrorBorderClPWD(txtAccPasssword);
-            txtAccPasssword.clear();
-            txtConfirmPassword.clear();
-            txtAccPasssword.requestFocus();
         }else if(CPassword.equals(Password)){
+            System.out.println("done");
             String PName = txtPHIName.getText();
             String PAddress = txtPHIAddress.getText();
             String PContact = txtPHIContact.getText();
@@ -132,7 +128,7 @@ public class PHIRegFormController {
 
             Connection connection = DBConnection.getInstance().getConnection();
             try {
-                PreparedStatement preparedStatement = connection.prepareStatement("insert into PHIReg Values(?,?,?,?,?,?,?,?)");
+                PreparedStatement preparedStatement = connection.prepareStatement("insert into phireg Values(?,?,?,?,?,?,?,?)");
                 preparedStatement.setObject(1, PID);
                 preparedStatement.setObject(2, PName);
                 preparedStatement.setObject(3, PAddress);
@@ -177,6 +173,15 @@ public class PHIRegFormController {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Something Error ! , Please TRy Again.. ");
                 throwables.printStackTrace();
             }
+
+        }else if(Password!=CPassword){
+            System.out.println("No");
+            ErrorBorderClPWD(txtConfirmPassword);
+            ErrorBorderClPWD(txtAccPasssword);
+            txtAccPasssword.clear();
+            txtConfirmPassword.clear();
+            txtAccPasssword.requestFocus();
+
         }else{
             System.out.println("Wrong");
         }
