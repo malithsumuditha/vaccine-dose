@@ -39,11 +39,14 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                      <children>
-                        <ProgressIndicator prefHeight="150.0" prefWidth="150.0" progress="0.28" styleClass="context-menu">
+                        <HBox HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets top="13.0" />
                            </HBox.margin>
-                        </ProgressIndicator>
+                           <children>
+                              <ProgressIndicator prefHeight="150.0" prefWidth="150.0" progress="0.28" styleClass="context-menu" />
+                           </children>
+                        </HBox>
                      </children>
                   </HBox>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="48.0" prefWidth="265.0" style="-fx-background-color: #3498db;" text="56%" />
