@@ -24,29 +24,11 @@ public class DashBordFormController {
 
 
     public void initialize(){
-       sql();
+
+       setValuesToLineChartt();
+
     }
 
-
-//    public String loadLineChartSQLDose(String dose){
-//        Connection connection = DBConnection.getInstance().getConnection();
-//        try {
-//            PreparedStatement preparedStatement = connection.prepareStatement("select count(*) from vaccination where dose =?");
-////            preparedStatement.setObject(1,"dose");
-//            preparedStatement.setObject(1,dose);
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//
-//            while (resultSet.next()){
-//                count= resultSet.getString(1);
-//            }
-//
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        }
-//
-//        return count;
-//
-//    }
 
     public void btnLoadLineChartOnAction(ActionEvent actionEvent) {
     }
@@ -83,53 +65,23 @@ public class DashBordFormController {
 //        lineChart.getData().addAll(series,series2);
 //    }
 
-//    public ArrayList<String> lineChartSQLDate(){
-//        Connection connection = DBConnection.getInstance().getConnection();
-//        String s ="vaccineName";
-//        try {
-//            PreparedStatement preparedStatement = connection.prepareStatement("select regDateDose1 from vaccination");
-//            ResultSet resultSet1 = preparedStatement.executeQuery();
-//
-//            while (resultSet1.next()){
-//                dateOfVaccined = resultSet1.getString(1);
-//                dateOfVaccined  = dateOfVaccined.substring(8, 10);
-//
-//                date.add(dateOfVaccined);
-//            }
-//        } catch (SQLException throwables) {
-//            throwables.printStackTrace();
-//        }
-//        return date;
-//    }
 
-    public void sql(){
+    public ArrayList<String> sql(){
 
         Connection connection = DBConnection.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("select DATE(regDateDose1) OnlyDatePartFromTimestamp from vaccination");
+            ResultSet resultSet = statement.executeQuery("select DATE(regDateDose1) from vaccination");
 
-
-
-            XYChart.Series<String,Number> series = new XYChart.Series<>();
-            int i = 0;
-            int size = getDatefromDB().size();
             String date=null;
 
             while (resultSet.next()){
 
-//                Integer integer = getDatefromDB().get(i);
-//                System.out.println(integer);
-//                String date = resultSet.getString(1);
-//                //date  = date.substring(5, 10);
-//                series.getData().add(new XYChart.Data<>(date,integer));
-//
-//                i++;
-
                 String string = resultSet.getString(1);
                 if (string.equals(date)){
 
+//                    System.out.println("null");
                 }
                 else {
 
@@ -140,19 +92,13 @@ public class DashBordFormController {
                 date= resultSet.getString(1);
 
 
-//                System.out.println(arrayList1);
-
             }
-
-            System.out.println(arrayList1);
-
-
-            lineChart.getData().add(series);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
+        return arrayList1;
     }
 
     public ArrayList<Integer> getDatefromDB(){
@@ -164,7 +110,6 @@ public class DashBordFormController {
             PreparedStatement preparedStatement1 = connection1.prepareStatement("select count(*) as count,date(regDateDose1) as date from vaccination where regDateDose1 >= date_sub(curdate(), interval 7 day) group by date;");
             ResultSet resultSet = preparedStatement1.executeQuery();
 
-
             while (resultSet.next()){
                 count = resultSet.getString(1);
 
@@ -174,7 +119,6 @@ public class DashBordFormController {
 
             }
 
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -182,6 +126,43 @@ public class DashBordFormController {
         return arrayList;
     }
 
+
+    public void setValuesToLineChartt(){
+
+        XYChart.Series<String,Number> series = new XYChart.Series<>();
+
+        int size = sql().size();
+        for (int i = 0; i <size ; i++) {
+            Integer intCount = getDatefromDB().get(i);
+            String date = sql().get(i);
+
+            series.getData().add(new XYChart.Data<>(date,intCount));
+       }
+
+        series.setName("Dose One Completed");
+        lineChart.getData().add(series);
+
+
+
+      //XYChart.Series<String,Number> series2 = new XYChart.Series<>();
+
+
+
+//        for (int i = 0; i <size ; i++) {
+//
+//            Integer intCount = getDatefromDB().get(i);
+//            String date = sql().get(i);
+//
+//            series2.getData().add(new XYChart.Data<>(date,intCount));
+//        }
+//
+//        series2.setName("Dose Two Completed");
+//
+//
+//        lineChart.getData().add(series2);
+
+
+    }
 
 
 }
