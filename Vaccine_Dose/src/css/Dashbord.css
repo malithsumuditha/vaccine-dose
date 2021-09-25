@@ -41,3 +41,40 @@
     -fx-font-size: 12px;
     -fx-font-weight: bold;
 }
+
+.context-menu6 {
+    -fx-font-family: TRON;
+    -fx-text-fill:  #0984e3;
+    -fx-background-color: transparent;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-accent: #4cd137;
+}
+.context-menu7 {
+    -fx-font-family: TRON;
+    -fx-text-fill:  #0984e3;
+    -fx-background-color: transparent;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-accent: #fbc531;
+}
+
+.context-menu8 {
+    -fx-font-family: TRON;
+    -fx-text-fill:  #0984e3;
+    -fx-background-color: transparent;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+}
+
+.context-menu8 {
+    -fx-font-family: TRON;
+    -fx-text-fill:  white;
+    -fx-background-color: transparent;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+
+}
+
+

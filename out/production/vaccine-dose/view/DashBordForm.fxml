@@ -20,7 +20,7 @@
       </Label>
       <Pane layoutX="31.0" layoutY="211.0" prefHeight="170.0" prefWidth="503.0" style="-fx-border-color: #95a5a6;">
          <children>
-            <LineChart fx:id="lineChart" layoutX="-10.0" prefHeight="163.0" prefWidth="503.0">
+            <LineChart fx:id="lineChart" prefHeight="104.0" prefWidth="503.0">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -52,7 +52,7 @@
                         <Insets top="13.0" />
                      </HBox.margin>
                      <children>
-                        <ProgressIndicator prefHeight="75.0" prefWidth="111.0" progress="0.28" styleClass="context-menu" />
+                        <ProgressIndicator prefHeight="94.0" prefWidth="133.0" progress="0.28" styleClass="context-menu6" />
                      </children>
                   </HBox>
                </children>
@@ -67,7 +67,7 @@
                         <Insets top="13.0" />
                      </HBox.margin>
                      <children>
-                        <ProgressIndicator prefHeight="75.0" prefWidth="111.0" progress="0.67" styleClass="context-menu" />
+                        <ProgressIndicator prefHeight="114.0" prefWidth="147.0" progress="0.67" styleClass="context-menu8" />
                      </children>
                   </HBox>
                </children>
@@ -82,7 +82,7 @@
                         <Insets top="13.0" />
                      </HBox.margin>
                      <children>
-                        <ProgressIndicator prefHeight="75.0" prefWidth="111.0" progress="0.67" styleClass="context-menu" />
+                        <ProgressIndicator prefHeight="127.0" prefWidth="138.0" progress="0.43" styleClass="context-menu7" />
                      </children>
                   </HBox>
                </children>
