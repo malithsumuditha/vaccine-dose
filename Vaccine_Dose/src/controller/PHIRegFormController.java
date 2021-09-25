@@ -71,6 +71,7 @@ public class PHIRegFormController {
     public void datainsert(){
         String Password = txtAccPasssword.getText();
         String CPassword = txtConfirmPassword.getText();
+
         if(txtPHIName.getText().isEmpty()){
             ErrorMassage("PHI Name");
             ErrorBorderCl(txtPHIName);
@@ -112,7 +113,8 @@ public class PHIRegFormController {
             txtAccPasssword.clear();
             txtConfirmPassword.clear();
             txtAccPasssword.requestFocus();
-        }else {
+        }else if(CPassword.equals(Password)){
+            System.out.println("done");
             String PName = txtPHIName.getText();
             String PAddress = txtPHIAddress.getText();
             String PContact = txtPHIContact.getText();
@@ -132,7 +134,7 @@ public class PHIRegFormController {
 
             Connection connection = DBConnection.getInstance().getConnection();
             try {
-                PreparedStatement preparedStatement = connection.prepareStatement("insert into PHIReg Values(?,?,?,?,?,?,?,?)");
+                PreparedStatement preparedStatement = connection.prepareStatement("insert into phireg Values(?,?,?,?,?,?,?,?)");
                 preparedStatement.setObject(1, PID);
                 preparedStatement.setObject(2, PName);
                 preparedStatement.setObject(3, PAddress);
@@ -177,6 +179,14 @@ public class PHIRegFormController {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Something Error ! , Please TRy Again.. ");
                 throwables.printStackTrace();
             }
+
+        }else {
+            System.out.println("No");
+            ErrorBorderClPWD(txtConfirmPassword);
+            ErrorBorderClPWD(txtAccPasssword);
+            txtAccPasssword.clear();
+            txtConfirmPassword.clear();
+            txtAccPasssword.requestFocus();
         }
     }
     public void autogenarate(){
