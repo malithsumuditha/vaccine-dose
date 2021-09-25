@@ -10,6 +10,27 @@
 .context-menu {
     -fx-font-family: TRON;
     -fx-background-color: transparent;
-    -fx-font-size: 18px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+.context-menu2 {
+    -fx-font-family: TRON;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+.context-menu3 {
+    -fx-font-family: TRON;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-font-size: 8px;
+    -fx-font-weight: bold;
+}
+.context-menu4 {
+    -fx-font-family: TRON;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
