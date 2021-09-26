@@ -104,6 +104,7 @@ public class PHIRegFormController {
             txtPHICity.requestFocus();
 
         }else if(CPassword.equals(Password)){
+            System.out.println("Ok");
             NullBorderCl();
             String PName = txtPHIName.getText();
             String PAddress = txtPHIAddress.getText();
