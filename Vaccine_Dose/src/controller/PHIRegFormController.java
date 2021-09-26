@@ -181,7 +181,7 @@ public class PHIRegFormController {
             }
 
         }else {
-            System.out.println("No");
+            System.out.println("Nooo");
             ErrorBorderClPWD(txtConfirmPassword);
             ErrorBorderClPWD(txtAccPasssword);
             txtAccPasssword.clear();
