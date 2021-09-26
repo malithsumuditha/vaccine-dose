@@ -97,24 +97,14 @@ public class PHIRegFormController {
             ErrorBorderClPWD(txtAccPasssword);
             txtAccPasssword.clear();
             txtAccPasssword.requestFocus();
-        }else if(txtConfirmPassword.getText().isEmpty()){
-            ErrorBorderClPWD(txtConfirmPassword);
-            ErrorMassage("Confirm Password");
-            txtConfirmPassword.clear();
-            txtConfirmPassword.requestFocus();
         }else if(txtPHICity.getText().isEmpty()){
             ErrorMassage("working City");
             ErrorBorderCl(txtPHICity);
             txtPHICity.clear();
             txtPHICity.requestFocus();
-        }else if(Password!=CPassword){
-            ErrorBorderClPWD(txtConfirmPassword);
-            ErrorBorderClPWD(txtAccPasssword);
-            txtAccPasssword.clear();
-            txtConfirmPassword.clear();
-            txtAccPasssword.requestFocus();
+
         }else if(CPassword.equals(Password)){
-            System.out.println("done");
+            NullBorderCl();
             String PName = txtPHIName.getText();
             String PAddress = txtPHIAddress.getText();
             String PContact = txtPHIContact.getText();
@@ -128,8 +118,7 @@ public class PHIRegFormController {
             } else if (rdbPHIMale.isSelected()) {
                 gender = "Male";
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Something Error ! , Please TRy Again.. ");
-                alert.showAndWait();
+                ErrorMassage("Gender Field");
             }
 
             Connection connection = DBConnection.getInstance().getConnection();
@@ -248,16 +237,7 @@ public class PHIRegFormController {
         txtConfirmPassword.setStyle("-fx-border-color:null");
         txtPHINIC.setStyle("-fx-border-color:null");
         txtPHICity.setStyle("-fx-border-color:null");
-
-//        txtVaccineName.setStyle("-fx-border-color:null");
-//        txtCompany.setStyle("-fx-border-color:null");
-//        txtMCountry.setStyle("-fx-border-color:null");
-
-
-
     }
-
-
 
     public void openAndSave(){
 
