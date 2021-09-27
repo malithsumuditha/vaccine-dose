@@ -34,7 +34,9 @@ public class DashBordFormController {
         Integer integer = getDatefromDB().get(arrayList.size() - 1);
         lblTodayVaccine.setText(String.valueOf(integer));
 
-        totalVaccinedCount();
+        totalDoseVaccinedCount();
+
+
 
     }
 
@@ -175,7 +177,7 @@ public class DashBordFormController {
     }
 
 
-    public void totalVaccinedCount(){
+    public void totalDoseVaccinedCount(){
         Connection connection = DBConnection.getInstance().getConnection();
         try {
             Statement statement = connection.createStatement();
@@ -186,6 +188,7 @@ public class DashBordFormController {
             while (resultSet.next()){
                 String string = resultSet.getString(1);
                 intCount = Integer.parseInt(string);
+                intCount=intCount+totalDose2vaccined();
             }
             if (intCount<10){
                 lblTotalVaccined.setText("0"+intCount);
@@ -197,6 +200,26 @@ public class DashBordFormController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public int totalDose2vaccined(){
+        Connection connection = DBConnection.getInstance().getConnection();
+        int intCount=0;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select count(regDateDose2) from vaccination");
+
+
+
+            while (resultSet.next()){
+                String string = resultSet.getString(1);
+                intCount = Integer.parseInt(string);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return intCount;
     }
 
 
