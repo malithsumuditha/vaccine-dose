@@ -122,7 +122,7 @@ public class StartScreenFormController implements Initializable {
 
 
                                 Stage stage = new Stage();
-                                Parent parent = FXMLLoader.load(this.getClass().getResource("../view/LoginForm.fxml"));
+                                Parent parent = FXMLLoader.load(this.getClass().getResource("/view/LoginForm.fxml"));
                                 Scene scene = new Scene(parent);
                                 stage.setScene(scene);
                                 stage.show();

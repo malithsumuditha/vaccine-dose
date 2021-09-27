@@ -17,7 +17,7 @@ public class AppintializerPreloader extends Preloader {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.proloaderStage = primaryStage;
-        Parent parent = FXMLLoader.load(this.getClass().getResource("view/LoadingForm.fxml"));
+        Parent parent = FXMLLoader.load(this.getClass().getResource("/view/LoadingForm.fxml"));
         Scene scene=new Scene(parent);
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
