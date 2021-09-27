@@ -173,6 +173,13 @@ public class DashBordFormController {
     }
 
 
+    public void allVaccinedCount(){
+        Connection connection = DBConnection.getInstance().getConnection();
+//        try (Statement statement = connection.createStatement("select count(*) from person")) {
+//
+//        }
+    }
+
 
 
 }
