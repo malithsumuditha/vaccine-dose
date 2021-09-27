@@ -138,10 +138,10 @@ public class DashBordFormController {
 
         XYChart.Series<String,Number> series = new XYChart.Series<>();
 
-        int size = sql().size();
+        int size = getDatefromDB().size();
         for (int i = 0; i <size ; i++) {
+            String date = sql().get(i+1);
             Integer intCount = getDatefromDB().get(i);
-            String date = sql().get(i);
 
             series.getData().add(new XYChart.Data<>(date,intCount));
        }
