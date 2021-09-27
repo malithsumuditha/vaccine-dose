@@ -4,6 +4,7 @@ import db.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 import java.sql.*;
@@ -21,11 +22,16 @@ public class DashBordFormController {
     public ArrayList<String> date;
     public ArrayList<Integer> arrayList = new ArrayList<Integer>();
     public ArrayList<String>arrayList1 = new ArrayList<String>();
+    public Label lblTodayVaccine;
+
 
 
     public void initialize(){
 
        setValuesToLineChartt();
+
+        Integer integer = getDatefromDB().get(arrayList.size() - 1);
+        lblTodayVaccine.setText(String.valueOf(integer));
 
     }
 
@@ -97,12 +103,11 @@ public class DashBordFormController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return arrayList1;
     }
 
     public ArrayList<Integer> getDatefromDB(){
-
+        int c=0;
 
         Connection connection1 = DBConnection.getInstance().getConnection();
         try {
@@ -113,9 +118,9 @@ public class DashBordFormController {
             while (resultSet.next()){
                 count = resultSet.getString(1);
 
-                int i = Integer.parseInt(count);
+                c= Integer.parseInt(count);
 
-                arrayList.add(i);
+                arrayList.add(c);
 
             }
 
@@ -124,6 +129,7 @@ public class DashBordFormController {
         }
 
         return arrayList;
+
     }
 
 
@@ -131,7 +137,7 @@ public class DashBordFormController {
 
         XYChart.Series<String,Number> series = new XYChart.Series<>();
 
-        int size = sql().size();
+        int size = getDatefromDB().size();
         for (int i = 0; i <size ; i++) {
             Integer intCount = getDatefromDB().get(i);
             String date = sql().get(i);
