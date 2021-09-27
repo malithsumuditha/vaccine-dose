@@ -38,7 +38,7 @@ public class StartScreenFormController implements Initializable {
         lblLoadingTextt = lblLoadingText;
         progressBarr = progressBar;
         progressBarr.setStyle("-fx-accent: red;");
-
+        System.out.println("sl");
     }
 
     public String checkFunction(){
