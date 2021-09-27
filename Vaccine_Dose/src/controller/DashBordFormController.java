@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -27,6 +28,9 @@ public class DashBordFormController {
     public Label lblTotalDoseOneVaccination;
     public Label lblTotalDose2Vaccination;
     public ArrayList<Integer>arrayList2 = new ArrayList<Integer>();
+    public ProgressIndicator pgiDoseTwo;
+    public ProgressIndicator pgiDoseOne;
+    public ProgressIndicator pgiTotalVaccination;
 
 
     public void initialize(){
@@ -43,6 +47,8 @@ public class DashBordFormController {
         totalDoseOneVaccinedCount();
         totalDose2vaccined();
         totalVaccined();
+
+        setValueToProgressIndicator();
 
 
     }
@@ -252,7 +258,7 @@ public class DashBordFormController {
         Connection connection1 = DBConnection.getInstance().getConnection();
         try {
 
-            PreparedStatement preparedStatement1 = connection1.prepareStatement("select count(*) as count,date(regDateDose2) as date from vaccination where regDateDose2 >= date_sub(curdate(), interval 30 day) group by date;");
+            PreparedStatement preparedStatement1 = connection1.prepareStatement("select count(*) as count,date(regDateDose2) as date from vaccination where regDateDose2 >= date_sub(curdate(), interval 10 day) group by date;");
             ResultSet resultSet = preparedStatement1.executeQuery();
 
             while (resultSet.next()){
@@ -269,6 +275,19 @@ public class DashBordFormController {
         }
 
         return arrayList2;
+
+    }
+
+
+    public void setValueToProgressIndicator(){
+
+        double i = ((double) totalDose2vaccined() * 100) / 200;
+        pgiDoseTwo.setProgress(i/100);
+
+        double v = ((double) totalDoseOneVaccinedCount() * 100) / 200;
+        pgiDoseOne.setProgress(v/100);
+
+        pgiTotalVaccination.setProgress((i+v)/100);
 
     }
 
