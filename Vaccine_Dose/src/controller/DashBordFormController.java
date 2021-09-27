@@ -30,6 +30,7 @@ public class DashBordFormController {
 
        setValuesToLineChartt();
 
+       //add value to label
         Integer integer = getDatefromDB().get(arrayList.size() - 1);
         lblTodayVaccine.setText(String.valueOf(integer));
 
