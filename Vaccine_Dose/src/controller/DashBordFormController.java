@@ -90,7 +90,7 @@ public class DashBordFormController {
         try {
             Statement statement = connection.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("select DATE(regDateDose1) from vaccination");
+            ResultSet resultSet = statement.executeQuery("select DATE(regDateDose1)as date from vaccination where regDateDose1 >= date_sub(curdate(), interval 10 day) group by date;");
 
             String date=null;
 
@@ -125,7 +125,7 @@ public class DashBordFormController {
         Connection connection1 = DBConnection.getInstance().getConnection();
         try {
 
-            PreparedStatement preparedStatement1 = connection1.prepareStatement("select count(*) as count,date(regDateDose1) as date from vaccination where regDateDose1 >= date_sub(curdate(), interval 30 day) group by date;");
+            PreparedStatement preparedStatement1 = connection1.prepareStatement("select count(*) as count,date(regDateDose1) as date from vaccination where regDateDose1 >= date_sub(curdate(), interval 10 day) group by date;");
             ResultSet resultSet = preparedStatement1.executeQuery();
 
             while (resultSet.next()){
