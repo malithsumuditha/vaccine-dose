@@ -103,6 +103,7 @@ public class DashBordFormController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        System.out.println(arrayList1);
         return arrayList1;
     }
 
@@ -137,7 +138,7 @@ public class DashBordFormController {
 
         XYChart.Series<String,Number> series = new XYChart.Series<>();
 
-        int size = getDatefromDB().size();
+        int size = sql().size();
         for (int i = 0; i <size ; i++) {
             Integer intCount = getDatefromDB().get(i);
             String date = sql().get(i);
