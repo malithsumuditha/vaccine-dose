@@ -20,6 +20,7 @@ create table vaccinereg(
 	mcompany varchar(25)not null
 );
 
+
 create table vaccination(
 	id varchar(10)primary key,
 	name varchar(100)not null,
