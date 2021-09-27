@@ -6,6 +6,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,21 +19,22 @@ public class DashBordFormController {
     public AnchorPane rootD;
     public LineChart<String,Number> lineChart;
     public String count;
-    public String dateOfVaccined;
     public ArrayList<String> date;
     public ArrayList<Integer> arrayList = new ArrayList<Integer>();
     public ArrayList<String>arrayList1 = new ArrayList<String>();
     public Label lblTodayVaccine;
-
+    public Label lblTotalVaccined;
 
 
     public void initialize(){
 
        setValuesToLineChartt();
 
-       //add value to label
+       //set value to label Dose 1
         Integer integer = getDatefromDB().get(arrayList.size() - 1);
         lblTodayVaccine.setText(String.valueOf(integer));
+
+        totalVaccinedCount();
 
     }
 
@@ -104,7 +106,7 @@ public class DashBordFormController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        System.out.println(arrayList1);
+
         return arrayList1;
     }
 
@@ -114,7 +116,7 @@ public class DashBordFormController {
         Connection connection1 = DBConnection.getInstance().getConnection();
         try {
 
-            PreparedStatement preparedStatement1 = connection1.prepareStatement("select count(*) as count,date(regDateDose1) as date from vaccination where regDateDose1 >= date_sub(curdate(), interval 7 day) group by date;");
+            PreparedStatement preparedStatement1 = connection1.prepareStatement("select count(*) as count,date(regDateDose1) as date from vaccination where regDateDose1 >= date_sub(curdate(), interval 30 day) group by date;");
             ResultSet resultSet = preparedStatement1.executeQuery();
 
             while (resultSet.next()){
@@ -141,7 +143,7 @@ public class DashBordFormController {
 
         int size = getDatefromDB().size();
         for (int i = 0; i <size ; i++) {
-            String date = sql().get(i+1);
+            String date = sql().get(i);
             Integer intCount = getDatefromDB().get(i);
 
             series.getData().add(new XYChart.Data<>(date,intCount));
@@ -173,11 +175,28 @@ public class DashBordFormController {
     }
 
 
-    public void allVaccinedCount(){
+    public void totalVaccinedCount(){
         Connection connection = DBConnection.getInstance().getConnection();
-//        try (Statement statement = connection.createStatement("select count(*) from person")) {
-//
-//        }
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select count(*) from vaccination");
+
+            int intCount=0;
+
+            while (resultSet.next()){
+                String string = resultSet.getString(1);
+                intCount = Integer.parseInt(string);
+            }
+            if (intCount<10){
+                lblTotalVaccined.setText("0"+intCount);
+            }
+            else {
+                lblTotalVaccined.setText(""+intCount);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
 
