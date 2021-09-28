@@ -181,6 +181,9 @@ public class DashBordFormController {
 
         series.setName("Dose One Completed");
         lineChart.getData().add(series);
+        series.getNode().setStyle("-fx-stroke: blue;");
+
+
 
 
 

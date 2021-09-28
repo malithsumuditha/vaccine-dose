@@ -23,7 +23,7 @@
       </Label>
       <Pane layoutX="31.0" layoutY="211.0" prefHeight="170.0" prefWidth="503.0" style="-fx-border-color: #95a5a6;">
          <children>
-            <LineChart fx:id="lineChart" layoutY="-2.0" prefHeight="170.0" prefWidth="503.0">
+            <LineChart fx:id="lineChart" layoutY="-2.0" prefHeight="170.0" prefWidth="503.0" stylesheets="@../css/LineChart.css">
                <xAxis>
                   <CategoryAxis side="BOTTOM" />
                </xAxis>
