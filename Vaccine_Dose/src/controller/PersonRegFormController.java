@@ -543,9 +543,21 @@ public class PersonRegFormController {
     }
 
     public void btnPHIRegisterOnAction(ActionEvent actionEvent) throws IOException {
-        Parent parent = FXMLLoader.load(this.getClass().getResource("../view/PHIRegForm.fxml"));
+        Parent parent = FXMLLoader.load(this.getClass().getResource("/view/PHIRegForm.fxml"));
         personRegisterPanel.getChildren().clear();
         personRegisterPanel.getChildren().add(parent);
 
+    }
+
+    public void btnAdminRegisterOnAction(ActionEvent actionEvent) throws IOException {
+        Parent parent= FXMLLoader.load(this.getClass().getResource("/view/AdminRegisterForm.fxml"));
+        personRegisterPanel.getChildren().clear();
+        personRegisterPanel.getChildren().add(parent);
+    }
+
+    public void btnDoctorRegisterOnAction(ActionEvent actionEvent) throws IOException {
+        Parent parent = FXMLLoader.load(this.getClass().getResource("/view/DoctorRegForm.fxml"));
+        personRegisterPanel.getChildren().clear();
+        personRegisterPanel.getChildren().add(parent);
     }
 }
