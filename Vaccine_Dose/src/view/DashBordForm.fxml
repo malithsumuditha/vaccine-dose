@@ -102,7 +102,7 @@
       </Label>
       <Pane layoutX="31.0" layoutY="447.0" prefHeight="170.0" prefWidth="503.0" style="-fx-border-color: #95a5a6;">
          <children>
-            <ImageView fx:id="imgLocal1" fitHeight="127.0" fitWidth="217.0" layoutX="28.0" layoutY="23.0" onMouseClicked="#imgLocal1OnMouseClick" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgLocal1" fitHeight="116.0" fitWidth="217.0" layoutX="29.0" layoutY="23.0" onMouseClicked="#imgLocal1OnMouseClick" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/IMG_20201224_153959_956.jpg" />
                </image>

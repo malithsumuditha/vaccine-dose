@@ -148,6 +148,11 @@
             <Label layoutX="14.0" layoutY="6.0" styleClass="context-menu3" text="Today Vaccined" />
             <Label fx:id="lblTodayVaccine" layoutX="14.0" layoutY="19.0" prefHeight="18.0" prefWidth="28.0" styleClass="context-menu4" text="40" />
             <Label layoutX="14.0" layoutY="48.0" styleClass="context-menu3" text="Most Recent" />
+            <ImageView fitHeight="39.0" fitWidth="43.0" layoutX="146.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/Untitled-1.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Pane layoutX="307.0" layoutY="77.0" prefHeight="68.0" prefWidth="200.0" style="-fx-background-color: #2ecc71; -fx-background-radius: 5px;">
@@ -155,6 +160,11 @@
             <Label layoutX="14.0" layoutY="6.0" styleClass="context-menu3" text="Total Vaccined" />
             <Label fx:id="lblTotalVaccined" layoutX="14.0" layoutY="19.0" prefHeight="30.0" prefWidth="100.0" styleClass="context-menu4" text="1250" />
             <Label layoutX="12.0" layoutY="48.0" styleClass="context-menu3" text="Most Recent" />
+            <ImageView fitHeight="45.0" fitWidth="55.0" layoutX="140.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/Untitled-2.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Pane layoutX="589.0" layoutY="77.0" prefHeight="68.0" prefWidth="200.0" style="-fx-background-color: #2ecc71; -fx-background-radius: 5px;">
@@ -162,6 +172,11 @@
             <Label layoutX="14.0" layoutY="6.0" styleClass="context-menu3" text="Total Dose One Vaccination" />
             <Label fx:id="lblTotalDoseOneVaccination" layoutX="14.0" layoutY="19.0" prefHeight="30.0" prefWidth="100.0" styleClass="context-menu4" text="870" />
             <Label layoutX="14.0" layoutY="48.0" styleClass="context-menu3" text="Most Recent" />
+            <ImageView fitHeight="45.0" fitWidth="47.0" layoutX="150.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/Untitled-3.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Pane layoutX="863.0" layoutY="78.0" prefHeight="68.0" prefWidth="200.0" style="-fx-background-color: #2ecc71; -fx-background-radius: 5px;">
@@ -169,6 +184,11 @@
             <Label layoutX="14.0" layoutY="6.0" styleClass="context-menu3" text="Total Dose Two vaccination" />
             <Label fx:id="lblTotalDose2Vaccination" layoutX="14.0" layoutY="19.0" prefHeight="30.0" prefWidth="69.0" styleClass="context-menu4" text="38" />
             <Label layoutX="14.0" layoutY="48.0" styleClass="context-menu3" text="Most Recent" />
+            <ImageView fitHeight="45.0" fitWidth="47.0" layoutX="140.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/Untitled-4.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Label alignment="CENTER" layoutX="454.0" layoutY="184.0" prefHeight="18.0" prefWidth="69.0" style="-fx-border-color: white; -fx-border-radius: 5px;" styleClass="context-menu8" text="Dose 1" />
