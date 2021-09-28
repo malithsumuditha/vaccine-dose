@@ -50,7 +50,7 @@ public class StartScreenFormController implements Initializable {
             Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
             Platform.runLater(() -> progressBarr.setProgress(0.02));
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -61,7 +61,7 @@ public class StartScreenFormController implements Initializable {
             Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
             Platform.runLater(() -> progressBarr.setProgress(0.15));
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -73,7 +73,7 @@ public class StartScreenFormController implements Initializable {
                 Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
                 Platform.runLater(() -> progressBarr.setProgress(0.4));
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -90,7 +90,7 @@ public class StartScreenFormController implements Initializable {
                 Platform.runLater(() -> lblLoadingTextt.setText(message[0]));
                 Platform.runLater(() -> progressBarr.setProgress(0.7));
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

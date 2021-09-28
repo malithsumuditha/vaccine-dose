@@ -1,14 +1,25 @@
 package controller;
 
+import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory;
+import com.sun.javafx.application.HostServicesDelegate;
 import db.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -31,6 +42,10 @@ public class DashBordFormController {
     public ProgressIndicator pgiDoseTwo;
     public ProgressIndicator pgiDoseOne;
     public ProgressIndicator pgiTotalVaccination;
+    public ImageView imgLocal1;
+    public ImageView imgLocal2;
+    public ImageView imgGlobal1;
+    public ImageView imgGlobal2;
 
 
     public void initialize(){
@@ -292,4 +307,33 @@ public class DashBordFormController {
     }
 
 
+    public void imgLocal1OnMouseClick(MouseEvent mouseEvent) {
+        webAddressOpen("https://www.dailynews.lk/2021/05/13/local/249223/1145-covid-19-patients-recovered-sri-lanka");
+
+    }
+
+    public void imgLocal2OnMouseClicked(MouseEvent mouseEvent) {
+        webAddressOpen("https://www.news.lk/news/political-current-affairs/item/30969-sri-lanka-confirms-22nd-death-from-covid-19");
+
+    }
+
+    public void imgGlobal1OnMousClicked(MouseEvent mouseEvent) {
+
+        webAddressOpen("https://www.bbc.com/news/world-54337098");
+    }
+
+    public void imgGlobal2OnMouseClicked(MouseEvent mouseEvent) {
+        webAddressOpen("https://www.aarc.org/nn20-covid-19-news-resources/");
+    }
+
+    public void webAddressOpen(String link){
+        try {
+            Desktop.getDesktop().browse(new URI(link));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
 }

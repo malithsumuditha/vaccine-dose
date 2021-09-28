@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -97,8 +100,44 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Pane layoutX="31.0" layoutY="447.0" prefHeight="170.0" prefWidth="503.0" style="-fx-border-color: #95a5a6;" />
-      <Pane layoutX="560.0" layoutY="444.0" prefHeight="170.0" prefWidth="503.0" style="-fx-border-color: #95a5a6;" />
+      <Pane layoutX="31.0" layoutY="447.0" prefHeight="170.0" prefWidth="503.0" style="-fx-border-color: #95a5a6;">
+         <children>
+            <ImageView fx:id="imgLocal1" fitHeight="127.0" fitWidth="217.0" layoutX="28.0" layoutY="23.0" onMouseClicked="#imgLocal1OnMouseClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/IMG_20201224_153959_956.jpg" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="imgLocal2" fitHeight="122.0" fitWidth="200.0" layoutX="275.0" layoutY="24.0" onMouseClicked="#imgLocal2OnMouseClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/589a448b710a6bf81a5e8c8400aa98c1_XL.jpg" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children></Pane>
+      <Pane layoutX="560.0" layoutY="444.0" prefHeight="170.0" prefWidth="503.0" style="-fx-border-color: #95a5a6;">
+         <children>
+            <ImageView fx:id="imgGlobal1" fitHeight="122.0" fitWidth="200.0" layoutX="38.0" layoutY="24.0" onMouseClicked="#imgGlobal1OnMousClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/_114678329_063573067-1.jpg" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="imgGlobal2" fitHeight="122.0" fitWidth="200.0" layoutX="273.0" layoutY="24.0" onMouseClicked="#imgGlobal2OnMouseClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/covid-19-640x240.jpg" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children></Pane>
       <Label layoutX="560.0" layoutY="410.0" prefHeight="39.0" prefWidth="503.0" style="-fx-background-color: #0984e3;" styleClass="context-menu2" text="Recent Global News">
          <padding>
             <Insets left="10.0" />
