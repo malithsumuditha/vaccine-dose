@@ -26,75 +26,116 @@
                   </Circle>
                   <JFXButton fx:id="btnDashBord" onAction="#btnDashBordOnAction" onMouseClicked="#btnDashBordOnMouseClicked" onMouseEntered="#btnDashBordOnMouseEntered" onMouseExited="#btnDashBordOnMouseExited" prefHeight="65.0" prefWidth="261.0" text="DashBord" textFill="WHITE">
                      <VBox.margin>
-                        <Insets top="90.0" />
+                        <Insets right="5.0" top="90.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/Untitled-5.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </JFXButton>
                   <Separator fx:id="sptDashbord" prefWidth="181.0">
                      <VBox.margin>
-                        <Insets left="40.0" right="40.0" />
+                        <Insets left="40.0" right="45.0" />
                      </VBox.margin>
                   </Separator>
                   <JFXButton fx:id="btnRegister" onAction="#btnRegisterOnAction" onMouseClicked="#btnRegisterOnMouseClick" onMouseEntered="#btnRegisterOnMouseEnter" onMouseExited="#btnRegisterOnMouseExit" prefHeight="65.0" prefWidth="261.0" text="Register" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                      <VBox.margin>
-                        <Insets />
+                        <Insets right="5.0" />
                      </VBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/Untitled-6.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </JFXButton>
                   <Separator fx:id="sptRegister" layoutX="10.0" layoutY="316.0" prefWidth="200.0">
                      <VBox.margin>
-                        <Insets left="40.0" right="40.0" />
+                        <Insets left="40.0" right="45.0" />
                      </VBox.margin>
                   </Separator>
                   <JFXButton fx:id="btnVaccine" onAction="#btnVaccineOnAction" onMouseClicked="#btnVaccineOnMouseClicked" onMouseEntered="#btnVaccineOnMouseEnter" onMouseExited="#btnVaccineOnMouseExit" prefHeight="65.0" prefWidth="261.0" text="Vaccine" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                      <VBox.margin>
-                        <Insets />
+                        <Insets right="5.0" />
                      </VBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/Untitled-7.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </JFXButton>
                   <Separator fx:id="sptVaccine" layoutX="10.0" layoutY="183.0" prefWidth="200.0">
                      <VBox.margin>
-                        <Insets left="40.0" right="40.0" />
+                        <Insets left="40.0" right="45.0" />
                      </VBox.margin>
                   </Separator>
                   <JFXButton fx:id="btnVaccination" layoutX="10.0" layoutY="327.0" onAction="#btnVaccinationOnAction" onMouseClicked="#btnVaccinationOnMouseClicked" onMouseEntered="#btnVaccinationOnMouseEnter" onMouseExited="#btnVaccinationOnMouseEnter" prefHeight="65.0" prefWidth="261.0" text="Vaccination" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/Untitled-8.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets right="5.0" />
+                     </VBox.margin>
                   </JFXButton>
                   <Separator fx:id="sptVaccination" layoutX="10.0" layoutY="392.0" onMouseClicked="#btnVaccinationOnMouseClicked" onMouseEntered="#btnVaccinationOnMouseEnter" onMouseExited="#btnVaccinationOnMouseExit" prefWidth="200.0">
                      <VBox.margin>
-                        <Insets left="40.0" right="40.0" />
+                        <Insets left="40.0" right="45.0" />
                      </VBox.margin></Separator>
                   <JFXButton fx:id="btnPHIRegister" onAction="#btnPHIRegisterOnAction" onMouseClicked="#btnPHIRegisterOnMouseClicked" onMouseEntered="#btnPHIRegisterOnMouseEnter" onMouseExited="#btnPHIRegisterOnMouseExit" prefHeight="65.0" prefWidth="261.0" text="PHI Register" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/Untitled-9.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets right="5.0" />
+                     </VBox.margin>
                   </JFXButton>
                   <Separator fx:id="sptPHIRegister" prefWidth="200.0">
                      <VBox.margin>
-                        <Insets left="40.0" right="40.0" />
+                        <Insets left="40.0" right="45.0" />
                      </VBox.margin></Separator>
                </children>
             </VBox>
