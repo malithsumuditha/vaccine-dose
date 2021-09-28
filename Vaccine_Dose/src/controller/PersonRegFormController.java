@@ -10,6 +10,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -540,4 +542,10 @@ public class PersonRegFormController {
 
     }
 
+    public void btnPHIRegisterOnAction(ActionEvent actionEvent) throws IOException {
+        Parent parent = FXMLLoader.load(this.getClass().getResource("../view/PHIRegForm.fxml"));
+        personRegisterPanel.getChildren().clear();
+        personRegisterPanel.getChildren().add(parent);
+
+    }
 }

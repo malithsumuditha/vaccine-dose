@@ -74,7 +74,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Pane layoutX="582.0" layoutY="150.0" prefHeight="156.0" prefWidth="211.0" style="-fx-background-color: #bdc3c7;">
+      <Pane layoutX="582.0" layoutY="150.0" prefHeight="156.0" prefWidth="211.0" style="-fx-background-color: #ecf0f1;">
          <children>
             <Label alignment="CENTER" layoutY="-3.0" prefHeight="36.0" prefWidth="211.0" style="-fx-background-color: #3498db; -fx-background-radius: 5px;" text="PERSONS" textFill="WHITE">
                <font>
@@ -133,13 +133,13 @@
       </JFXButton>
       <TableView fx:id="tblViewPersons" layoutX="48.0" layoutY="408.0" prefHeight="211.0" prefWidth="988.0">
         <columns>
-          <TableColumn fx:id="clmPersonID" text="PersonID" />
-          <TableColumn fx:id="clmName" prefWidth="126.0" text="Name" />
-            <TableColumn fx:id="clmAddress" minWidth="0.0" prefWidth="160.0" text="Address" />
-            <TableColumn fx:id="clmContact" prefWidth="139.0" text="Contact" />
-            <TableColumn fx:id="clmNIC" prefWidth="174.0" text="NIC" />
-            <TableColumn fx:id="clmGender" prefWidth="109.0" text="Gender" />
-            <TableColumn fx:id="clmRegTime" prefWidth="199.0" text="RegisterTime" />
+          <TableColumn text="PersonID" />
+          <TableColumn prefWidth="126.0" text="Name" />
+            <TableColumn minWidth="0.0" prefWidth="160.0" text="Address" />
+            <TableColumn prefWidth="139.0" text="Contact" />
+            <TableColumn prefWidth="174.0" text="NIC" />
+            <TableColumn prefWidth="109.0" text="Gender" />
+            <TableColumn prefWidth="199.0" text="RegisterTime" />
         </columns>
       </TableView>
       <JFXButton fx:id="btnUpdate" layoutX="199.0" layoutY="350.0" onAction="#btnUpdateOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="WHITE">
@@ -172,7 +172,7 @@
             <Font name="System Bold" size="11.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnAdd1" layoutX="915.0" layoutY="184.0" onAction="#btnAddOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #3742fa;" text="Doctor Register" textFill="WHITE">
+      <JFXButton layoutX="915.0" layoutY="184.0" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #3742fa;" text="Doctor Register" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -180,7 +180,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnAdd11" layoutX="915.0" layoutY="231.0" onAction="#btnAddOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #2ecc71;" text="Admin Register" textFill="WHITE">
+      <JFXButton layoutX="915.0" layoutY="231.0" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #2ecc71;" text="Admin Register" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -188,7 +188,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnAdd111" layoutX="915.0" layoutY="278.0" onAction="#btnAddOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #e74c3c;" text="PHI Register" textFill="WHITE">
+      <JFXButton layoutX="915.0" layoutY="278.0" onAction="#btnPHIRegisterOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #3742fa;" text="PHI Register" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
