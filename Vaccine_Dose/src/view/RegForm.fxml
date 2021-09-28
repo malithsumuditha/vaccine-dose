@@ -74,7 +74,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Pane layoutX="582.0" layoutY="150.0" prefHeight="156.0" prefWidth="211.0" style="-fx-background-color: #ecf0f1;">
+      <Pane layoutX="582.0" layoutY="150.0" prefHeight="156.0" prefWidth="211.0" style="-fx-background-color: #bdc3c7;">
          <children>
             <Label alignment="CENTER" layoutY="-3.0" prefHeight="36.0" prefWidth="211.0" style="-fx-background-color: #3498db; -fx-background-radius: 5px;" text="PERSONS" textFill="WHITE">
                <font>
