@@ -12,10 +12,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -49,10 +55,14 @@ public class DashBordMainViewFormController implements Initializable {
     public Separator sptVaccination;
     public Separator sptPHIRegister;
     public BorderPane root;
+    public ImageView imgUserPP;
+    public Circle circleImg;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        setUserImage();
 
         Parent parent = null;
         try {
@@ -238,5 +248,12 @@ public class DashBordMainViewFormController implements Initializable {
 
     public void btnVaccinationOnMouseExit(MouseEvent mouseEvent) {
         onMouseExitChange(btnVaccination,sptVaccination);
+    }
+
+    public void setUserImage(){
+        circleImg.setStroke(Color.WHITE);
+        Image im = new Image("image/154765919_2898431487150383_7585720223318837300_n.jpg");
+        circleImg.setFill(new ImagePattern(im));
+        circleImg.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKBLUE));
     }
 }
