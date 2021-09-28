@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -23,13 +24,18 @@
       </Label>
       <Pane layoutX="31.0" layoutY="211.0" prefHeight="170.0" prefWidth="503.0" style="-fx-border-color: #95a5a6;">
          <children>
-            <LineChart fx:id="lineChart" layoutY="-2.0" prefHeight="170.0" prefWidth="503.0" stylesheets="@../css/LineChart.css">
+            <LineChart fx:id="lineChart" prefHeight="170.0" prefWidth="503.0">
                <xAxis>
                   <CategoryAxis side="BOTTOM" />
                </xAxis>
                <yAxis>
                   <NumberAxis cache="true" side="LEFT" />
                </yAxis>
+               <styleClass>
+                  <String fx:value="series" />
+                  <String fx:value="default-color0" />
+                  <String fx:value="de" />
+               </styleClass>
             </LineChart>
          </children>
       </Pane>
