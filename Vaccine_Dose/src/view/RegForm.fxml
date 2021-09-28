@@ -74,7 +74,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Pane layoutX="582.0" layoutY="150.0" prefHeight="156.0" prefWidth="211.0" style="-fx-background-color: #bdc3c7;">
+      <Pane layoutX="582.0" layoutY="150.0" prefHeight="156.0" prefWidth="211.0" style="-fx-background-color: #ecf0f1;">
          <children>
             <Label alignment="CENTER" layoutY="-3.0" prefHeight="36.0" prefWidth="211.0" style="-fx-background-color: #3498db; -fx-background-radius: 5px;" text="PERSONS" textFill="WHITE">
                <font>
@@ -188,7 +188,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnAdd111" layoutX="915.0" layoutY="278.0" onAction="#btnAddOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #e74c3c;" text="PHI Register" textFill="WHITE">
+      <JFXButton fx:id="btnAdd111" layoutX="915.0" layoutY="278.0" onAction="#btnAddOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #3742fa;" text="PHI Register" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
