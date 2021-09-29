@@ -188,7 +188,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="915.0" layoutY="238.0" onAction="#btnPHIRegisterOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #3742fa;" text="PHI Register" textFill="WHITE">
+      <JFXButton layoutX="915.0" layoutY="238.0" onAction="#btnPHIRegisterOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #e74c3c;" text="PHI Register" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
