@@ -35,6 +35,7 @@ public class AdminRegisterFormController {
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
+        //update
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
