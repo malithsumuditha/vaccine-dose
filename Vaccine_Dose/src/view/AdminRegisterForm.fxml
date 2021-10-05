@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
@@ -11,66 +12,22 @@
 <AnchorPane prefHeight="640.0" prefWidth="1089.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminRegisterFormController">
    <children>
       <JFXTextField fx:id="txtName" layoutX="260.0" layoutY="115.0" prefHeight="25.0" prefWidth="249.0" />
-      <Label layoutX="91.0" layoutY="90.0" text="Admin ID">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="91.0" layoutY="128.0" text="Admin Name">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="91.0" layoutY="167.0" text="Admin Contact">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="91.0" layoutY="207.0" text="Admin NIC">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
+      <JFXTextField fx:id="txtContact" layoutX="260.0" layoutY="154.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtNIC" layoutX="260.0" layoutY="194.0" prefHeight="25.0" prefWidth="249.0" />
       <JFXRadioButton fx:id="rdbMale" layoutX="247.0" layoutY="244.0" onAction="#rdbMaleOnAction" text="Male">
          <font>
             <Font size="13.0" />
          </font>
       </JFXRadioButton>
-      <Label layoutX="91.0" layoutY="246.0" text="Gender">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
       <JFXRadioButton fx:id="rdbFemale" layoutX="334.0" layoutY="244.0" onAction="#rdbFemaleOnAction" text="Female">
          <font>
             <Font size="13.0" />
          </font>
       </JFXRadioButton>
-      <JFXTextField fx:id="txtContact" layoutX="260.0" layoutY="154.0" prefHeight="25.0" prefWidth="249.0" />
-      <JFXTextField fx:id="txtNIC" layoutX="260.0" layoutY="194.0" prefHeight="25.0" prefWidth="249.0" />
-      <Label fx:id="lblAdminID" layoutX="260.0" layoutY="87.0" text="Admin ID">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="91.0" layoutY="286.0" text="Admin Email">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="txtEmail" layoutX="260.0" layoutY="273.0" prefHeight="25.0" prefWidth="249.0" />
-      <Label layoutX="91.0" layoutY="369.0" text="Password">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="txtPassword" layoutX="260.0" layoutY="356.0" prefHeight="25.0" prefWidth="249.0" />
-      <Label layoutX="91.0" layoutY="409.0" text="Confirm Password">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="txtConfirmPassword" layoutX="260.0" layoutY="397.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtEmail" layoutX="260.0" layoutY="273.0" prefHeight="29.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtUserName" layoutX="260.0" layoutY="314.0" prefHeight="29.0" prefWidth="249.0" />
+      <JFXPasswordField fx:id="txtPassword" layoutX="260.0" layoutY="355.0" prefHeight="29.0" prefWidth="249.0"/>
+      <JFXPasswordField fx:id="txtConfirmPassword" layoutX="263.0" layoutY="396.0" prefHeight="29.0" prefWidth="249.0" />
       <JFXButton fx:id="btnAdd" layoutX="423.0" layoutY="461.0" onAction="#btnAddOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3742fa;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -103,6 +60,51 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
+      <Label layoutX="91.0" layoutY="90.0" text="Admin ID">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="128.0" text="Admin Name">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="167.0" text="Admin Contact">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="207.0" text="Admin NIC">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="246.0" text="Gender">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAdminID" layoutX="260.0" layoutY="87.0" text="Admin ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="286.0" text="Admin Email">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="369.0" text="Password">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="409.0" text="Confirm Password">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="36.0" prefWidth="1061.0" style="-fx-background-color: #3498db;" text="PERSON REGISTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
@@ -113,6 +115,5 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtUserName" layoutX="260.0" layoutY="314.0" prefHeight="25.0" prefWidth="249.0" />
    </children>
 </AnchorPane>

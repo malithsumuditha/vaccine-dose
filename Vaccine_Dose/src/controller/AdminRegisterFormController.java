@@ -25,16 +25,17 @@ public class AdminRegisterFormController {
     public JFXTextField txtNIC;
     public Label lblAdminID;
     public JFXTextField txtEmail;
-    public JFXTextField txtPassword;
-    public JFXTextField txtConfirmPassword;
     public JFXButton btnAdd;
     public JFXButton btnUpdate;
     public JFXButton btnDelete;
     public JFXButton btnReset;
     public JFXTextField txtUserName;
+    public JFXPasswordField txtPassword;
+    public JFXPasswordField txtConfirmPassword;
 
     public void initialize(){
-       // autogenarate();
+       autogenarate();
+       txtName.requestFocus();
     }
     public void InsertData(){
         String AName = txtName.getText();
@@ -45,7 +46,7 @@ public class AdminRegisterFormController {
         String AUserName = txtUserName.getText();
         String Password = txtPassword.getText();
         String CPassword = txtConfirmPassword.getText();
-        String AID = lblAdminID.getText();
+        String id = lblAdminID.getText();
 
         if(rdbMale.isSelected()){
             Gender = "Male";
@@ -80,17 +81,16 @@ public class AdminRegisterFormController {
             txtUserName.clear();
             txtUserName.requestFocus();
         }else if(txtPassword.getText().isEmpty()){
-            ErrorBorderCl(txtPassword);
+            ErrorBorderClPWD(txtPassword);
             ErrorMassage("Password");
             txtPassword.clear();
             txtPassword.requestFocus();
         }else if(txtConfirmPassword.getText().equals(txtPassword.getText())){
             NullBorderCl();
-            System.out.println("Done");
             Connection connection = DBConnection.getInstance().getConnection();
             try {
-                PreparedStatement preparedStatement = connection.prepareStatement("Insert into AdminReg values");
-                preparedStatement.setObject(1,AID);
+                PreparedStatement preparedStatement = connection.prepareStatement("insert into AdminReg values(?,?,?,?,?,?,?,?)");
+                preparedStatement.setObject(1,id);
                 preparedStatement.setObject(2,AName);
                 preparedStatement.setObject(3,AContact);
                 preparedStatement.setObject(4,ANIC);
@@ -98,18 +98,30 @@ public class AdminRegisterFormController {
                 preparedStatement.setObject(6,AEmail);
                 preparedStatement.setObject(7,AUserName);
                 preparedStatement.setObject(8,Password);
+                int i = preparedStatement.executeUpdate();
+                if(i!=0){
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Successfull Added !!");
+                    alert.showAndWait();
 
-
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error !! Please try again.");
+                    alert.showAndWait();
+                }
 
             } catch (SQLException throwables) {
+                Alert alert = new Alert(Alert.AlertType.ERROR,"Something Error !! Please try again.");
+                alert.showAndWait();
                 throwables.printStackTrace();
             }
+            allvalueClear();
+            autogenarate();
+            txtName.requestFocus();
 
         }else{
             Alert alert=new Alert(Alert.AlertType.ERROR,"Passsword and Confirm Password are not same !!");
             alert.showAndWait();
-            ErrorBorderCl(txtPassword);
-            ErrorBorderCl(txtConfirmPassword);
+            ErrorBorderClPWD(txtPassword);
+            ErrorBorderClPWD(txtConfirmPassword);
             txtPassword.clear();
             txtConfirmPassword.clear();
             txtPassword.requestFocus();
@@ -121,9 +133,11 @@ public class AdminRegisterFormController {
     }
 
     public void rdbMaleOnAction(ActionEvent actionEvent) {
+        rdbFemale.setSelected(false);
     }
 
     public void rdbFemaleOnAction(ActionEvent actionEvent) {
+        rdbMale.setSelected(false);
     }
 
     public void btnAddOnAction(ActionEvent actionEvent) {
@@ -138,6 +152,8 @@ public class AdminRegisterFormController {
     }
 
     public void btnResetOnAction(ActionEvent actionEvent) {
+        allvalueClear();
+        txtName.requestFocus();
     }
     public void ErrorMassage(String errorField){
         Alert alert = new Alert(Alert.AlertType.ERROR," "+errorField+" Field is cannot be emty, Please Fill this field..! ");
@@ -157,5 +173,14 @@ public class AdminRegisterFormController {
         txtConfirmPassword.setStyle("-fx-border-color:null");
         txtEmail.setStyle("-fx-border-color:null");
         txtUserName.setStyle("-fx-border-color:null");
+    }
+    public void allvalueClear(){
+        txtName.clear();
+        txtContact.clear();
+        txtNIC.clear();
+        txtUserName.clear();
+        txtPassword.clear();
+        txtConfirmPassword.clear();
+        txtEmail.clear();
     }
 }
