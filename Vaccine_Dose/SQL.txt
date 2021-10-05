@@ -45,3 +45,15 @@ create table PHIReg(
 	Password varchar(50)not null,
 	Constraint unique key(PNIC)
 );
+
+create table AdminReg(
+    AID varchar(15)primary key,
+    AName varchar(100)not null,
+    AContact varchar(20)not null,
+    ANIC varchar(25)not null,
+    AGender varchar(15)not null,
+    AEmail varchar(100)not null,
+    AUserName varchar(20)not null,
+    Password varchar(50)not null,
+    Constraint unique Key(ANIC)
+);

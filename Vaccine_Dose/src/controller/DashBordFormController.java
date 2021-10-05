@@ -50,9 +50,10 @@ public class DashBordFormController {
 
     public void initialize(){
 
-       setValuesToLineChartt();
+        setValuesToLineChartt();
 
        //set value to label Today Vaccine
+
         Integer dose1 = getDose1DatefromDB().get(arrayList.size() - 1);
         Integer dosse2 = getDose2DatefromDB().get(arrayList2.size() - 1);
         int totalDoseToday=dose1+dosse2;
@@ -62,11 +63,10 @@ public class DashBordFormController {
         totalDoseOneVaccinedCount();
         totalDose2vaccined();
         totalVaccined();
-
         setValueToProgressIndicator();
 
 
-    }
+  }
 
 
     public void btnLoadLineChartOnAction(ActionEvent actionEvent) {
