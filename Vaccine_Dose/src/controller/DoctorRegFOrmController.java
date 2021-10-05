@@ -80,21 +80,26 @@ public class DoctorRegFOrmController {
                 errorAlert("Please Enter NIC");
                 setBorderColor(txtDNic,"red");
                 setBorderColor(txtDContact,"null");
+                setBorderColor(txtDName,"null");
 
             }else if (rdbDMale.isSelected() || rdbDFemale.isSelected()) {
 
                 if (txtAccPassword.getText().isEmpty()){
 
                     errorAlert("Please Enter Password");
-                    rdbDFemale.setStyle("-fx-border-color:null");
-                    rdbDMale.setStyle("-fx-border-color:null");
                     txtAccPassword.setStyle("-fx-border-color:red");
+                    setBorderColor(txtDContact,"null");
+                    setBorderColor(txtDName,"null");
+                    setBorderColor(txtDNic,"null");
 
                 }else if (txtCPassword.getText().isEmpty()){
 
                     errorAlert("Please Enter Confirm Password");
                     txtCPassword.setStyle("-fx-border-color:red");
                     txtAccPassword.setStyle("-fx-border-color:null");
+                    setBorderColor(txtDContact,"null");
+                    setBorderColor(txtDName,"null");
+                    setBorderColor(txtDNic,"null");
 
                 }
 
@@ -102,9 +107,7 @@ public class DoctorRegFOrmController {
 
                     txtCPassword.setStyle("-fx-border-color:null");
                     txtAccPassword.setStyle("-fx-border-color:null");
-                    txtDName.setStyle("-fx-border-color:null");
-                    txtDContact.setStyle("-fx-border-color:null");
-                    txtDNic.setStyle("-fx-border-color:null");
+
 
                     try {
                         PreparedStatement preparedStatement = connection.prepareStatement("insert into doctor values(?,?,?,?,?,?)");
@@ -201,5 +204,10 @@ public class DoctorRegFOrmController {
         return b;
     }
 
+    public void setTextBordersNull(){
+        txtDName.setStyle("-fx-border-color:null");
+        txtDContact.setStyle("-fx-border-color:null");
+        txtDNic.setStyle("-fx-border-color:null");
+    }
 
 }
