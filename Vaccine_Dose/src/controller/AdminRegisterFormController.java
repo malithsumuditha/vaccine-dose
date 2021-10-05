@@ -87,13 +87,23 @@ public class AdminRegisterFormController {
         }else if(txtConfirmPassword.getText().equals(txtPassword.getText())){
             NullBorderCl();
             System.out.println("Done");
-//            Connection connection = DBConnection.getInstance().getConnection();
-//            try {
-//                PreparedStatement preparedStatement = connection.prepareStatement("Insert into AdminReg values");
-//
-//            } catch (SQLException throwables) {
-//                throwables.printStackTrace();
-//            }
+            Connection connection = DBConnection.getInstance().getConnection();
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("Insert into AdminReg values");
+                preparedStatement.setObject(1,AID);
+                preparedStatement.setObject(2,AName);
+                preparedStatement.setObject(3,AContact);
+                preparedStatement.setObject(4,ANIC);
+                preparedStatement.setObject(5,Gender);
+                preparedStatement.setObject(6,AEmail);
+                preparedStatement.setObject(7,AUserName);
+                preparedStatement.setObject(8,Password);
+
+
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
 
         }else{
             Alert alert=new Alert(Alert.AlertType.ERROR,"Passsword and Confirm Password are not same !!");
