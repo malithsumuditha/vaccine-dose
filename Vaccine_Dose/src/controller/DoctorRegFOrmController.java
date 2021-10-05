@@ -37,10 +37,14 @@ public class DoctorRegFOrmController {
     }
 
     public void rdbDMaleOnAction(ActionEvent actionEvent) {
+        rdbDFemale.setStyle("-fx-border-color:null");
+        rdbDMale.setStyle("-fx-border-color:null");
         rdbDFemale.setSelected(false);
     }
 
     public void rdbDFemaleOnAction(ActionEvent actionEvent) {
+        rdbDFemale.setStyle("-fx-border-color:null");
+        rdbDMale.setStyle("-fx-border-color:null");
         rdbDMale.setSelected(false);
     }
 
@@ -59,10 +63,8 @@ public class DoctorRegFOrmController {
             gender = "Male";
         }else if (rdbDFemale.isSelected()){
             gender = "Female";
-        }else {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Select Gender");
-            alert.showAndWait();
         }
+
         if(txtDName.getText().isEmpty()){
             errorAlert("Please Enter Name");
             setBorderColor(txtDName,"red");
@@ -71,48 +73,85 @@ public class DoctorRegFOrmController {
             errorAlert("Please Enter Contact");
             setBorderColor(txtDName,"null");
             setBorderColor(txtDContact,"red");
-        }else if (txtDNic.getText().isEmpty()){
-            errorAlert("Please Enter NIC");
-            setBorderColor(txtDNic,"red");
-            setBorderColor(txtDContact,"null");
-        }else if (txtAccPassword.getText().isEmpty()){
-            errorAlert("Please Enter Password");
-            txtAccPassword.setStyle("-fx-border-color:red");
-            setBorderColor(txtDNic,"null");
-        }else if (txtCPassword.getText().isEmpty()){
-            errorAlert("Please Enter Confirm Password");
-            txtCPassword.setStyle("-fx-border-color:red");
-            txtAccPassword.setStyle("-fx-border-color:null");
-        } else if (txtAccPassword!=txtCPassword) {
-            errorAlert("Please enter same Password for confirm Password");
-            txtCPassword.setStyle("-fx-border-color:red");
-            txtAccPassword.setStyle("-fx-border-color:red");
-        }
-        
 
+        }else if(numberCheck(contact)){
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into doctor values(?,?,?,?,?,?)");
-            preparedStatement.setObject(1,id);
-            preparedStatement.setObject(2,name);
-            preparedStatement.setObject(3,contact);
-            preparedStatement.setObject(4,nic);
-            preparedStatement.setObject(5,gender);
-            preparedStatement.setObject(6,password);
+            if (txtDNic.getText().isEmpty()){
+                errorAlert("Please Enter NIC");
+                setBorderColor(txtDNic,"red");
+                setBorderColor(txtDContact,"null");
 
-            int i = preparedStatement.executeUpdate();
+            }else if (rdbDMale.isSelected() || rdbDFemale.isSelected()) {
 
-            if (i!=0){
-                confirmAlert("Successfully Added");
-                setReset();
-            }else {
-                errorAlert("Something Error");
+                if (txtAccPassword.getText().isEmpty()){
+
+                    errorAlert("Please Enter Password");
+                    rdbDFemale.setStyle("-fx-border-color:null");
+                    rdbDMale.setStyle("-fx-border-color:null");
+                    txtAccPassword.setStyle("-fx-border-color:red");
+
+                }else if (txtCPassword.getText().isEmpty()){
+
+                    errorAlert("Please Enter Confirm Password");
+                    txtCPassword.setStyle("-fx-border-color:red");
+                    txtAccPassword.setStyle("-fx-border-color:null");
+
+                }
+
+                else if (password.equals(cPassword)){
+
+                    txtCPassword.setStyle("-fx-border-color:null");
+                    txtAccPassword.setStyle("-fx-border-color:null");
+                    txtDName.setStyle("-fx-border-color:null");
+                    txtDContact.setStyle("-fx-border-color:null");
+                    txtDNic.setStyle("-fx-border-color:null");
+
+                    try {
+                        PreparedStatement preparedStatement = connection.prepareStatement("insert into doctor values(?,?,?,?,?,?)");
+                        preparedStatement.setObject(1,id);
+                        preparedStatement.setObject(2,name);
+                        preparedStatement.setObject(3,contact);
+                        preparedStatement.setObject(4,nic);
+                        preparedStatement.setObject(5,gender);
+                        preparedStatement.setObject(6,password);
+
+                        int i = preparedStatement.executeUpdate();
+
+                        if (i!=0){
+                            confirmAlert("Successfully Added");
+                            setReset();
+                        }else {
+                            errorAlert("Something Error");
+                        }
+
+                    } catch (SQLException throwables) {
+                        errorAlert("Something Error");
+                        throwables.printStackTrace();
+                    }
+
+                }
+
+                else {
+                    errorAlert("Please enter same Password for confirm Password");
+                    txtCPassword.setStyle("-fx-border-color:red");
+                    txtAccPassword.setStyle("-fx-border-color:red");
+                }
+            } else {
+                errorAlert("Please select gender");
+                rdbDFemale.setStyle("-fx-border-color:red");
+                rdbDMale.setStyle("-fx-border-color:red");
+                setBorderColor(txtDNic,"null");
+
             }
 
-        } catch (SQLException throwables) {
-            errorAlert("Something Error");
-            throwables.printStackTrace();
+
+        }else {
+
+            errorAlert("Please enter valid number");
+
         }
+
+
 
 
     }
@@ -155,4 +194,12 @@ public class DoctorRegFOrmController {
     public void setBorderColor(JFXTextField name,String color){
         name.setStyle("-fx-border-color:"+color);
     }
+
+    public boolean numberCheck(String num){
+
+        boolean b = num.charAt(0) == '0' && num.length() == 10 && num.matches("[0-9]+");
+        return b;
+    }
+
+
 }
