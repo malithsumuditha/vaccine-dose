@@ -64,6 +64,8 @@ public class DoctorRegFOrmController {
             alert.showAndWait();
         }
 
+
+
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("insert into doctor values(?,?,?,?,?,?)");
             preparedStatement.setObject(1,id);
@@ -77,6 +79,7 @@ public class DoctorRegFOrmController {
 
             if (i!=0){
                 confirmAlert("Successfully Added");
+                setReset();
             }else {
                 errorAlert("Something Error");
             }
@@ -109,5 +112,17 @@ public class DoctorRegFOrmController {
     public void errorAlert(String displayAlert){
         Alert alert = new Alert(Alert.AlertType.ERROR,displayAlert);
         alert.showAndWait();
+    }
+
+    public void setReset(){
+        PersonRegFormController.autoGenerateID(lblDoctorID,"doctor","D");
+        txtDName.clear();
+        txtDContact.clear();
+        txtDNic.clear();
+        rdbDMale.setSelected(false);
+        rdbDFemale.setSelected(false);
+        txtAccPassword.clear();
+        txtCPassword.clear();
+        txtDName.requestFocus();
     }
 }
