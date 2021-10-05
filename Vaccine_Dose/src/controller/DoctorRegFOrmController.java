@@ -99,6 +99,7 @@ public class DoctorRegFOrmController {
     }
 
     public void btnDResetOnAction(ActionEvent actionEvent) {
+        setReset();
     }
 
     public void btnFileChooserAddOnAction(ActionEvent actionEvent) {
