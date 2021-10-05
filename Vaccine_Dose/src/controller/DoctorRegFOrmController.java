@@ -63,7 +63,32 @@ public class DoctorRegFOrmController {
             Alert alert = new Alert(Alert.AlertType.ERROR,"Select Gender");
             alert.showAndWait();
         }
+        if(txtDName.getText().isEmpty()){
+            errorAlert("Please Enter Name");
+            setBorderColor(txtDName,"red");
 
+        }else if (txtDContact.getText().isEmpty()){
+            errorAlert("Please Enter Contact");
+            setBorderColor(txtDName,"null");
+            setBorderColor(txtDContact,"red");
+        }else if (txtDNic.getText().isEmpty()){
+            errorAlert("Please Enter NIC");
+            setBorderColor(txtDNic,"red");
+            setBorderColor(txtDContact,"null");
+        }else if (txtAccPassword.getText().isEmpty()){
+            errorAlert("Please Enter Password");
+            txtAccPassword.setStyle("-fx-border-color:red");
+            setBorderColor(txtDNic,"null");
+        }else if (txtCPassword.getText().isEmpty()){
+            errorAlert("Please Enter Confirm Password");
+            txtCPassword.setStyle("-fx-border-color:red");
+            txtAccPassword.setStyle("-fx-border-color:null");
+        } else if (txtAccPassword!=txtCPassword) {
+            errorAlert("Please enter same Password for confirm Password");
+            txtCPassword.setStyle("-fx-border-color:red");
+            txtAccPassword.setStyle("-fx-border-color:red");
+        }
+        
 
 
         try {
@@ -125,5 +150,9 @@ public class DoctorRegFOrmController {
         txtAccPassword.clear();
         txtCPassword.clear();
         txtDName.requestFocus();
+    }
+
+    public void setBorderColor(JFXTextField name,String color){
+        name.setStyle("-fx-border-color:"+color);
     }
 }
