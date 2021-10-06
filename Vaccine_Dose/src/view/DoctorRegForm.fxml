@@ -6,59 +6,61 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1089.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DoctorRegFOrmController">
+<AnchorPane prefHeight="640.0" prefWidth="1089.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DoctorRegFOrmController">
    <children>
-      <JFXTextField fx:id="txtDName" layoutX="261.0" layoutY="136.0" prefHeight="25.0" prefWidth="249.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="24.0" prefHeight="36.0" prefWidth="1061.0" style="-fx-background-color: #3498db;" text="DOCTORS REGISTER" textFill="WHITE">
+      <JFXTextField fx:id="txtDName" layoutX="261.0" layoutY="107.0" prefHeight="25.0" prefWidth="249.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="36.0" prefWidth="1061.0" style="-fx-background-color: #3498db;" text="DOCTORS REGISTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="111.0" text="Doctor ID">
+      <Label layoutX="91.0" layoutY="82.0" text="Doctor ID">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="149.0" text="Doctor Name">
+      <Label layoutX="91.0" layoutY="120.0" text="Doctor Name">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="189.0" text="Doctor Contact">
+      <Label layoutX="91.0" layoutY="160.0" text="Doctor Contact">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="229.0" text="Doctor NIC">
+      <Label layoutX="91.0" layoutY="200.0" text="Doctor NIC">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="313.0" text="Acc Passowrd">
+      <Label layoutX="91.0" layoutY="284.0" text="Acc Passowrd">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <JFXRadioButton fx:id="rdbDMale" layoutX="229.0" layoutY="277.0" onAction="#rdbDMaleOnAction" text="Male">
+      <JFXRadioButton fx:id="rdbDMale" layoutX="229.0" layoutY="248.0" onAction="#rdbDMaleOnAction" text="Male">
          <font>
             <Font size="13.0" />
          </font>
       </JFXRadioButton>
-      <Label layoutX="93.0" layoutY="271.0" text="Gender">
+      <Label layoutX="93.0" layoutY="242.0" text="Gender">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <JFXRadioButton fx:id="rdbDFemale" layoutX="316.0" layoutY="277.0" onAction="#rdbDFemaleOnAction" text="Female">
+      <JFXRadioButton fx:id="rdbDFemale" layoutX="316.0" layoutY="248.0" onAction="#rdbDFemaleOnAction" text="Female">
          <font>
             <Font size="13.0" />
          </font>
       </JFXRadioButton>
-      <JFXButton fx:id="btnDAdd" layoutX="402.0" layoutY="517.0" onAction="#btnDAddOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3742fa;" text="Add" textFill="WHITE">
+      <JFXButton fx:id="btnDAdd" layoutX="421.0" layoutY="417.0" onAction="#btnDAddOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3742fa;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -66,14 +68,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXTextField fx:id="txtDContact" layoutX="261.0" layoutY="177.0" prefHeight="25.0" prefWidth="249.0" />
-      <JFXTextField fx:id="txtDNic" layoutX="261.0" layoutY="219.0" prefHeight="25.0" prefWidth="249.0" />
-      <Label fx:id="lblDoctorID" layoutX="261.0" layoutY="111.0" text="Doctor ID">
+      <JFXTextField fx:id="txtDContact" layoutX="261.0" layoutY="148.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtDNic" layoutX="261.0" layoutY="190.0" prefHeight="25.0" prefWidth="249.0" />
+      <Label fx:id="lblDoctorID" layoutX="261.0" layoutY="82.0" text="Doctor ID">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnUpdate" layoutX="209.0" layoutY="517.0" onAction="#btnUpdateOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="WHITE">
+      <JFXButton fx:id="btnUpdate" layoutX="228.0" layoutY="417.0" onAction="#btnUpdateOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -81,7 +83,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnDelete" layoutX="111.0" layoutY="517.0" onAction="#btnDeleteOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #e74c3c;" text="Delete" textFill="WHITE">
+      <JFXButton fx:id="btnDelete" layoutX="130.0" layoutY="417.0" onAction="#btnDeleteOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #e74c3c;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -89,7 +91,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnReset" layoutX="306.0" layoutY="517.0" onAction="#btnDResetOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3498db;" text="Reset" textFill="WHITE">
+      <JFXButton fx:id="btnReset" layoutX="325.0" layoutY="417.0" onAction="#btnDResetOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3498db;" text="Reset" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -97,14 +99,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Label layoutX="92.0" layoutY="351.0" text="Confirm Passowrd">
+      <Label layoutX="92.0" layoutY="322.0" text="Confirm Passowrd">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <JFXPasswordField fx:id="txtAccPassword" layoutX="262.0" layoutY="301.0" prefHeight="29.0" prefWidth="249.0" />
-      <JFXPasswordField fx:id="txtCPassword" layoutX="261.0" layoutY="342.0" prefHeight="29.0" prefWidth="249.0" />
-      <JFXButton fx:id="btnFileChooser" layoutX="154.0" layoutY="433.0" prefHeight="29.0" prefWidth="96.0" style="-fx-background-color: #3742fa;" text="File Chooser" textFill="WHITE">
+      <JFXPasswordField fx:id="txtAccPassword" layoutX="262.0" layoutY="272.0" prefHeight="29.0" prefWidth="249.0" />
+      <JFXPasswordField fx:id="txtCPassword" layoutX="261.0" layoutY="313.0" prefHeight="29.0" prefWidth="249.0" />
+      <JFXButton fx:id="btnFileChooser" layoutX="414.0" layoutY="372.0" prefHeight="29.0" prefWidth="96.0" style="-fx-background-color: #3742fa;" text="File Chooser" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -112,7 +114,16 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <ImageView fx:id="imgImageView" fitHeight="150.0" fitWidth="200.0" layoutX="579.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="lblImagePath" layoutX="302.0" layoutY="439.0" text="Image Path" />
+      <ImageView fx:id="imgImageView" fitHeight="150.0" fitWidth="200.0" layoutX="682.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="lblImagePath" layoutX="306.0" layoutY="378.0" text="Image Path" />
+      <TableView layoutX="168.0" layoutY="469.0" prefHeight="157.0" prefWidth="753.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="ID" />
+          <TableColumn prefWidth="234.0" text="Name" />
+            <TableColumn minWidth="0.0" prefWidth="162.0" text="Contact" />
+            <TableColumn prefWidth="154.0" text="NIC" />
+            <TableColumn minWidth="0.0" prefWidth="129.0" text="Gender" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
