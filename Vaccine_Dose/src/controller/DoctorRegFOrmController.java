@@ -5,13 +5,25 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
+import javafx.stage.FileChooser;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author - Hw_Dulanjana
@@ -30,10 +42,14 @@ public class DoctorRegFOrmController {
     public JFXButton btnReset;
     public JFXPasswordField txtAccPassword;
     public JFXPasswordField txtCPassword;
-    public JFXButton btnAdd1;
+    public JFXButton btnFileChooser;
+    public File file;
+    public ImageView imgImageView;
+    public Label lblImagePath;
 
     public void initialize(){
         PersonRegFormController.autoGenerateID(lblDoctorID,"doctor","D");
+        photoUpload();
     }
 
     public void rdbDMaleOnAction(ActionEvent actionEvent) {
@@ -48,7 +64,7 @@ public class DoctorRegFOrmController {
         rdbDMale.setSelected(false);
     }
 
-    public void btnDAddOnAction(ActionEvent actionEvent) {
+    public void btnDAddOnAction(ActionEvent actionEvent) throws FileNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String id = lblDoctorID.getText();
@@ -108,31 +124,48 @@ public class DoctorRegFOrmController {
                     txtCPassword.setStyle("-fx-border-color:null");
                     txtAccPassword.setStyle("-fx-border-color:null");
 
+                    if (photoUpload()==null){
+                        btnFileChooser.setStyle("-fx-border-color:red");
+                        errorAlert("Please choose image File");
+                    }
+                    else {
 
-                    try {
-                        PreparedStatement preparedStatement = connection.prepareStatement("insert into doctor values(?,?,?,?,?,?)");
-                        preparedStatement.setObject(1,id);
-                        preparedStatement.setObject(2,name);
-                        preparedStatement.setObject(3,contact);
-                        preparedStatement.setObject(4,nic);
-                        preparedStatement.setObject(5,gender);
-                        preparedStatement.setObject(6,password);
+                        btnFileChooser.setStyle("-fx-border-color:null");
 
-                        int i = preparedStatement.executeUpdate();
+                        FileInputStream fin = new FileInputStream(photoUpload());
 
-                        if (i!=0){
-                            confirmAlert("Successfully Added");
-                            setReset();
-                        }else {
+                        int length = (int)file.length();
+
+                        try {
+                            PreparedStatement preparedStatement = connection.prepareStatement("insert into doctor values(?,?,?,?,?,?,?)");
+                            preparedStatement.setObject(1,id);
+                            preparedStatement.setObject(2,name);
+                            preparedStatement.setObject(3,contact);
+                            preparedStatement.setObject(4,nic);
+                            preparedStatement.setObject(5,gender);
+                            preparedStatement.setObject(6,password);
+                            preparedStatement.setBinaryStream(7,fin,length);
+
+                            int i = preparedStatement.executeUpdate();
+
+                            if (i!=0){
+                                confirmAlert("Successfully Added");
+                                setReset();
+                            }else {
+                                errorAlert("Something Error");
+                            }
+
+                        } catch (SQLException throwables) {
                             errorAlert("Something Error");
+                            throwables.printStackTrace();
                         }
 
-                    } catch (SQLException throwables) {
-                        errorAlert("Something Error");
-                        throwables.printStackTrace();
                     }
 
                 }
+
+
+
 
                 else {
                     errorAlert("Please enter same Password for confirm Password");
@@ -167,9 +200,6 @@ public class DoctorRegFOrmController {
 
     public void btnDResetOnAction(ActionEvent actionEvent) {
         setReset();
-    }
-
-    public void btnFileChooserAddOnAction(ActionEvent actionEvent) {
     }
 
     public void confirmAlert(String displayAlert){
@@ -208,6 +238,36 @@ public class DoctorRegFOrmController {
         txtDName.setStyle("-fx-border-color:null");
         txtDContact.setStyle("-fx-border-color:null");
         txtDNic.setStyle("-fx-border-color:null");
+    }
+
+    public File photoUpload(){
+        btnFileChooser.setOnAction((ActionEvent t) ->{
+            FileChooser fc = new FileChooser();
+            FileChooser.ExtensionFilter ext1 = new FileChooser.ExtensionFilter("JPG files(*.jpg)","*.JPG");
+            FileChooser.ExtensionFilter ext2 = new FileChooser.ExtensionFilter("PNG files(*.png)","*.PNG");
+            fc.getExtensionFilters().addAll(ext1,ext2);
+            file = fc.showOpenDialog(btnFileChooser.getScene().getWindow());
+
+            BufferedImage bf;
+
+            try {
+                bf = ImageIO.read(file);
+                WritableImage image = SwingFXUtils.toFXImage(bf,null);
+                imgImageView.setImage(image);
+                lblImagePath.setText(String.valueOf(file));
+
+                if (file!=null){
+                    btnFileChooser.setStyle("-fx-border-color:null");
+                    btnFileChooser.setStyle("-fx-background-color:#3742fa");
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(VaccinationFormController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } );
+
+        return file;
     }
 
 }
