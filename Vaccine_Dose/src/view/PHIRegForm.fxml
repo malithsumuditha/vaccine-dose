@@ -5,31 +5,34 @@
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1089.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PHIRegFormController">
+<AnchorPane prefHeight="640.0" prefWidth="1089.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PHIRegFormController">
    <children>
       <JFXTextField fx:id="txtPHIName" layoutX="269.0" layoutY="139.0" prefHeight="25.0" prefWidth="249.0" />
       <JFXTextField fx:id="txtPHIAddress" layoutX="269.0" layoutY="182.0" prefHeight="25.0" prefWidth="249.0" />
       <JFXTextField fx:id="txtPHIContact" layoutX="269.0" layoutY="223.0" prefHeight="25.0" prefWidth="249.0" />
-      <JFXTextField fx:id="txtPHINIC" layoutX="269.0" layoutY="264.0" prefHeight="25.0" prefWidth="249.0" />
-      <JFXRadioButton fx:id="rdbPHIMale" layoutX="256.0" layoutY="316.0" onAction="#rdbPHIMaleOnAction" text="Male">
+      <JFXTextField fx:id="txtPHINIC" layoutX="747.0" layoutY="132.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXRadioButton fx:id="rdbPHIMale" layoutX="256.0" layoutY="278.0" onAction="#rdbPHIMaleOnAction" text="Male">
          <font>
             <Font size="13.0" />
          </font>
       </JFXRadioButton>
-      <JFXRadioButton fx:id="rdbPHIFemale" layoutX="343.0" layoutY="316.0" onAction="#rdbPHIFemaleOnAction" text="Female">
+      <JFXRadioButton fx:id="rdbPHIFemale" layoutX="343.0" layoutY="278.0" onAction="#rdbPHIFemaleOnAction" text="Female">
          <font>
             <Font size="13.0" />
          </font>
       </JFXRadioButton>
-      <JFXTextField fx:id="txtPHICity" layoutX="269.0" layoutY="340.0" prefHeight="25.0" prefWidth="249.0" />
-      <JFXPasswordField fx:id="txtAccPasssword" layoutX="270.0" layoutY="382.0" prefHeight="29.0" prefWidth="249.0" />
-      <JFXPasswordField fx:id="txtConfirmPassword" layoutX="271.0" layoutY="425.0" prefHeight="29.0" prefWidth="249.0" />
-      <JFXButton fx:id="btnPHIAdd" layoutX="402.0" layoutY="500.0" onAction="#btnPHIAddOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3742fa;" text="Add" textFill="WHITE">
+      <JFXTextField fx:id="txtPHICity" layoutX="747.0" layoutY="168.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXPasswordField fx:id="txtAccPasssword" layoutX="747.0" layoutY="204.0" prefHeight="29.0" prefWidth="249.0" />
+      <JFXPasswordField fx:id="txtConfirmPassword" layoutX="747.0" layoutY="246.0" prefHeight="29.0" prefWidth="249.0" />
+      <JFXButton fx:id="btnPHIAdd" layoutX="909.0" layoutY="320.0" onAction="#btnPHIAddOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3742fa;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -37,7 +40,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnPHIReset" layoutX="306.0" layoutY="500.0" onAction="#btnPHIResetOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3498db;" text="Reset" textFill="WHITE">
+      <JFXButton fx:id="btnPHIReset" layoutX="813.0" layoutY="320.0" onAction="#btnPHIResetOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3498db;" text="Reset" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -45,7 +48,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnPHIUpdate" layoutX="209.0" layoutY="500.0" onAction="#btnPHIUpdateOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="WHITE">
+      <JFXButton fx:id="btnPHIUpdate" layoutX="716.0" layoutY="320.0" onAction="#btnPHIUpdateOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -53,7 +56,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnPHIDelete" layoutX="111.0" layoutY="500.0" onAction="#btnPHIDeleteOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #e74c3c;" text="Delete" textFill="WHITE">
+      <JFXButton fx:id="btnPHIDelete" layoutX="618.0" layoutY="320.0" onAction="#btnPHIDeleteOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #e74c3c;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -81,12 +84,12 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="273.0" text="PHI NIC">
+      <Label layoutX="564.0" layoutY="136.0" text="PHI NIC">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="311.0" text="Gender">
+      <Label layoutX="91.0" layoutY="273.0" text="Gender">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
@@ -96,26 +99,45 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="24.0" prefHeight="36.0" prefWidth="1061.0" style="-fx-background-color: #3498db;" text="PHI REGISTER" textFill="WHITE">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="36.0" prefWidth="1061.0" style="-fx-background-color: #3498db;" text="PHI REGISTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="350.0" text="City Area">
+      <Label layoutX="564.0" layoutY="176.0" text="City Area">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="393.0" text="Acc Password">
+      <Label layoutX="564.0" layoutY="216.0" text="Acc Password">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="435.0" text="Confirm Password">
+      <Label layoutX="564.0" layoutY="257.0" text="Confirm Password">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <ImageView fx:id="imgImageView" fitHeight="150.0" fitWidth="200.0" layoutX="626.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgImageView" fitHeight="123.0" fitWidth="146.0" layoutX="372.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true" />
+      <TableView fx:id="tblViewAllPHI" layoutX="107.0" layoutY="461.0" prefHeight="154.0" prefWidth="893.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="ID" />
+          <TableColumn prefWidth="148.0" text="Name" />
+            <TableColumn prefWidth="167.0" text="Address" />
+            <TableColumn prefWidth="126.0" text="Contact" />
+            <TableColumn prefWidth="89.0" text="Gender" />
+            <TableColumn prefWidth="132.0" text="NIC" />
+            <TableColumn prefWidth="155.0" text="Woring City" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnChoose" layoutX="89.0" layoutY="360.0" mnemonicParsing="false" text="Choose Image" />
+      <Label fx:id="lblImagePath" layoutX="207.0" layoutY="364.0" prefHeight="17.0" prefWidth="125.0" text="Image Path" />
+      <JFXTextField fx:id="txtSearchPHI" layoutX="848.0" layoutY="62.0" prefHeight="25.0" prefWidth="226.0" promptText="Enter PHI ID or Name" />
+      <JFXButton layoutX="996.0" layoutY="99.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #2ecc71;" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
