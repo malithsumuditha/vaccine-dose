@@ -282,14 +282,11 @@ public class DoctorRegFOrmController {
                 PreparedStatement preparedStatement = connection.prepareStatement("delete from doctor where id=?");
                 preparedStatement.setObject(1,id);
                 int i = preparedStatement.executeUpdate();
+                loadDatatoTable();
+                setReset();
 
                 if (i==0){
                     errorAlert("Something Error");
-                }else {
-
-                    confirmAlert("Data Delete Successfull");
-                    loadDatatoTable();
-                    setReset();
                 }
 
 
@@ -306,12 +303,12 @@ public class DoctorRegFOrmController {
         setReset();
     }
 
-    public void confirmAlert(String displayAlert){
+    public static void confirmAlert(String displayAlert){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,displayAlert);
         alert.showAndWait();
     }
 
-    public void errorAlert(String displayAlert){
+    public static void errorAlert(String displayAlert){
         Alert alert = new Alert(Alert.AlertType.ERROR,displayAlert);
         alert.showAndWait();
     }

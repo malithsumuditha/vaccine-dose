@@ -12,10 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,6 +25,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.*;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -65,6 +63,7 @@ public class PHIRegFormController {
         uploadImage();
         loadDatatoTable();
         selectTableData();
+        btnUpdateDeletesetDisable(true);
 
         Platform.runLater(new Runnable() {
             @Override
@@ -96,11 +95,84 @@ public class PHIRegFormController {
         datainsert();
     }
 
-    public void btnPHIUpdateOnAction(ActionEvent actionEvent) {
+    public void btnPHIUpdateOnAction(ActionEvent actionEvent) throws FileNotFoundException {
+
+        String id = lblPHIID.getText();
+        String name = txtPHIName.getText();
+        String contact = txtPHIContact.getText();
+        String nic = txtPHINIC.getText();
+        String address = txtPHIAddress.getText();
+        String city = txtPHICity.getText();
+
+        String gender = null;
+
+        if (rdbPHIMale.isSelected()){
+            gender = "Male";
+        }else if (rdbPHIFemale.isSelected()){
+            gender = "Female";
+        }
+
+        FileInputStream fin = new FileInputStream(uploadImage());
+
+        int length = (int)file.length();
+
+
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("update phireg set PName=?,PAddress=?,PContact=?,PNIC=?,PGender=?,WCity=?,image=? where PID=?");
+            preparedStatement.setObject(1,name);
+            preparedStatement.setObject(2,address);
+            preparedStatement.setObject(3,contact);
+            preparedStatement.setObject(4,nic);
+            preparedStatement.setObject(5,gender);
+            preparedStatement.setObject(6,city);
+            preparedStatement.setBinaryStream(7,fin,length);
+            preparedStatement.setObject(8,id);
+
+            int i = preparedStatement.executeUpdate();
+
+            txtClear();
+
+            if (i==0){
+                DoctorRegFOrmController.errorAlert("Something Error");
+            }
+            else {
+                DoctorRegFOrmController.confirmAlert("Successfully Updated");
+            }
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
     }
 
     public void btnPHIDeleteOnAction(ActionEvent actionEvent) {
+
+        String id = lblPHIID.getText();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Do you want to Delete...? ", ButtonType.YES,ButtonType.NO);
+        Optional<ButtonType> buttonType = alert.showAndWait();
+
+        if (buttonType.get().equals(ButtonType.YES)){
+            Connection connection = DBConnection.getInstance().getConnection();
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("delete from phireg where PID=?");
+                preparedStatement.setObject(1,id);
+                int i = preparedStatement.executeUpdate();
+
+                loadDatatoTable();
+                txtClear();
+
+                if (i==0){
+                    DoctorRegFOrmController.errorAlert("Something Error");
+                }
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
 
     }
 
@@ -268,6 +340,7 @@ public class PHIRegFormController {
 
     }
     public void txtClear(){
+
         txtPHIName.clear();
         txtPHICity.clear();
         txtPHIAddress.clear();
@@ -282,6 +355,10 @@ public class PHIRegFormController {
         lblImagePath.setText("Image Path");
 
         loadDatatoTable();
+        btnPHIAdd.setDisable(false);
+        btnUpdateDeletesetDisable(true);
+        txtPHIName.requestFocus();
+
 
     }
     public void ErrorMassage(String errorField){
@@ -391,6 +468,7 @@ public class PHIRegFormController {
             @Override
             public void changed(ObservableValue<? extends ViewAllPHITM> observable, ViewAllPHITM oldValue, ViewAllPHITM newValue) {
 
+                btnUpdateDeletesetDisable(false);
                 btnPHIAdd.setDisable(true);
                 txtAccPasssword.setDisable(true);
                 txtConfirmPassword.setDisable(true);
@@ -465,5 +543,10 @@ public class PHIRegFormController {
             tblViewAllPHI.setItems(filteredList);
         }
 
+    }
+
+    public void btnUpdateDeletesetDisable(Boolean isDisable){
+        btnPHIDelete.setDisable(isDisable);
+        btnPHIUpdate.setDisable(isDisable);
     }
 }
