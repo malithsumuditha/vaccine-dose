@@ -115,8 +115,8 @@
          </cursor>
       </JFXButton>
       <ImageView fx:id="imgImageView" fitHeight="150.0" fitWidth="200.0" layoutX="682.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="lblImagePath" layoutX="306.0" layoutY="378.0" text="Image Path" />
-      <TableView layoutX="168.0" layoutY="469.0" prefHeight="157.0" prefWidth="753.0">
+      <Label fx:id="lblImagePath" layoutX="306.0" layoutY="378.0" prefHeight="17.0" prefWidth="96.0" text="Image Path" />
+      <TableView fx:id="tblViewDoctors" layoutX="168.0" layoutY="469.0" prefHeight="157.0" prefWidth="753.0">
         <columns>
           <TableColumn prefWidth="75.0" text="ID" />
           <TableColumn prefWidth="234.0" text="Name" />

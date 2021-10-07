@@ -5,23 +5,25 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
+import tm.ViewAllDoctorsTM;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.io.*;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,10 +48,13 @@ public class DoctorRegFOrmController {
     public File file;
     public ImageView imgImageView;
     public Label lblImagePath;
+    public TableView<ViewAllDoctorsTM> tblViewDoctors;
 
     public void initialize(){
         PersonRegFormController.autoGenerateID(lblDoctorID,"doctor","D");
         photoUpload();
+        loadDatatoTable();
+        selectTableItem();
     }
 
     public void rdbDMaleOnAction(ActionEvent actionEvent) {
@@ -268,6 +273,100 @@ public class DoctorRegFOrmController {
         } );
 
         return file;
+    }
+
+    public void loadDatatoTable(){
+
+        ObservableList<ViewAllDoctorsTM> items = tblViewDoctors.getItems();
+        items.clear();
+
+        Connection connection = DBConnection.getInstance().getConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select id,name,contact,nic,gender,image from doctor");
+
+            while (resultSet.next()){
+                String id = resultSet.getString(1);
+                String name = resultSet.getString(2);
+                String contact = resultSet.getString(3);
+                String nic = resultSet.getString(4);
+                String gender = resultSet.getString(5);
+                Blob img = resultSet.getBlob(6);
+
+                ViewAllDoctorsTM viewAllDoctorsTM = new ViewAllDoctorsTM();
+                viewAllDoctorsTM.setId(id);
+                viewAllDoctorsTM.setName(name);
+                viewAllDoctorsTM.setContact(contact);
+                viewAllDoctorsTM.setNic(nic);
+                viewAllDoctorsTM.setGender(gender);
+                viewAllDoctorsTM.setBlob(img);
+
+                items.add(viewAllDoctorsTM);
+            }
+
+            tblViewDoctors.refresh();
+
+            tblViewDoctors.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("id"));
+            tblViewDoctors.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
+            tblViewDoctors.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("contact"));
+            tblViewDoctors.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("nic"));
+            tblViewDoctors.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("gender"));
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
+    public void selectTableItem(){
+        tblViewDoctors.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ViewAllDoctorsTM>() {
+            @Override
+            public void changed(ObservableValue<? extends ViewAllDoctorsTM> observable, ViewAllDoctorsTM oldValue, ViewAllDoctorsTM newValue) {
+                btnDAdd.setDisable(true);
+
+                ViewAllDoctorsTM selectedItem = tblViewDoctors.getSelectionModel().getSelectedItem();
+
+                if(selectedItem==null){
+                    return;
+                }
+
+                String id = selectedItem.getId();
+                String name = selectedItem.getName();
+                String contact = selectedItem.getContact();
+                String nic = selectedItem.getNic();
+                String gender = selectedItem.getGender();
+                Blob blob = selectedItem.getBlob();
+
+                lblDoctorID.setText(id);
+                txtDName.setText(name);
+                txtDContact.setText(contact);
+                txtDNic.setText(nic);
+                lblImagePath.setText(null);
+
+                if (gender.equals("Male")){
+                    rdbDMale.setSelected(true);
+                    rdbDFemale.setSelected(false);
+                }else {
+                    rdbDFemale.setSelected(true);
+                    rdbDMale.setSelected(false);
+                }
+
+                if (blob==null){
+                    imgImageView.setImage(null);
+                    return;
+                }
+
+                try {
+                    InputStream binaryStream = blob.getBinaryStream();
+                    Image image = new Image(binaryStream);
+                    imgImageView.setImage(image);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
+            }
+        });
     }
 
 }
