@@ -125,5 +125,11 @@
             <TableColumn minWidth="0.0" prefWidth="129.0" text="Gender" />
         </columns>
       </TableView>
+      <JFXTextField fx:id="txtSearchDocID" layoutX="848.0" layoutY="70.0" prefHeight="25.0" prefWidth="226.0" promptText="Enter Person ID or Name" />
+      <JFXButton layoutX="996.0" layoutY="107.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #2ecc71;" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

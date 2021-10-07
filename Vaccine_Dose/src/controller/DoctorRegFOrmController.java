@@ -5,8 +5,10 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -19,6 +21,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
 import tm.ViewAllDoctorsTM;
+import tm.ViewAllPersonsTM;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -49,12 +52,30 @@ public class DoctorRegFOrmController {
     public ImageView imgImageView;
     public Label lblImagePath;
     public TableView<ViewAllDoctorsTM> tblViewDoctors;
+    public JFXTextField txtSearchDocID;
 
     public void initialize(){
         PersonRegFormController.autoGenerateID(lblDoctorID,"doctor","D");
         photoUpload();
         loadDatatoTable();
         selectTableItem();
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                txtDName.requestFocus();
+            }
+        });
+
+        //add Listner to filterField
+
+        txtSearchDocID.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                search(oldValue,newValue);
+            }
+        });
+
     }
 
     public void rdbDMaleOnAction(ActionEvent actionEvent) {
@@ -227,6 +248,9 @@ public class DoctorRegFOrmController {
         txtAccPassword.clear();
         txtCPassword.clear();
         txtDName.requestFocus();
+        lblImagePath.setText("Image Path");
+        tblViewDoctors.getSelectionModel().clearSelection();
+        btnDAdd.setDisable(false);
     }
 
     public void setBorderColor(JFXTextField name,String color){
@@ -367,6 +391,31 @@ public class DoctorRegFOrmController {
 
             }
         });
+    }
+
+
+    ObservableList<ViewAllDoctorsTM> masterData = FXCollections.observableArrayList();
+    public void search(String oldValue, String newValue){
+
+        ObservableList<ViewAllDoctorsTM> filteredList = FXCollections.observableArrayList();
+
+        if(txtSearchDocID == null || (newValue.length() < oldValue.length()) || newValue == null) {
+            tblViewDoctors.setItems(masterData);
+            loadDatatoTable();
+        }
+        else {
+            newValue = newValue.toUpperCase();
+            for(ViewAllDoctorsTM doctorTM : tblViewDoctors.getItems()) {
+                String filterId = doctorTM.getId();
+                String filterName = doctorTM.getName();
+                if(filterId.toUpperCase().contains(newValue) || filterName.toUpperCase().contains(newValue)) {
+
+                    filteredList.add(doctorTM);
+                }
+            }
+            tblViewDoctors.setItems(filteredList);
+        }
+
     }
 
 }

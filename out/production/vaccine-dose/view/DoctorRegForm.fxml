@@ -115,7 +115,7 @@
          </cursor>
       </JFXButton>
       <ImageView fx:id="imgImageView" fitHeight="150.0" fitWidth="200.0" layoutX="682.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="lblImagePath" layoutX="306.0" layoutY="378.0" prefHeight="17.0" prefWidth="69.0" text="Image Path" />
+      <Label fx:id="lblImagePath" layoutX="306.0" layoutY="378.0" prefHeight="17.0" prefWidth="96.0" text="Image Path" />
       <TableView fx:id="tblViewDoctors" layoutX="168.0" layoutY="469.0" prefHeight="157.0" prefWidth="753.0">
         <columns>
           <TableColumn prefWidth="75.0" text="ID" />
@@ -125,5 +125,11 @@
             <TableColumn minWidth="0.0" prefWidth="129.0" text="Gender" />
         </columns>
       </TableView>
+      <JFXTextField fx:id="txtSearchDocID" layoutX="848.0" layoutY="70.0" prefHeight="25.0" prefWidth="226.0" promptText="Enter Person ID or Name" />
+      <JFXButton layoutX="996.0" layoutY="107.0" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #2ecc71;" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
