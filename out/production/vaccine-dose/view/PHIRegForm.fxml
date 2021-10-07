@@ -128,7 +128,7 @@
             <TableColumn prefWidth="126.0" text="Contact" />
             <TableColumn prefWidth="89.0" text="Gender" />
             <TableColumn prefWidth="132.0" text="NIC" />
-            <TableColumn prefWidth="155.0" text="City" />
+            <TableColumn prefWidth="155.0" text="Woring City" />
         </columns>
       </TableView>
       <Button fx:id="btnChoose" layoutX="89.0" layoutY="360.0" mnemonicParsing="false" text="Choose Image" />

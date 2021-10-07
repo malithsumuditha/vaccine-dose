@@ -5,6 +5,10 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -22,10 +26,7 @@ import tm.ViewAllPHITM;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,6 +64,24 @@ public class PHIRegFormController {
         txtPHIName.requestFocus();
         uploadImage();
         loadDatatoTable();
+        selectTableData();
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                txtPHIName.requestFocus();
+            }
+        });
+
+        //add Listner to filterField
+
+        txtSearchPHI.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                search(oldValue,newValue);
+            }
+        });
+
     }
 
     public void rdbPHIMaleOnAction(ActionEvent actionEvent) {
@@ -73,7 +92,7 @@ public class PHIRegFormController {
         rdbPHIMale.setSelected(false);
     }
 
-    public void btnPHIAddOnAction(ActionEvent actionEvent) {
+    public void btnPHIAddOnAction(ActionEvent actionEvent) throws FileNotFoundException {
         datainsert();
     }
 
@@ -88,7 +107,7 @@ public class PHIRegFormController {
     public void btnPHIResetOnAction(ActionEvent actionEvent) {
         txtClear();
     }
-    public void datainsert(){
+    public void datainsert() throws FileNotFoundException {
         String Password = txtAccPasssword.getText();
         String CPassword = txtConfirmPassword.getText();
 
@@ -148,37 +167,54 @@ public class PHIRegFormController {
                 }
 
                 Connection connection = DBConnection.getInstance().getConnection();
-                try {
-                    PreparedStatement preparedStatement = connection.prepareStatement("insert into phireg Values(?,?,?,?,?,?,?,?)");
-                    preparedStatement.setObject(1, PID);
-                    preparedStatement.setObject(2, PName);
-                    preparedStatement.setObject(3, PAddress);
-                    preparedStatement.setObject(4, PContact);
-                    preparedStatement.setObject(5, PNic);
-                    preparedStatement.setObject(6, gender);
-                    preparedStatement.setObject(7, PCity);
-                    preparedStatement.setObject(8, Password);
+
+                if (uploadImage()==null){
+                    btnChoose.setStyle("-fx-border-color:red");
+                    Alert alert = new Alert(Alert.AlertType.ERROR,"Please choose Image");
+                    alert.showAndWait();
+                }
+                else {
+                    btnChoose.setStyle("-fx-border-color:null");
+
+                    FileInputStream fin = new FileInputStream(uploadImage());
+
+                    int length = (int)file.length();
+
+                    try {
+                        PreparedStatement preparedStatement = connection.prepareStatement("insert into phireg Values(?,?,?,?,?,?,?,?,?)");
+                        preparedStatement.setObject(1, PID);
+                        preparedStatement.setObject(2, PName);
+                        preparedStatement.setObject(3, PAddress);
+                        preparedStatement.setObject(4, PContact);
+                        preparedStatement.setObject(5, PNic);
+                        preparedStatement.setObject(6, gender);
+                        preparedStatement.setObject(7, PCity);
+                        preparedStatement.setObject(8, Password);
+                        preparedStatement.setBinaryStream(9,fin,length);
 
 
 
-                    int i = preparedStatement.executeUpdate();
+                        int i = preparedStatement.executeUpdate();
 
 
-                    if (i != 0) {
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Successful Added !! ");
-                        alert.showAndWait();
-                        txtClear();
-                        txtPHIName.requestFocus();
-                        autogenarate();
-                    } else {
+                        if (i != 0) {
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Successful Added !! ");
+                            alert.showAndWait();
+                            txtClear();
+                            txtPHIName.requestFocus();
+                            autogenarate();
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.ERROR, "Something Error ! , Please TRy Again.. ");
+                            alert.showAndWait();
+                        }
+                    } catch (SQLException throwables) {
                         Alert alert = new Alert(Alert.AlertType.ERROR, "Something Error ! , Please TRy Again.. ");
                         alert.showAndWait();
+                        throwables.printStackTrace();
                     }
-                } catch (SQLException throwables) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Something Error ! , Please TRy Again.. ");
-                    alert.showAndWait();
-                    throwables.printStackTrace();
+
                 }
+
 
 
             }else {
@@ -242,6 +278,10 @@ public class PHIRegFormController {
 
         rdbPHIFemale.setSelected(false);
         rdbPHIMale.setSelected(false);
+        imgImageView.setImage(null);
+        lblImagePath.setText("Image Path");
+
+        loadDatatoTable();
 
     }
     public void ErrorMassage(String errorField){
@@ -266,20 +306,7 @@ public class PHIRegFormController {
         txtPHICity.setStyle("-fx-border-color:null");
     }
 
-    public void openAndSave(){
 
-        FileChooser fileChooser = new FileChooser();
-        file = fileChooser.showSaveDialog(btnChooseImage.getScene().getWindow());
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-
-    }
     public File uploadImage(){
 
         btnChoose.setOnAction((ActionEvent t) ->{
@@ -297,10 +324,9 @@ public class PHIRegFormController {
                 imgImageView.setImage(image);
                 lblImagePath.setText(String.valueOf(file));
 
-//                if (file!=null){
-//                    btnChoose.setStyle("-fx-border-color:null");
-//                    btnChoose.setStyle("-fx-background-color:#3742fa");
-//                }
+                if (file!=null){
+                    btnChoose.setStyle("-fx-border-color:null");
+                }
 
             } catch (IOException ex) {
                 Logger.getLogger(VaccinationFormController.class.getName()).log(Level.SEVERE, null, ex);
@@ -358,5 +384,86 @@ public class PHIRegFormController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public void selectTableData(){
+        tblViewAllPHI.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ViewAllPHITM>() {
+            @Override
+            public void changed(ObservableValue<? extends ViewAllPHITM> observable, ViewAllPHITM oldValue, ViewAllPHITM newValue) {
+
+                btnPHIAdd.setDisable(true);
+                txtAccPasssword.setDisable(true);
+                txtConfirmPassword.setDisable(true);
+
+                ViewAllPHITM selectedItem = tblViewAllPHI.getSelectionModel().getSelectedItem();
+
+                if(selectedItem==null){
+                    return;
+                }
+
+                String id = selectedItem.getId();
+                String name = selectedItem.getName();
+                String contact = selectedItem.getContact();
+                String address = selectedItem.getAddress();
+                String city = selectedItem.getCity();
+                String nic = selectedItem.getNic();
+                String gender = selectedItem.getGender();
+                Blob blob = selectedItem.getBlob();
+
+                lblPHIID.setText(id);
+                txtPHIName.setText(name);
+                txtPHIContact.setText(contact);
+                txtPHINIC.setText(nic);
+                txtPHIAddress.setText(address);
+                txtPHICity.setText(city);
+                lblImagePath.setText(null);
+
+                if (gender.equals("Male")){
+                    rdbPHIMale.setSelected(true);
+                    rdbPHIFemale.setSelected(false);
+                }else {
+                    rdbPHIFemale.setSelected(true);
+                    rdbPHIMale.setSelected(false);
+                }
+
+                if (blob==null){
+                    imgImageView.setImage(null);
+                    return;
+                }
+
+                try {
+                    InputStream binaryStream = blob.getBinaryStream();
+                    Image image = new Image(binaryStream);
+                    imgImageView.setImage(image);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    ObservableList<ViewAllPHITM> masterData = FXCollections.observableArrayList();
+    public void search(String oldValue, String newValue){
+
+        ObservableList<ViewAllPHITM> filteredList = FXCollections.observableArrayList();
+
+        if(txtSearchPHI == null || (newValue.length() < oldValue.length()) || newValue == null) {
+            tblViewAllPHI.setItems(masterData);
+            loadDatatoTable();
+        }
+        else {
+            newValue = newValue.toUpperCase();
+            for(ViewAllPHITM phiTM : tblViewAllPHI.getItems()) {
+                String filterId = phiTM.getId();
+                String filterName = phiTM.getName();
+                if(filterId.toUpperCase().contains(newValue) || filterName.toUpperCase().contains(newValue)) {
+
+                    filteredList.add(phiTM);
+                }
+            }
+            tblViewAllPHI.setItems(filteredList);
+        }
+
     }
 }
