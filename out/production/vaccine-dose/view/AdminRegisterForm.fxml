@@ -6,29 +6,31 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="640.0" prefWidth="1089.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminRegisterFormController">
    <children>
-      <JFXTextField fx:id="txtName" layoutX="260.0" layoutY="115.0" prefHeight="25.0" prefWidth="249.0" />
-      <JFXTextField fx:id="txtContact" layoutX="260.0" layoutY="154.0" prefHeight="25.0" prefWidth="249.0" />
-      <JFXTextField fx:id="txtNIC" layoutX="260.0" layoutY="194.0" prefHeight="25.0" prefWidth="249.0" />
-      <JFXRadioButton fx:id="rdbMale" layoutX="247.0" layoutY="244.0" onAction="#rdbMaleOnAction" text="Male">
+      <JFXTextField fx:id="txtName" layoutX="209.0" layoutY="144.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtContact" layoutX="209.0" layoutY="183.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtNIC" layoutX="209.0" layoutY="223.0" prefHeight="25.0" prefWidth="249.0" />
+      <JFXRadioButton fx:id="rdbMale" layoutX="196.0" layoutY="273.0" onAction="#rdbMaleOnAction" text="Male">
          <font>
             <Font size="13.0" />
          </font>
       </JFXRadioButton>
-      <JFXRadioButton fx:id="rdbFemale" layoutX="334.0" layoutY="244.0" onAction="#rdbFemaleOnAction" text="Female">
+      <JFXRadioButton fx:id="rdbFemale" layoutX="283.0" layoutY="273.0" onAction="#rdbFemaleOnAction" text="Female">
          <font>
             <Font size="13.0" />
          </font>
       </JFXRadioButton>
-      <JFXTextField fx:id="txtEmail" layoutX="260.0" layoutY="273.0" prefHeight="29.0" prefWidth="249.0" />
-      <JFXTextField fx:id="txtUserName" layoutX="260.0" layoutY="314.0" prefHeight="29.0" prefWidth="249.0" />
-      <JFXPasswordField fx:id="txtPassword" layoutX="260.0" layoutY="355.0" prefHeight="29.0" prefWidth="249.0"/>
-      <JFXPasswordField fx:id="txtConfirmPassword" layoutX="263.0" layoutY="396.0" prefHeight="29.0" prefWidth="249.0" />
-      <JFXButton fx:id="btnAdd" layoutX="423.0" layoutY="461.0" onAction="#btnAddOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3742fa;" text="Add" textFill="WHITE">
+      <JFXTextField fx:id="txtEmail" layoutX="209.0" layoutY="302.0" prefHeight="29.0" prefWidth="249.0" />
+      <JFXTextField fx:id="txtUserName" layoutX="209.0" layoutY="343.0" prefHeight="29.0" prefWidth="249.0" />
+      <JFXPasswordField fx:id="txtPassword" layoutX="209.0" layoutY="384.0" prefHeight="29.0" prefWidth="249.0" />
+      <JFXPasswordField fx:id="txtConfirmPassword" layoutX="212.0" layoutY="425.0" prefHeight="29.0" prefWidth="249.0" />
+      <JFXButton fx:id="btnAdd" layoutX="372.0" layoutY="490.0" onAction="#btnAddOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3742fa;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -36,7 +38,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" layoutX="230.0" layoutY="461.0" onAction="#btnUpdateOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="WHITE">
+      <JFXButton fx:id="btnUpdate" layoutX="179.0" layoutY="490.0" onAction="#btnUpdateOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #2ecc71;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -44,7 +46,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnDelete" layoutX="132.0" layoutY="461.0" onAction="#btnDeleteOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #e74c3c;" text="Delete" textFill="WHITE">
+      <JFXButton fx:id="btnDelete" layoutX="81.0" layoutY="490.0" onAction="#btnDeleteOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #e74c3c;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -52,7 +54,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnReset" layoutX="327.0" layoutY="461.0" onAction="#btnResetOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3498db;" text="Reset" textFill="WHITE">
+      <JFXButton fx:id="btnReset" layoutX="276.0" layoutY="490.0" onAction="#btnResetOnAction" prefHeight="29.0" prefWidth="89.0" style="-fx-background-color: #3498db;" text="Reset" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -60,60 +62,70 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Label layoutX="91.0" layoutY="90.0" text="Admin ID">
+      <Label layoutX="40.0" layoutY="119.0" text="Admin ID">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="128.0" text="Admin Name">
+      <Label layoutX="40.0" layoutY="157.0" text="Admin Name">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="167.0" text="Admin Contact">
+      <Label layoutX="40.0" layoutY="196.0" text="Admin Contact">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="207.0" text="Admin NIC">
+      <Label layoutX="40.0" layoutY="236.0" text="Admin NIC">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="246.0" text="Gender">
+      <Label layoutX="40.0" layoutY="275.0" text="Gender">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label fx:id="lblAdminID" layoutX="260.0" layoutY="87.0" text="Admin ID">
+      <Label fx:id="lblAdminID" layoutX="209.0" layoutY="116.0" text="Admin ID">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="286.0" text="Admin Email">
+      <Label layoutX="40.0" layoutY="315.0" text="Admin Email">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="369.0" text="Password">
+      <Label layoutX="40.0" layoutY="398.0" text="Password">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="409.0" text="Confirm Password">
+      <Label layoutX="40.0" layoutY="438.0" text="Confirm Password">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="36.0" prefWidth="1061.0" style="-fx-background-color: #3498db;" text="PERSON REGISTER" textFill="WHITE">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="36.0" prefWidth="1061.0" style="-fx-background-color: #3498db;" text="ADMIN REGISTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Label layoutX="91.0" layoutY="327.0" text="User Name">
+      <Label layoutX="40.0" layoutY="356.0" text="User Name">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
+      <TableView fx:id="tblAdmin" layoutX="504.0" layoutY="117.0" prefHeight="194.0" prefWidth="563.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Admin ID" />
+          <TableColumn prefWidth="92.0" text="Name" />
+            <TableColumn prefWidth="115.0" text="Contact Number" />
+            <TableColumn prefWidth="99.0" text="NIC Number" />
+            <TableColumn prefWidth="70.0" text="Gender" />
+            <TableColumn prefWidth="111.0" text="Email" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
