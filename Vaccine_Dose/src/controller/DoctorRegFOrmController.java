@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,6 +28,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.*;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -268,6 +270,36 @@ public class DoctorRegFOrmController {
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
+
+        String id = lblDoctorID.getText();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Do you want to Delete...? ",ButtonType.YES,ButtonType.NO);
+        Optional<ButtonType> buttonType = alert.showAndWait();
+
+        if (buttonType.get().equals(ButtonType.YES)){
+            Connection connection = DBConnection.getInstance().getConnection();
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("delete from doctor where id=?");
+                preparedStatement.setObject(1,id);
+                int i = preparedStatement.executeUpdate();
+
+                if (i==0){
+                    errorAlert("Something Error");
+                }else {
+
+                    confirmAlert("Data Delete Successfull");
+                    loadDatatoTable();
+                    setReset();
+                }
+
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+
+
+
     }
 
     public void btnDResetOnAction(ActionEvent actionEvent) {
@@ -298,13 +330,15 @@ public class DoctorRegFOrmController {
         tblViewDoctors.getSelectionModel().clearSelection();
         btnDAdd.setDisable(false);
         btnUpdateDeletesetDisable(true);
+        txtAccPassword.setDisable(false);
+        txtCPassword.setDisable(false);
     }
 
     public void setBorderColor(JFXTextField name,String color){
         name.setStyle("-fx-border-color:"+color);
     }
 
-    public boolean numberCheck(String num){
+    public static boolean numberCheck(String num){
 
         boolean b = num.charAt(0) == '0' && num.length() == 10 && num.matches("[0-9]+");
         return b;
@@ -396,6 +430,8 @@ public class DoctorRegFOrmController {
             public void changed(ObservableValue<? extends ViewAllDoctorsTM> observable, ViewAllDoctorsTM oldValue, ViewAllDoctorsTM newValue) {
                 btnDAdd.setDisable(true);
                 btnUpdateDeletesetDisable(false);
+                txtAccPassword.setDisable(true);
+                txtCPassword.setDisable(true);
 
                 ViewAllDoctorsTM selectedItem = tblViewDoctors.getSelectionModel().getSelectedItem();
 

@@ -104,35 +104,40 @@ public class PHIRegFormController {
             txtPHICity.requestFocus();
 
         }else if(CPassword.equals(Password)){
-            System.out.println("Ok");
-            NullBorderCl();
-            String PName = txtPHIName.getText();
-            String PAddress = txtPHIAddress.getText();
-            String PContact = txtPHIContact.getText();
-            String PNic = txtPHINIC.getText();
-            String PCity = txtPHICity.getText();
-            String gender = null;
-            String PID = lblPHIID.getText();
 
-            if (rdbPHIFemale.isSelected()) {
-                gender = "Female";
-            } else if (rdbPHIMale.isSelected()) {
-                gender = "Male";
-            } else {
-                ErrorMassage("Gender Field");
-            }
+            txtAccPasssword.setStyle("-fx-border-color:null");
+            txtConfirmPassword.setStyle("-fx-border-color:null");
 
-            Connection connection = DBConnection.getInstance().getConnection();
-            try {
-                PreparedStatement preparedStatement = connection.prepareStatement("insert into phireg Values(?,?,?,?,?,?,?,?)");
-                preparedStatement.setObject(1, PID);
-                preparedStatement.setObject(2, PName);
-                preparedStatement.setObject(3, PAddress);
-                preparedStatement.setObject(4, PContact);
-                preparedStatement.setObject(5, PNic);
-                preparedStatement.setObject(6, gender);
-                preparedStatement.setObject(7, PCity);
-                preparedStatement.setObject(8, Password);
+            if (DoctorRegFOrmController.numberCheck(txtPHIContact.getText())){
+
+                NullBorderCl();
+                String PName = txtPHIName.getText();
+                String PAddress = txtPHIAddress.getText();
+                String PContact = txtPHIContact.getText();
+                String PNic = txtPHINIC.getText();
+                String PCity = txtPHICity.getText();
+                String gender = null;
+                String PID = lblPHIID.getText();
+
+                if (rdbPHIFemale.isSelected()) {
+                    gender = "Female";
+                } else if (rdbPHIMale.isSelected()) {
+                    gender = "Male";
+                } else {
+                    ErrorMassage("Gender Field");
+                }
+
+                Connection connection = DBConnection.getInstance().getConnection();
+                try {
+                    PreparedStatement preparedStatement = connection.prepareStatement("insert into phireg Values(?,?,?,?,?,?,?,?)");
+                    preparedStatement.setObject(1, PID);
+                    preparedStatement.setObject(2, PName);
+                    preparedStatement.setObject(3, PAddress);
+                    preparedStatement.setObject(4, PContact);
+                    preparedStatement.setObject(5, PNic);
+                    preparedStatement.setObject(6, gender);
+                    preparedStatement.setObject(7, PCity);
+                    preparedStatement.setObject(8, Password);
 
 //                FileChooser fileChooser = new FileChooser();
 //                file = fileChooser.showSaveDialog(btnChooseImage.getScene().getWindow());
@@ -149,34 +154,47 @@ public class PHIRegFormController {
 //                }
 
 
-                int i = preparedStatement.executeUpdate();
+                    int i = preparedStatement.executeUpdate();
 
 //                Image image = new Image(fileInputStream);
 //                imgImageView.setImage(image);
 
 
-                if (i != 0) {
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Successful Added !! ");
-                    alert.showAndWait();
-                    txtClear();
-                    txtPHIName.requestFocus();
-                    autogenarate();
-                } else {
+                    if (i != 0) {
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Successful Added !! ");
+                        alert.showAndWait();
+                        txtClear();
+                        txtPHIName.requestFocus();
+                        autogenarate();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "Something Error ! , Please TRy Again.. ");
+                        alert.showAndWait();
+                    }
+                } catch (SQLException throwables) {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Something Error ! , Please TRy Again.. ");
                     alert.showAndWait();
+                    throwables.printStackTrace();
                 }
-            } catch (SQLException throwables) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Something Error ! , Please TRy Again.. ");
-                throwables.printStackTrace();
+
+
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR,"Please enter Valid number....");
+                alert.showAndWait();
+                txtPHIContact.setStyle("-fx-border-color:red");
             }
 
-        }else {
-            System.out.println("Nooo");
+
+
+        }
+
+           else {
             ErrorBorderClPWD(txtConfirmPassword);
             ErrorBorderClPWD(txtAccPasssword);
             txtAccPasssword.clear();
             txtConfirmPassword.clear();
             txtAccPasssword.requestFocus();
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Wrong Password Combination...");
+            alert.showAndWait();
         }
     }
     public void autogenarate(){
@@ -217,6 +235,10 @@ public class PHIRegFormController {
         txtConfirmPassword.clear();
         txtPHINIC.clear();
         txtPHIContact.clear();
+
+        rdbPHIFemale.setSelected(false);
+        rdbPHIMale.setSelected(false);
+
     }
     public void ErrorMassage(String errorField){
         Alert alert = new Alert(Alert.AlertType.ERROR," "+errorField+" Field is cannot be emty, Please Fill this field..! ");
