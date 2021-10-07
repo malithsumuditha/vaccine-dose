@@ -59,6 +59,7 @@ public class DoctorRegFOrmController {
         photoUpload();
         loadDatatoTable();
         selectTableItem();
+        btnUpdateDeletesetDisable(true);
 
         Platform.runLater(new Runnable() {
             @Override
@@ -218,7 +219,52 @@ public class DoctorRegFOrmController {
 
     }
 
-    public void btnUpdateOnAction(ActionEvent actionEvent) {
+    public void btnUpdateOnAction(ActionEvent actionEvent) throws FileNotFoundException {
+
+        String id = lblDoctorID.getText();
+        String name = txtDName.getText();
+        String contact = txtDContact.getText();
+        String nic = txtDNic.getText();
+        String gender = null;
+
+        if (rdbDMale.isSelected()){
+            gender = "Male";
+        }else if (rdbDFemale.isSelected()){
+            gender = "Female";
+        }
+
+        FileInputStream fin = new FileInputStream(photoUpload());
+
+        int length = (int)file.length();
+
+
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("update doctor set name=?,contact=?,nic=?,gender=?,image=? where id=?");
+            preparedStatement.setObject(1,name);
+            preparedStatement.setObject(2,contact);
+            preparedStatement.setObject(3,nic);
+            preparedStatement.setObject(4,gender);
+            preparedStatement.setBinaryStream(5,fin,length);
+            preparedStatement.setObject(6,id);
+
+            int i = preparedStatement.executeUpdate();
+
+            setReset();
+
+            if (i==0){
+                errorAlert("Something Error");
+            }
+            else {
+                confirmAlert("Successfully Updated");
+            }
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
@@ -251,6 +297,7 @@ public class DoctorRegFOrmController {
         lblImagePath.setText("Image Path");
         tblViewDoctors.getSelectionModel().clearSelection();
         btnDAdd.setDisable(false);
+        btnUpdateDeletesetDisable(true);
     }
 
     public void setBorderColor(JFXTextField name,String color){
@@ -348,6 +395,7 @@ public class DoctorRegFOrmController {
             @Override
             public void changed(ObservableValue<? extends ViewAllDoctorsTM> observable, ViewAllDoctorsTM oldValue, ViewAllDoctorsTM newValue) {
                 btnDAdd.setDisable(true);
+                btnUpdateDeletesetDisable(false);
 
                 ViewAllDoctorsTM selectedItem = tblViewDoctors.getSelectionModel().getSelectedItem();
 
@@ -418,4 +466,8 @@ public class DoctorRegFOrmController {
 
     }
 
+    public void btnUpdateDeletesetDisable(Boolean isDisable){
+        btnDelete.setDisable(isDisable);
+        btnUpdate.setDisable(isDisable);
+    }
 }
