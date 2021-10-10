@@ -53,20 +53,20 @@ public class DashBordFormController {
     public void initialize() throws IOException {
 
 
-//        setValuesToLineChartt();
+        setValuesToLineChartt();
 //
 //       //set value to label Today Vaccine
+
+        Integer dose1 = getDose1DatefromDB().get(arrayList.size() - 1);
+        Integer dosse2 = getDose2DatefromDB().get(arrayList2.size() - 1);
+        int totalDoseToday=dose1+dosse2;
+        lblTodayVaccine.setText("+"+totalDoseToday);
+
 //
-//        Integer dose1 = getDose1DatefromDB().get(arrayList.size() - 1);
-//        Integer dosse2 = getDose2DatefromDB().get(arrayList2.size() - 1);
-//        int totalDoseToday=dose1+dosse2;
-//        lblTodayVaccine.setText("+"+totalDoseToday);
-//
-//
-//        totalDoseOneVaccinedCount();
-//        totalDose2vaccined();
-//        totalVaccined();
-//        setValueToProgressIndicator();
+        totalDoseOneVaccinedCount();
+        totalDose2vaccined();
+        totalVaccined();
+        setValueToProgressIndicator();
 
 
   }
@@ -118,23 +118,31 @@ public class DashBordFormController {
 
             String date=null;
 
-            while (resultSet.next()){
 
-                String string = resultSet.getString(1);
-                if (string.equals(date)){
+
+                while (resultSet.next()){
+
+                    String string = resultSet.getString(1);
+                    if (string.equals(date)){
 
 //                    System.out.println("null");
-                }
-                else {
+                    }
+                    else {
 
+                        date= resultSet.getString(1);
+
+                        arrayList1.add(date);
+                    }
                     date= resultSet.getString(1);
 
-                    arrayList1.add(date);
                 }
-                date= resultSet.getString(1);
 
-
+            if (arrayList1.isEmpty()){
+                arrayList1.add("Today");
             }
+
+
+
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -152,14 +160,20 @@ public class DashBordFormController {
             PreparedStatement preparedStatement1 = connection1.prepareStatement("select count(*) as count,date(regDateDose1) as date from vaccination where regDateDose1 >= date_sub(curdate(), interval 10 day) group by date;");
             ResultSet resultSet = preparedStatement1.executeQuery();
 
-            while (resultSet.next()){
-                count = resultSet.getString(1);
 
-                c= Integer.parseInt(count);
+                while (resultSet.next()){
+                    count = resultSet.getString(1);
 
-                arrayList.add(c);
+                    c= Integer.parseInt(count);
 
+                    arrayList.add(c);
+
+                }
+
+            if (arrayList.isEmpty()){
+                arrayList.add(0);
             }
+
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -282,14 +296,21 @@ public class DashBordFormController {
             PreparedStatement preparedStatement1 = connection1.prepareStatement("select count(*) as count,date(regDateDose2) as date from vaccination where regDateDose2 >= date_sub(curdate(), interval 10 day) group by date;");
             ResultSet resultSet = preparedStatement1.executeQuery();
 
-            while (resultSet.next()){
-                String count2 = resultSet.getString(1);
 
-                c= Integer.parseInt(count2);
+                while (resultSet.next()){
+                    String count2 = resultSet.getString(1);
 
-                arrayList2.add(c);
+                    c= Integer.parseInt(count2);
 
+                    arrayList2.add(c);
+
+                }
+
+            if (arrayList2.isEmpty()){
+                arrayList2.add(0);
             }
+
+
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
