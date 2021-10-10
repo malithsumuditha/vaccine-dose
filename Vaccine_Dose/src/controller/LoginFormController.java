@@ -30,19 +30,35 @@ public class LoginFormController {
 
     public void btnSignInOnAction(ActionEvent actionEvent) throws IOException {
 
-        String text = txtID.getText();
-        String substring = text.substring(0, 1);
+        if (txtID.getText().isEmpty()){
+            DoctorRegFOrmController.errorAlert("Please enter userID");
+            txtID.requestFocus();
+            txtID.setStyle("-fx-border-color:red");
 
-        if (substring.equals("P")){
+        }else if (txtPassword.getText().isEmpty()){
+            DoctorRegFOrmController.errorAlert("Please enter Password");
+            txtPassword.requestFocus();
+            txtID.setStyle("-fx-border-color:null");
+            txtPassword.setStyle("-fx-border-color:red");
+        }else{
 
-            loginUser(actionEvent,"phireg","PID","Password");
+            String text = txtID.getText();
+            String substring = text.substring(0, 1);
 
-        }else if (substring.equals("D")){
+            if (substring.equals("P")){
 
-            loginUser(actionEvent,"doctor","id","password");
-        }
-        else {
-            loginUser(actionEvent,"adminreg","id","Password");
+                loginUser(actionEvent,"phireg","PID","Password");
+
+            }else if (substring.equals("D")){
+
+                loginUser(actionEvent,"doctor","id","password");
+            }
+            else if (substring.equals("A")){
+                loginUser(actionEvent,"adminreg","id","Password");
+            }else {
+                loginError();
+            }
+
         }
 
 
