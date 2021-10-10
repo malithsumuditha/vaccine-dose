@@ -137,6 +137,7 @@
                      <VBox.margin>
                         <Insets left="40.0" right="45.0" />
                      </VBox.margin></Separator>
+                  <Label fx:id="lblTest" text="Label" visible="false" />
                </children>
             </VBox>
          </left>

@@ -57,12 +57,14 @@ public class DashBordMainViewFormController implements Initializable {
     public BorderPane root;
     public ImageView imgUserPP;
     public Circle circleImg;
+    public Label lblTest;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         setUserImage();
+
 
         Parent parent = null;
         try {
@@ -85,7 +87,21 @@ public class DashBordMainViewFormController implements Initializable {
         changingPanel.getChildren().add(parent);
     }
     public void btnRegisterOnAction() throws IOException {
-        Parent parent = FXMLLoader.load(this.getClass().getResource("/view/RegForm.fxml"));
+        String user = lblTest.getText();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/RegForm.fxml"));
+        Parent parent = loader.load();
+
+        PersonRegFormController personRegFormController = loader.getController();
+
+        if (user.equals("P")){
+            personRegFormController.btnDoctorRegister.setVisible(false);
+            personRegFormController.btnAdminReg.setVisible(false);
+        }
+
+        else if (user.equals("D")){
+            personRegFormController.btnAdminReg.setVisible(false);
+        }
+
         changingPanel.getChildren().clear();
         changingPanel.getChildren().add(parent);
 
@@ -256,4 +272,5 @@ public class DashBordMainViewFormController implements Initializable {
         circleImg.setFill(new ImagePattern(im));
         circleImg.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKBLUE));
     }
+
 }

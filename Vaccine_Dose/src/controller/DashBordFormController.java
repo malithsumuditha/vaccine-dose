@@ -6,6 +6,7 @@ import db.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.ImageView;
@@ -46,24 +47,26 @@ public class DashBordFormController {
     public ImageView imgLocal2;
     public ImageView imgGlobal1;
     public ImageView imgGlobal2;
+    public Button btnTest;
 
 
-    public void initialize(){
-
-        setValuesToLineChartt();
-
-       //set value to label Today Vaccine
-
-        Integer dose1 = getDose1DatefromDB().get(arrayList.size() - 1);
-        Integer dosse2 = getDose2DatefromDB().get(arrayList2.size() - 1);
-        int totalDoseToday=dose1+dosse2;
-        lblTodayVaccine.setText("+"+totalDoseToday);
+    public void initialize() throws IOException {
 
 
-        totalDoseOneVaccinedCount();
-        totalDose2vaccined();
-        totalVaccined();
-        setValueToProgressIndicator();
+//        setValuesToLineChartt();
+//
+//       //set value to label Today Vaccine
+//
+//        Integer dose1 = getDose1DatefromDB().get(arrayList.size() - 1);
+//        Integer dosse2 = getDose2DatefromDB().get(arrayList2.size() - 1);
+//        int totalDoseToday=dose1+dosse2;
+//        lblTodayVaccine.setText("+"+totalDoseToday);
+//
+//
+//        totalDoseOneVaccinedCount();
+//        totalDose2vaccined();
+//        totalVaccined();
+//        setValueToProgressIndicator();
 
 
   }
@@ -339,4 +342,6 @@ public class DashBordFormController {
             e.printStackTrace();
         }
     }
+
+
 }

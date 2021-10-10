@@ -172,7 +172,7 @@
             <Font name="System Bold" size="11.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="915.0" layoutY="184.0" onAction="#btnDoctorRegisterOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #3742fa;" text="Doctor Register" textFill="WHITE">
+      <JFXButton fx:id="btnDoctorRegister" layoutX="915.0" layoutY="184.0" onAction="#btnDoctorRegisterOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #3742fa;" text="Doctor Register" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -180,7 +180,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="915.0" layoutY="290.0" onAction="#btnAdminRegisterOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #2ecc71;" text="Admin Register" textFill="WHITE">
+      <JFXButton fx:id="btnAdminReg" layoutX="915.0" layoutY="290.0" onAction="#btnAdminRegisterOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #2ecc71;" text="Admin Register" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -188,7 +188,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="915.0" layoutY="238.0" onAction="#btnPHIRegisterOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #e74c3c;" text="PHI Register" textFill="WHITE">
+      <JFXButton fx:id="btnPHIReg" layoutX="915.0" layoutY="238.0" onAction="#btnPHIRegisterOnAction" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #e74c3c;" text="PHI Register" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,10 +19,12 @@ import javafx.scene.layout.AnchorPane;
 import tm.ViewAllPersonsTM;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 
 /**
@@ -47,7 +50,9 @@ public class PersonRegFormController {
     public JFXButton btnAdd;
     public JFXButton btnReset;
     public JFXTextField txtSearchMemID;
-
+    public JFXButton btnDoctorRegister;
+    public JFXButton btnAdminReg;
+    public JFXButton btnPHIReg;
 
 
     public void initialize(){
@@ -560,4 +565,6 @@ public class PersonRegFormController {
         personRegisterPanel.getChildren().clear();
         personRegisterPanel.getChildren().add(parent);
     }
+
+
 }
