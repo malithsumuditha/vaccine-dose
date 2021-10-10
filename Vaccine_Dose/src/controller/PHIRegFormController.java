@@ -365,6 +365,10 @@ public class PHIRegFormController {
         btnUpdateDeletesetDisable(true);
         txtPHIName.requestFocus();
 
+        File file = new File("image/219986.png");
+        Image image = new Image(file.toURI().toString());
+        imgImageView.setImage(image);
+
 
     }
     public void ErrorMassage(String errorField){
