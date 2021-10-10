@@ -11,10 +11,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 
 /**
@@ -26,7 +28,8 @@ public class LoginFormController {
     public TextField txtID;
     public AnchorPane root;
     public Button btnSignIn;
-
+    String userName;
+    Blob userImage;
 
     public void btnSignInOnAction(ActionEvent actionEvent) throws IOException {
 
@@ -47,14 +50,14 @@ public class LoginFormController {
 
             if (substring.equals("P")){
 
-                loginUser(actionEvent,"phireg","PID","Password");
+                loginUser(actionEvent,"phireg","PID","Password","PName"," PHI ","image");
 
             }else if (substring.equals("D")){
 
-                loginUser(actionEvent,"doctor","id","password");
+                loginUser(actionEvent,"doctor","id","password","name"," Doctor ","image");
             }
             else if (substring.equals("A")){
-                loginUser(actionEvent,"adminreg","id","Password");
+                loginUser(actionEvent,"adminreg","id","Password","AName"," Admin ","image");
             }else {
                 loginError();
             }
@@ -68,13 +71,14 @@ public class LoginFormController {
     }
 
 
-    public void loginUser(ActionEvent actionEvent,String tableName,String uId,String uPassword){
+    public void loginUser(ActionEvent actionEvent,String tableName,String uId,String uPassword,String name,String userType,String image){
         String userID = txtID.getText();
         String password = txtPassword.getText();
 
+
         Connection connection = DBConnection.getInstance().getConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select "+uId+ ","+uPassword+ " from "+tableName+" where "+uId+"=? and "+uPassword+"=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select "+uId+ ","+uPassword+","+name+","+image+ " from "+tableName+" where "+uId+"=? and "+uPassword+"=?");
             preparedStatement.setObject(1,userID);
             preparedStatement.setObject(2,password);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -82,6 +86,8 @@ public class LoginFormController {
 
             if (resultSet.next()){
 
+                userName = userType+resultSet.getString(3);
+                userImage = resultSet.getBlob(4);
                 borderNull();
                 loading(actionEvent);
             }
@@ -97,9 +103,7 @@ public class LoginFormController {
     }
 
 
-    public void loginAdmin(){
 
-    }
 
     public void loading(ActionEvent actionEvent) throws IOException {
         String text = txtID.getText();
@@ -111,6 +115,21 @@ public class LoginFormController {
 
         DashBordMainViewFormController dashBordMainViewFormController =loader.getController();
         dashBordMainViewFormController.lblTest.setText(substring);
+        dashBordMainViewFormController.lblUserName.setText("Hello"+userName);
+
+        if (userImage==null){
+//            imgImageView.setImage(null);
+//            return;
+        }
+        try {
+            InputStream binaryStream = userImage.getBinaryStream();
+            dashBordMainViewFormController.setUserImage(binaryStream);
+//            Image image = new Image(binaryStream);
+//            imgImageView.setImage(image);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
 
 
 

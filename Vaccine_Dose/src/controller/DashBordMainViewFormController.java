@@ -27,6 +27,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -58,12 +59,13 @@ public class DashBordMainViewFormController implements Initializable {
     public ImageView imgUserPP;
     public Circle circleImg;
     public Label lblTest;
+    public Label lblUserName;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        setUserImage();
+//        setUserImage(InputStream null);
 
 
         Parent parent = null;
@@ -266,9 +268,9 @@ public class DashBordMainViewFormController implements Initializable {
         onMouseExitChange(btnVaccination,sptVaccination);
     }
 
-    public void setUserImage(){
+    public void setUserImage(InputStream img){
         circleImg.setStroke(Color.WHITE);
-        Image im = new Image("image/154765919_2898431487150383_7585720223318837300_n.jpg");
+        Image im = new Image(img);
         circleImg.setFill(new ImagePattern(im));
         circleImg.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKBLUE));
     }

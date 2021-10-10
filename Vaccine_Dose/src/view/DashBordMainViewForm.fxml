@@ -165,7 +165,7 @@
             <Image url="@../image/injection-1492441-1263678.png" />
          </image>
       </ImageView>
-      <Label layoutX="10.0" layoutY="10.0" text="Hello Malith" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <Label fx:id="lblUserName" layoutX="10.0" layoutY="10.0" text="Hello Malith" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
