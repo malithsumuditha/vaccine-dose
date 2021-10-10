@@ -177,6 +177,7 @@ public class PHIRegFormController {
     }
 
     public void btnPHIResetOnAction(ActionEvent actionEvent) {
+
         txtClear();
     }
     public void datainsert() throws FileNotFoundException {
@@ -240,17 +241,9 @@ public class PHIRegFormController {
 
                 Connection connection = DBConnection.getInstance().getConnection();
 
-                if (uploadImage()==null){
-                    btnChoose.setStyle("-fx-border-color:red");
-                    Alert alert = new Alert(Alert.AlertType.ERROR,"Please choose Image");
-                    alert.showAndWait();
-                }
-                else {
+
                     btnChoose.setStyle("-fx-border-color:null");
 
-                    FileInputStream fin = new FileInputStream(uploadImage());
-
-                    int length = (int)file.length();
 
                     try {
                         PreparedStatement preparedStatement = connection.prepareStatement("insert into phireg Values(?,?,?,?,?,?,?,?,?)");
@@ -262,7 +255,19 @@ public class PHIRegFormController {
                         preparedStatement.setObject(6, gender);
                         preparedStatement.setObject(7, PCity);
                         preparedStatement.setObject(8, Password);
-                        preparedStatement.setBinaryStream(9,fin,length);
+
+                        if (uploadImage() == null){
+
+                            File img = new File("Vaccine_Dose/src/image/219986.png");
+                            FileInputStream fin = new FileInputStream(img);
+                            preparedStatement.setBinaryStream(9, (InputStream)fin,(int)img.length());
+                        }else {
+
+                            FileInputStream fin = new FileInputStream(uploadImage());
+
+                            int length = (int)file.length();
+                            preparedStatement.setBinaryStream(9,fin,length);
+                        }
 
 
 
@@ -285,7 +290,7 @@ public class PHIRegFormController {
                         throwables.printStackTrace();
                     }
 
-                }
+
 
 
 
@@ -341,6 +346,10 @@ public class PHIRegFormController {
     }
     public void txtClear(){
 
+        autogenarate();
+
+        tblViewAllPHI.getSelectionModel().clearSelection();
+
         txtPHIName.clear();
         txtPHICity.clear();
         txtPHIAddress.clear();
@@ -359,6 +368,12 @@ public class PHIRegFormController {
         btnUpdateDeletesetDisable(true);
         txtPHIName.requestFocus();
 
+        txtAccPasssword.setDisable(false);
+        txtConfirmPassword.setDisable(false);
+
+        File file = new File("Vaccine_Dose/src/image/219986.png");
+        Image image = new Image(file.toURI().toString());
+        imgImageView.setImage(image);
 
     }
     public void ErrorMassage(String errorField){
@@ -516,6 +531,7 @@ public class PHIRegFormController {
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
+
 
             }
         });

@@ -101,7 +101,7 @@ public class DashBordMainViewFormController implements Initializable {
         }
 
         else if (user.equals("D")){
-            personRegFormController.btnAdminReg.setVisible(false);
+//            personRegFormController.btnAdminReg.setVisible(false);
         }
 
         changingPanel.getChildren().clear();
@@ -270,9 +270,23 @@ public class DashBordMainViewFormController implements Initializable {
 
     public void setUserImage(InputStream img){
         circleImg.setStroke(Color.WHITE);
-        Image im = new Image(img);
-        circleImg.setFill(new ImagePattern(im));
-        circleImg.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKBLUE));
+
+        if (img!=null){
+
+            Image im = new Image(img);
+            circleImg.setFill(new ImagePattern(im));
+            circleImg.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKBLUE));
+
+
+        }
+        else {
+
+            Image im = new Image("Vaccine_Dose/src/image/219986.png");
+            circleImg.setFill(new ImagePattern(im));
+            circleImg.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKBLUE));
+        }
+
+
     }
 
 }

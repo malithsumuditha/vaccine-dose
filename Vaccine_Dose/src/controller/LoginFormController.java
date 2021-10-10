@@ -117,13 +117,16 @@ public class LoginFormController {
         dashBordMainViewFormController.lblTest.setText(substring);
         dashBordMainViewFormController.lblUserName.setText("Hello"+userName);
 
-        if (userImage==null){
-//            imgImageView.setImage(null);
+//        if (userImage==null){
+//            dashBordMainViewFormController.setUserImage(null);
 //            return;
-        }
+//        }
         try {
             InputStream binaryStream = userImage.getBinaryStream();
+
             dashBordMainViewFormController.setUserImage(binaryStream);
+
+
 //            Image image = new Image(binaryStream);
 //            imgImageView.setImage(image);
         } catch (SQLException throwables) {
