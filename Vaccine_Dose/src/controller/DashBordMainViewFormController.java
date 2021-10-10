@@ -67,7 +67,6 @@ public class DashBordMainViewFormController implements Initializable {
 
 //        setUserImage(InputStream null);
 
-
         Parent parent = null;
         try {
             parent = FXMLLoader.load(this.getClass().getResource("/view/DashBordForm.fxml"));
