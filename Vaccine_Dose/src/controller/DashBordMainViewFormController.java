@@ -101,7 +101,7 @@ public class DashBordMainViewFormController implements Initializable {
         }
 
         else if (user.equals("D")){
-//            personRegFormController.btnAdminReg.setVisible(false);
+            personRegFormController.btnAdminReg.setVisible(false);
         }
 
         changingPanel.getChildren().clear();

@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
@@ -54,6 +55,7 @@ public class AdminRegisterFormController {
        autogenarate();
        txtName.requestFocus();
        loaddatatable();
+       photoUpload();
     }
     public void InsertData() throws FileNotFoundException {
         String AName = txtName.getText();
@@ -105,48 +107,58 @@ public class AdminRegisterFormController {
             txtPassword.requestFocus();
         }else if(txtConfirmPassword.getText().equals(txtPassword.getText())){
             NullBorderCl();
-            Connection connection = DBConnection.getInstance().getConnection();
-            try {
-                PreparedStatement preparedStatement = connection.prepareStatement("insert into AdminReg values(?,?,?,?,?,?,?,?,?)");
-                preparedStatement.setObject(1,id);
-                preparedStatement.setObject(2,AName);
-                preparedStatement.setObject(3,AContact);
-                preparedStatement.setObject(4,ANIC);
-                preparedStatement.setObject(5,Gender);
-                preparedStatement.setObject(6,AEmail);
-                preparedStatement.setObject(7,AUserName);
-                preparedStatement.setObject(8,Password);
 
-                if (photoUpload() == null){
+            if (photoUpload()==null){
+//                btnChooseImage.setStyle("-fx-background-color: #00b894");
+                btnChooseImage.setStyle("-fx-border-color:red");
+                Alert alert = new Alert(Alert.AlertType.ERROR,"Please Choose Image File");
+                alert.showAndWait();
+            }else {
+                btnChooseImage.setStyle("-fx-border-color:null");
+                Connection connection = DBConnection.getInstance().getConnection();
+                try {
+                    PreparedStatement preparedStatement = connection.prepareStatement("insert into AdminReg values(?,?,?,?,?,?,?,?,?)");
+                    preparedStatement.setObject(1,id);
+                    preparedStatement.setObject(2,AName);
+                    preparedStatement.setObject(3,AContact);
+                    preparedStatement.setObject(4,ANIC);
+                    preparedStatement.setObject(5,Gender);
+                    preparedStatement.setObject(6,AEmail);
+                    preparedStatement.setObject(7,AUserName);
+                    preparedStatement.setObject(8,Password);
 
-                    File img = new File("Vaccine_Dose/src/image/219986.png");
-                    FileInputStream fin = new FileInputStream(img);
-                    preparedStatement.setBinaryStream(9, (InputStream)fin,(int)img.length());
-                }else {
+                    if (photoUpload() == null){
 
-                    FileInputStream fin = new FileInputStream(photoUpload());
+                        File img = new File("Vaccine_Dose/src/image/219986.png");
+                        FileInputStream fin = new FileInputStream(img);
+                        preparedStatement.setBinaryStream(9, (InputStream)fin,(int)img.length());
+                    }else {
 
-                    int length = (int)file.length();
-                    preparedStatement.setBinaryStream(9,fin,length);
-                }
+                        FileInputStream fin = new FileInputStream(photoUpload());
 
-                int i = preparedStatement.executeUpdate();
-                if(i!=0){
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Successfull Added !!");
-                    alert.showAndWait();
-                    loaddatatable();
+                        int length = (int)file.length();
+                        preparedStatement.setBinaryStream(9,fin,length);
+                    }
 
-                }else{
+                    int i = preparedStatement.executeUpdate();
+                    if(i!=0){
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Successfull Added !!");
+                        alert.showAndWait();
+                        loaddatatable();
+
+                    }else{
+                        ErrorAlert();
+                    }
+
+                } catch (SQLException throwables) {
                     ErrorAlert();
+                    throwables.printStackTrace();
                 }
-
-            } catch (SQLException throwables) {
-                ErrorAlert();
-                throwables.printStackTrace();
+                allvalueClear();
+                autogenarate();
+                txtName.requestFocus();
             }
-            allvalueClear();
-            autogenarate();
-            txtName.requestFocus();
+
 
         }else{
             Alert alert=new Alert(Alert.AlertType.ERROR,"Passsword and Confirm Password are not same !!");
@@ -213,6 +225,14 @@ public class AdminRegisterFormController {
         txtPassword.clear();
         txtConfirmPassword.clear();
         txtEmail.clear();
+        lblImagePath.setText("Image Path");
+
+        File file = new File("Vaccine_Dose/src/image/219986.png");
+        Image image = new Image(file.toURI().toString());
+        imgImageView.setImage(image);
+
+        btnChooseImage.setStyle("-fx-border-color:null");
+
     }
     public void loaddatatable(){
         ObservableList<ViewAllAdminTM> items = tblAdmin.getItems();
@@ -276,6 +296,9 @@ public class AdminRegisterFormController {
                 imgImageView.setImage(image);
                 lblImagePath.setText(String.valueOf(file));
 
+                if (file!=null){
+                    btnChooseImage.setStyle("-fx-border-color:null");
+                }
 
             } catch (IOException ex) {
                 Logger.getLogger(VaccinationFormController.class.getName()).log(Level.SEVERE, null, ex);

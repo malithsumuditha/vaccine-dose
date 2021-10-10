@@ -156,8 +156,12 @@ public class DoctorRegFOrmController {
 
                     btnFileChooser.setStyle("-fx-border-color:null");
 
-
-
+                    if (photoUpload()==null){
+                        btnFileChooser.setStyle("-fx-background-color: #00b894");
+//                        btnFileChooser.setStyle("-fx-border-color:red");
+                        Alert alert = new Alert(Alert.AlertType.ERROR,"Please Choose Image File");
+                        alert.showAndWait();
+                    }else {
                         try {
                             PreparedStatement preparedStatement = connection.prepareStatement("insert into doctor values(?,?,?,?,?,?,?)");
                             preparedStatement.setObject(1,id);
@@ -195,6 +199,11 @@ public class DoctorRegFOrmController {
                             errorAlert("Something Error");
                             throwables.printStackTrace();
                         }
+
+
+
+                    }
+
 
 
 
@@ -336,10 +345,10 @@ public class DoctorRegFOrmController {
         btnUpdateDeletesetDisable(true);
         txtAccPassword.setDisable(false);
         txtCPassword.setDisable(false);
-        btnFileChooser.setStyle("-fx-background-color: #3742fa");
+        btnFileChooser.setStyle("-fx-background-color: #00b894");
         loadDatatoTable();
 
-        File file = new File("Vaccine_Dose/src/image/219986.png");
+        File file = new File("/Vaccine_Dose/src/image/219986.png");
         Image image = new Image(file.toURI().toString());
         imgImageView.setImage(image);
     }
