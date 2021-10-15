@@ -101,10 +101,13 @@
             <Label layoutX="372.0" layoutY="147.0" styleClass="context-menu5" text="Total Vaccination" />
          </children>
       </Pane>
-      <Label layoutX="31.0" layoutY="410.0" prefHeight="39.0" prefWidth="503.0" style="-fx-background-color: #0984e3;" styleClass="context-menu2" text="Recent Local News">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="31.0" layoutY="410.0" prefHeight="39.0" prefWidth="503.0" style="-fx-background-color: #0984e3;" styleClass="context-menu2" text="Recent Local News   ">
          <padding>
             <Insets left="10.0" />
          </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </Label>
       <Pane layoutX="31.0" layoutY="447.0" prefHeight="170.0" prefWidth="503.0" style="-fx-border-color: #95a5a6;">
          <children>
@@ -144,7 +147,7 @@
                </cursor>
             </ImageView>
          </children></Pane>
-      <Label layoutX="560.0" layoutY="410.0" prefHeight="39.0" prefWidth="503.0" style="-fx-background-color: #0984e3;" styleClass="context-menu2" text="Recent Global News">
+      <Label alignment="CENTER_RIGHT" layoutX="560.0" layoutY="410.0" prefHeight="39.0" prefWidth="503.0" style="-fx-background-color: #0984e3;" styleClass="context-menu2" text="Recent Global News   ">
          <padding>
             <Insets left="10.0" />
          </padding>
@@ -199,6 +202,15 @@
       </Pane>
       <Label alignment="CENTER" layoutX="454.0" layoutY="184.0" prefHeight="18.0" prefWidth="69.0" style="-fx-border-color: white; -fx-border-radius: 5px;" styleClass="context-menu8" text="Dose 1" />
       <Label alignment="CENTER" layoutX="981.0" layoutY="184.0" prefHeight="18.0" prefWidth="69.0" style="-fx-border-color: white; -fx-border-radius: 5px;" styleClass="context-menu8" text="Graphs" />
-      <Label alignment="CENTER" layoutX="454.0" layoutY="421.0" prefHeight="18.0" prefWidth="69.0" style="-fx-border-color: white; -fx-border-radius: 5px;" styleClass="context-menu8" text="Recent" />
+      <Label fx:id="lblLocalCovidPatients" layoutX="44.0" layoutY="421.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblGlobalCovidPatients" layoutX="574.0" layoutY="421.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

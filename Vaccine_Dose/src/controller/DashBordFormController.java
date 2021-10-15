@@ -15,6 +15,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.awt.*;
 import java.io.IOException;
@@ -48,10 +52,14 @@ public class DashBordFormController {
     public ImageView imgGlobal1;
     public ImageView imgGlobal2;
     public Button btnTest;
+    public Label lblLocalCovidPatients;
+    public Label lblGlobalCovidPatients;
 
 
     public void initialize() throws IOException {
 
+        localCovidPatients();
+        globalCovidPatients();
 
         setValuesToLineChartt();
 //
@@ -364,5 +372,36 @@ public class DashBordFormController {
         }
     }
 
+    public void localCovidPatients() {
+
+            try {
+                Document doc = Jsoup.connect("https://www.worldometers.info/coronavirus/country/sri-lanka/").get();
+                Elements temp = doc.select("div.maincounter-number");
+
+                String bb = temp.first().text();
+                lblLocalCovidPatients.setText("Local Covid Cases : "+bb);
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    public void globalCovidPatients() {
+
+        try {
+            Document doc = Jsoup.connect("https://www.worldometers.info/coronavirus/").get();
+            Elements temp = doc.select("div.maincounter-number");
+
+            String bb = temp.first().text();
+            lblGlobalCovidPatients.setText("Global Covid Cases : "+bb);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }
