@@ -397,7 +397,6 @@ public class DashBordFormController {
             String bb = temp.first().text();
             lblGlobalCovidPatients.setText("Global Covid Cases : "+bb);
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -49,12 +49,10 @@ public class DashBordMainViewFormController implements Initializable {
     public JFXButton btnRegister;
     public JFXButton btnVaccine;
     public JFXButton btnVaccination;
-    public JFXButton btnPHIRegister;
     public Separator sptDashbord;
     public Separator sptRegister;
     public Separator sptVaccine;
     public Separator sptVaccination;
-    public Separator sptPHIRegister;
     public BorderPane root;
     public ImageView imgUserPP;
     public Circle circleImg;
@@ -162,15 +160,8 @@ public class DashBordMainViewFormController implements Initializable {
 
     }
 
-    public void btnPHIRegisterOnAction(ActionEvent actionEvent) throws IOException {
-        Parent parent = FXMLLoader.load(this.getClass().getResource("/view/PHIRegForm.fxml"));
-        changingPanel.getChildren().clear();
-        changingPanel.getChildren().add(parent);
-    }
-
     public void btnDashBordOnMouseClicked(MouseEvent mouseEvent) {
         btnDashBord.setStyle("-fx-background-color: #3742fa");
-        btnPHIRegister.setStyle("-fx-background-color: #3498db");
         btnRegister.setStyle("-fx-background-color: #3498db");
         btnVaccination.setStyle("-fx-background-color: #3498db");
         btnVaccine.setStyle("-fx-background-color:  #3498db");
@@ -186,7 +177,6 @@ public class DashBordMainViewFormController implements Initializable {
     
     public void btnRegisterOnMouseClick(MouseEvent mouseEvent) {
         btnRegister.setStyle("-fx-background-color: #3742fa");
-        btnPHIRegister.setStyle("-fx-background-color: #3498db");
         btnDashBord.setStyle("-fx-background-color: #3498db");
         btnVaccination.setStyle("-fx-background-color: #3498db");
         btnVaccine.setStyle("-fx-background-color:  #3498db");
@@ -202,7 +192,6 @@ public class DashBordMainViewFormController implements Initializable {
 
     public void btnVaccineOnMouseClicked(MouseEvent mouseEvent) {
         btnVaccine.setStyle("-fx-background-color: #3742fa");
-        btnPHIRegister.setStyle("-fx-background-color: #3498db");
         btnDashBord.setStyle("-fx-background-color: #3498db");
         btnVaccination.setStyle("-fx-background-color: #3498db");
         btnRegister.setStyle("-fx-background-color:  #3498db");
@@ -228,33 +217,10 @@ public class DashBordMainViewFormController implements Initializable {
 
     public void btnVaccinationOnMouseClicked(MouseEvent mouseEvent) {
         btnVaccination.setStyle("-fx-background-color: #3742fa");
-        btnPHIRegister.setStyle("-fx-background-color: #3498db");
         btnDashBord.setStyle("-fx-background-color: #3498db");
         btnRegister.setStyle("-fx-background-color: #3498db");
         btnVaccine.setStyle("-fx-background-color:  #3498db");
     }
-
-
-
-
-
-    public void btnPHIRegisterOnMouseClicked(MouseEvent mouseEvent) {
-        btnPHIRegister.setStyle("-fx-background-color: #3742fa");
-        btnRegister.setStyle("-fx-background-color: #3498db");
-        btnDashBord.setStyle("-fx-background-color: #3498db");
-        btnVaccination.setStyle("-fx-background-color: #3498db");
-        btnVaccine.setStyle("-fx-background-color:  #3498db");
-    }
-
-    public void btnPHIRegisterOnMouseEnter(MouseEvent mouseEvent) {
-        onMouseEnterChange(btnPHIRegister,sptPHIRegister);
-    }
-
-
-    public void btnPHIRegisterOnMouseExit(MouseEvent mouseEvent) {
-        onMouseExitChange(btnPHIRegister,sptPHIRegister);
-    }
-
 
     public void btnEditProfile(ActionEvent actionEvent) {
     }

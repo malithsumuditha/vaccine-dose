@@ -115,28 +115,6 @@
                      <VBox.margin>
                         <Insets left="40.0" right="45.0" />
                      </VBox.margin></Separator>
-                  <JFXButton fx:id="btnPHIRegister" onAction="#btnPHIRegisterOnAction" onMouseClicked="#btnPHIRegisterOnMouseClicked" onMouseEntered="#btnPHIRegisterOnMouseEnter" onMouseExited="#btnPHIRegisterOnMouseExit" prefHeight="65.0" prefWidth="261.0" text="PHI Register" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <ImageView fitHeight="33.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../image/Untitled-9.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <VBox.margin>
-                        <Insets right="5.0" />
-                     </VBox.margin>
-                  </JFXButton>
-                  <Separator fx:id="sptPHIRegister" prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets left="40.0" right="45.0" />
-                     </VBox.margin></Separator>
                   <Label fx:id="lblTest" text="Label" visible="false" />
                </children>
             </VBox>
